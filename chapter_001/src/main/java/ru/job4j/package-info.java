@@ -1,7 +1,6 @@
 /**
-* @author Andrey Baranov 
-* @version 11.1
-* @since 16.03.2017
+* @author Andrey Baranov
+* @version $Id$
+* @since 0.1
 */
-
 package ru.job4j;

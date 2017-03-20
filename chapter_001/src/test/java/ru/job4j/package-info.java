@@ -1,7 +1,5 @@
 /**
-* //TODO add comments.
-*
-* @author Andrey Baranov 
+* @author Andrey Baranov
 * @version $Id$
 * @since 0.1
 */
