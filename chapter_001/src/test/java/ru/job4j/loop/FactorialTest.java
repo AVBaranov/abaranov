@@ -9,17 +9,16 @@ import static org.junit.Assert.assertThat;
 * @version $Id$
 * @since 0.1
 */
-public class CounterTest {
+public class FactorialTest {
 /**
-* Test sum.
+* Test factorial.
 */
 @Test
-public void whenFirstNumberIsOneAndLastNumberIsTenThenSumIsThirty() {
-        Counter obj = new Counter();
-	int start = 1;
-	int finish = 20;
-	int expectation = 110;
-        int reality = obj.add(start, finish);
+public void whenNumberIsSevenThenFactorialIsFiveThousandAndForty() {
+        Factorial obj = new Factorial();
+	int n = 7;
+	int expectation = 5040;
+        int reality = obj.calc(n);
         assertThat(reality, is(expectation));
     }
 
