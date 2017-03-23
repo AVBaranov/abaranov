@@ -12,10 +12,10 @@ public class Factorial {
 *@return factorial
 */
 public int calc(int n) {
-	if (n == 0) {
-	return 1;
+	int a = 1;
+        for (int i = 1; i <= n; i++) {
+	a *= i;
 	}
-        int x = n * calc(n - 1);
-        return x;
+        return a;
 	}
 }
