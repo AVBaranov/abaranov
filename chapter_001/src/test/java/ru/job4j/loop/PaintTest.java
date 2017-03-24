@@ -19,7 +19,7 @@ public class PaintTest {
 public void whenHeightIsThreeThenNumberOfSymbolsIsNine() {
         Paint obj = new Paint();
 	int h = 3;
-	int expectation = 9;
+	int expectation = h * h;
 	String str = obj.pyramid(h);
 	int reality = 0;
 	for (char ch : str.toCharArray()) {
