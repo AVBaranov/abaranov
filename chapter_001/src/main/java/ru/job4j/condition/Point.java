@@ -43,6 +43,6 @@ public int getY() {
 *@return true if point belongs to function and false otherwise
 */
 public boolean is(int a, int b) {
-	return (y == a * x + b) ? true : false;
+	return y == a * x + b;
 	}
 }
