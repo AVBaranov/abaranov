@@ -36,10 +36,8 @@ public void whenHeightIsThreeThenNumberOfSymbolsIsNine() {
 public void whenHeightIsTwoThenReturnsStringEqualsToStandardString() {
         Paint obj = new Paint();
 	int h = 2;
-	String str = obj.pyramid(h);
-	String standard = " ^\n^^^\n";
-	boolean expectation = true;
-	boolean reality = str.equals(standard);
+	String reality = obj.pyramid(h);
+	String expectation = " ^\n^^^\n";
         assertThat(reality, is(expectation));
     }
 }

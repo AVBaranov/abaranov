@@ -23,7 +23,7 @@ public int max(int first, int second) {
 *@return max
 */
 public int max(int first, int second, int third) {
-	return max(max(first, second), max(first, third));
+	return max(first, max(second, third));
 	}
 
 }
