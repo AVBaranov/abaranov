@@ -29,16 +29,34 @@ public Triangle(Point x, Point y, Point z) {
         this.c = z;
 }
 /**
-* constructor initializes private fields of class.
+* returns length of side AB.
+*@return AB
+*/
+public double getAB() {
+	return Math.sqrt(Mat.sqr(a.getX() - b.getX(), 2) + Mat.sqr(a.getY() - b.getY(), 2));
+}
+/**
+* returns length of side BC.
+*@return BC
+*/
+public double getBC() {
+	return Math.sqrt(Mat.sqr(b.getX() - c.getX(), 2) + Mat.sqr(b.getY() - c.getY(), 2));
+}
+/**
+* returns length of side AC.
+*@return AC
+*/
+public double getAC() {
+	return Math.sqrt(Mat.sqr(a.getX() - c.getX(), 2) + Mat.sqr(a.getY() - c.getY(), 2));
+}
+/**
+* returns square.
 *@return square
 */
 public double area() {
         if ((a.getX() != b.getX() || a.getY() != b.getY()) && (b.getX() != c.getX() || b.getY() != c.getY()) && (a.getX() != c.getX() || a.getY() != c.getY())) {
-            double ab = Math.sqrt(Mat.sqr(a.getX() - b.getX(), 2) + Mat.sqr(a.getY() - b.getY(), 2));
-            double bc = Math.sqrt(Mat.sqr(b.getX() - c.getX(), 2) + Mat.sqr(b.getY() - c.getY(), 2));
-            double ac = Math.sqrt(Mat.sqr(a.getX() - c.getX(), 2) + Mat.sqr(a.getY() - c.getY(), 2));
-            double p = (ab + ac + bc) / 2;
-            double s = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
+            double p = (getAB() + getAC() + getBC()) / 2;
+            double s = Math.sqrt(p * (p - getAB()) * (p - getAC()) * (p - getBC()));
             return s;
         }
         return 0;
