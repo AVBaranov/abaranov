@@ -9,20 +9,18 @@ public class Turn {
 /**
 * method returns turned array.
 *@param array - source array
-*@param start - index of first array's element
-*@param end - index of last array's element
 *@return turned array
 */
-public int[] back(int[] array, int start, int end) {
-        if (start >= end) {
-            return array;
-        }
-        int buf = array[start];
-        array[start] = array[end];
-        array[end] = buf;
-        start++;
-        end--;
-        back(array, start, end);
+public int[] back(int[] array) {
+        int start = 0;
+	int end = array.length - 1;
+	for (int i = 0; i < array.length / 2; i++) {
+		int buf = array[start];
+        	array[start] = array[end];
+        	array[end] = buf;
+        	start++;
+        	end--;
+	}
         return array;
     }
 }

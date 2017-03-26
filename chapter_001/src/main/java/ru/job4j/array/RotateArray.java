@@ -12,6 +12,8 @@ public class RotateArray {
 *@return turned array
 */
 public int[][] rotate(int[][] array) {
+	int x = 0;
+        int y = array.length - 1;
 	for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
                 if (i < j)  {
@@ -20,11 +22,7 @@ public int[][] rotate(int[][] array) {
                     array[j][i] = buf;
                 }
             }
-        }
-        int x = 0;
-        int y = array.length - 1;
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length / 2; j++) {
+	    for (int j = 0; j < array.length / 2; j++) {
 
                 int buf = array[i][x];
                 array[i][x] = array[i][y];

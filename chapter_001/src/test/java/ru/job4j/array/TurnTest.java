@@ -20,7 +20,7 @@ public void whenfSourceArrayIsEvenThenTurnedArray() {
         Turn obj = new Turn();
 	int[] sourcearray = {1, 2, 4, 7, 5, 8, 3, 0, 6, 9};
         int[] standardarray = {9, 6, 0, 3, 8, 5, 7, 4, 2, 1};
-	obj.back(sourcearray, 0, sourcearray.length - 1);
+	obj.back(sourcearray);
         assertThat(sourcearray, is(standardarray));
     }
 /**
@@ -31,7 +31,7 @@ public void whenfSourceArrayIsOddThenTurnedArray() {
         Turn obj = new Turn();
 	int[] sourcearray = {1, 2, 4, 7, 5, 8, 3, 0, 6, 9, 11};
         int[] standardarray = {11, 9, 6, 0, 3, 8, 5, 7, 4, 2, 1};
-	obj.back(sourcearray, 0, sourcearray.length - 1);
+	obj.back(sourcearray);
         assertThat(sourcearray, is(standardarray));
     }
 }
