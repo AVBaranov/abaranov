@@ -16,7 +16,7 @@ public class SubStringTest {
 @Test
 public void whenOriginStringContainsSubStringThenReturnTrue() {
         SubString obj = new SubString();
-	String str1 = new String("sadfgfsomestringhstsrrsstr");
+	String str1 = new String("sadfgfsomevstringhstsomsomestringiestringsrrsstsomekstringrsoomestring");
 	String str2 = new String("somestring");
 	boolean reality = obj.contains(str1, str2);
 	boolean expectation = true;

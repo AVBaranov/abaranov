@@ -25,7 +25,7 @@ public boolean contains(String origin, String sub) {
                     f = ar1[i + j] == ar2[j];
                 }
                 if (f) {
-			return f;
+			break;
 		}
             }
         }
