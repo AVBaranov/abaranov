@@ -5,6 +5,14 @@ package ru.job4j;
  */
 public class Teacher extends Profession {
     /**
+     * constructor.
+     * @param name set human's name
+     * @param age set human's age
+     */
+    public Teacher(String name, int age) {
+        super(name, age);
+    }
+    /**
      * subject neme.
      */
     private String subject;
