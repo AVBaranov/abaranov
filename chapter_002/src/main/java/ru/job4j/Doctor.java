@@ -1,4 +1,4 @@
-package ru.job4j;
+﻿package ru.job4j;
 
 /**
  * class for healing people.
@@ -6,8 +6,8 @@ package ru.job4j;
 public class Doctor extends Profession {
     /**
      * constructor.
-     * @param name set human's name
-     * @param age set human's age
+     * @param name set human's name.
+     * @param age set human's age.
      */
     public Doctor(String name, int age) {
         super(name, age);
