@@ -38,6 +38,6 @@ public class Teacher extends Profession {
      * @return teacher and student names
      */
     public String teach(String student) {
-        return "Преподаватель " + getName() + " учит студента " + student;
+        return "Преподаватель " + getName() + " учит Студента " + student;
     }
 }
