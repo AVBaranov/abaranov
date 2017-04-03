@@ -32,4 +32,12 @@ public class Teacher extends Profession {
     public String getSubject() {
         return this.subject;
     }
+    /**
+     * method teach student.
+     * @param student student
+     * @return teacher and student names
+     */
+    public String teach(String student) {
+        return "Преподаватель " + getName() + " учит студента " + student;
+    }
 }
