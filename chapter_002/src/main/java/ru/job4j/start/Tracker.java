@@ -24,6 +24,7 @@ public class Tracker {
      * @return added element
      */
     public Item add(Item item) {
+
         item.setId(String.valueOf(System.currentTimeMillis() + RN.nextInt()));
         this.items[position++] = item;
         return item;
@@ -60,26 +61,55 @@ public class Tracker {
      */
     public void update(Item item) {
         for (int i = 0; i < items.length; i++) {
-            if (items[i].getName().equals(item.getName()) && items[i] != null) {
-               //items[i].getName() = "str";
+            if (items[i] != null && items[i].getName().equals(item.getName())) {
+                items[i].setName("new name");
                 break;
             }
         }
     }
     /**
-     * Method delete reequest.
+     * Method delete request.
      * @param item - deleted request
      */
     public void delete(Item item) {
+        boolean b = true;
         for (int i = 0; i < items.length; i++) {
             Item temp = items[i];
             if (temp != null && temp.getId().equals(item.getId())) {
-                items[i] = null;
+                for (int j = i; j < i; j++) {
+                    Item buf = items[j];
+                    items[j] = items[j + 1];
+                    items[j] = buf;
+                }
                 position--;
+                b = false;
                 break;
-
             }
         }
+        if (b) {
+            System.out.println("Wrong argument! Exiting...");
+            return;
+        }
+    }
+    /**
+     * Method search name.
+     * @param key - name
+     * @return new array
+     */
+    public Item[] findByName(String key) {
+        int counter = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null && items[i].getName().equals(key)) {
+                counter++;
+            }
+        }
+        Item[] array = new Item[counter];
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null && items[i].getName().equals(key)) {
+                array[i] = items[i];
+            }
+        }
+        return array;
     }
 
 

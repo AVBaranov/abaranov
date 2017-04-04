@@ -27,6 +27,13 @@ public class Profession {
         this.age = age;
     }
     /**
+     * constructor.
+     * @param name set human's name
+     */
+    public Profession(String name) {
+        this.name = name;
+    }
+    /**
      * method returns human's name.
      * @return name
      */

@@ -37,7 +37,8 @@ public class Teacher extends Profession {
      * @param student student
      * @return teacher and student names
      */
-    public String teach(String student) {
-        return "Преподаватель " + getName() + " учит Студента " + student;
+    public String teach(Student student) {
+
+        return "Преподаватель " + getName() + " учит Студента " + student.getName();
     }
 }
