@@ -24,7 +24,10 @@ public class Tracker {
      * @return added element
      */
     public Item add(Item item) {
-
+        if (item == null) {
+            System.out.println("Wrong parametr! Exiting...");
+            return null;
+        }
         item.setId(String.valueOf(System.currentTimeMillis() + RN.nextInt()));
         this.items[position++] = item;
         return item;
@@ -35,13 +38,14 @@ public class Tracker {
      * @return found element
      */
     public Item findById(String id) {
-        Item obs = null;
+        Item obs = items[1];
         for (int i = 0; i < items.length; i++) {
             if (items[i].getId().equals(id) && items[i] != null) {
                 obs = items[i];
                 break;
             }
         }
+
         return obs;
     }
     /**
@@ -61,14 +65,17 @@ public class Tracker {
      */
     public void update(Item item) {
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getName().equals(item.getName())) {
-                items[i].setName("new name");
+            Item temp = items[i];
+            if (items[i] != null && items[i].getName().equals(item.getName()) && items[i].getDescription().equals(item.getDescription()) && items[i].getCreate() == (item.getCreate())) {
+                items[i].setName("newname");
+                items[i].setDescription("newdescription");
+                items[i].setCreate(100);
                 break;
             }
         }
     }
     /**
-     * Method delete request.
+     * Method delete reequest.
      * @param item - deleted request
      */
     public void delete(Item item) {
@@ -76,10 +83,10 @@ public class Tracker {
         for (int i = 0; i < items.length; i++) {
             Item temp = items[i];
             if (temp != null && temp.getId().equals(item.getId())) {
-                for (int j = i; j < i; j++) {
+                for (int j = i; j < items.length - 1; j++) {
                     Item buf = items[j];
                     items[j] = items[j + 1];
-                    items[j] = buf;
+                    items[j + 1] = buf;
                 }
                 position--;
                 b = false;
@@ -87,25 +94,25 @@ public class Tracker {
             }
         }
         if (b) {
-            System.out.println("Wrong argument! Exiting...");
-            return;
+            System.out.println("не существующий элемент");
         }
     }
     /**
-     * Method search name.
+     * Method search element by name.
      * @param key - name
      * @return new array
      */
     public Item[] findByName(String key) {
         int counter = 0;
+        Item obs = null;
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
+            if (items[i] != null && key.equals(items[i].getName())) {
                 counter++;
             }
         }
         Item[] array = new Item[counter];
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getName().equals(key)) {
+            if (items[i] != null && key.equals(items[i].getName())) {
                 array[i] = items[i];
             }
         }

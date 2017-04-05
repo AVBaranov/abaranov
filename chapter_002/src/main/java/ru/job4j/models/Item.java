@@ -74,6 +74,20 @@ public class Item {
     public void setName(String name) {
         this.name = name;
     }
+    /**
+     * Method sets description of request.
+     * @param description - description of request
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    /**
+     * Method sets date of request creation.
+     * @param create - date of request creation
+     */
+    public void setCreate(long create) {
+        this.create = create;
+    }
 
 }
 
