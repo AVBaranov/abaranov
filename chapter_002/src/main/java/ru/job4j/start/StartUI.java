@@ -65,7 +65,7 @@ public class StartUI {
                 if (tracker.findAll().length != 0) {
                     System.out.println("Your items:");
                     for (int i = 0; i < tracker.findAll().length; i++) {
-                        System.out.println(tracker.findAll()[i].getName() + " " + tracker.findAll()[i].getDescription() + " " + tracker.findAll()[i].getCreate());
+                        System.out.println(tracker.findAll()[i].getName() + " " + tracker.findAll()[i].getDescription() + " " + tracker.findAll()[i].getCreate() + " " + tracker.findAll()[i].getId());
                     }
                 } else {
                     System.out.println("Nothing to display");
@@ -96,15 +96,45 @@ public class StartUI {
 
 
             }
+            if (s.equals(String.valueOf(4))) {
+                System.out.print("Enter ID: ");
+                String temp = input.ask();
+                /*boolean b = true;
+                for(int i=0; i<tracker.findAll().length; i++) {
+                    if(tracker.findAll()[i].getId().equals(temp)) {
+                        System.out.println("Your request:");
+                        System.out.println(tracker.findAll()[i].getName() + " " + tracker.findAll()[i].getDescription() + " " + tracker.findAll()[i].getCreate() + " " + tracker.findAll()[i].getId());
+                        b = false;
+                        break;
+                    }
+                }
+                if (b) {
+                    System.out.println("You entered incorrect value!");
+                }*/
+                Item it = tracker.findById(temp);
+                if (it != null) {
+                    System.out.println(it.getName() + " " + it.getDescription() + " " + it.getCreate() + " " + it.getId());
+                } else {
+                    System.out.println("You entered incorrect value!");
+                }
+            }
+            if (s.equals(String.valueOf(5))) {
+                System.out.print("Enter your name: ");
+                String name = input.ask();
+                for (int i = 0; i < tracker.findByName(name).length; i++) {
+                    System.out.println(tracker.findByName(name)[i].getName() + " " + tracker.findByName(name)[i].getDescription() + " " + tracker.findByName(name)[i].getCreate() + " " + tracker.findByName(name)[i].getId());
+                }
+            }
             if (s.equals(String.valueOf(6))) {
                 System.out.println("Bye!");
                 break;
             }
-            if (!(s.equals("0") || s.equals("1") || s.equals("2") || s.equals("3") || s.equals("6"))) {
+            if (!(s.equals("0") || s.equals("1") || s.equals("2") || s.equals("3") || s.equals("4") || s.equals("5") || s.equals("6"))) {
                 System.out.println("Incorrect input! Try again");
                 continue;
             }
         }
+
 
 
     }

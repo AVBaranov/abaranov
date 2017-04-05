@@ -28,7 +28,7 @@ public class Tracker {
             System.out.println("Wrong parametr! Exiting...");
             return null;
         }
-        item.setId(String.valueOf(System.currentTimeMillis() + RN.nextInt()));
+        item.setId(String.valueOf(/*System.currentTimeMillis() + RN.nextInt()*/item.getCreate()) + item.getName());
         this.items[position++] = item;
         return item;
     }
@@ -38,9 +38,9 @@ public class Tracker {
      * @return found element
      */
     public Item findById(String id) {
-        Item obs = items[1];
+        Item obs = null;
         for (int i = 0; i < items.length; i++) {
-            if (items[i].getId().equals(id) && items[i] != null) {
+            if (items[i] != null && items[i].getId().equals(id)) {
                 obs = items[i];
                 break;
             }
