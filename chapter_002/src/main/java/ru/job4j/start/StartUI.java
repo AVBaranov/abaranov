@@ -74,6 +74,7 @@ public class StartUI {
                 }
             }
 
+            
             if (s.equals(String.valueOf(2))) {
                 /*System.out.print("Enter your name: ");
                 String name = input.ask();
