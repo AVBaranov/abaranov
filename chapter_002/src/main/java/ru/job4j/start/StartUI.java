@@ -6,23 +6,14 @@ import java.util.Scanner;
  * class StartUI.
  */
 public class StartUI {
-    /**
-     * method main.
-     * @param args - arguments
-     */
-    public static void main(String[] args) {
+    private Input input;
+    StartUI(Input input) {
+        this.input = input;
+    }
+    public void init() {
         Tracker tracker = new Tracker();
-
-        /*Item it = new Item("second name", "second desc", 2);
-        tracker.add(it);
-        Item it2 = new Item("third name", "third desc", 3);
-        tracker.add(it2);
-        Item it3 = new Item("force name", "force desc", 4);
-        tracker.add(it3);
-        Item it4 = new Item("second name", "force desc", 4);
-        tracker.add(it4);*/
         Scanner in = new Scanner(System.in);
-        ConsoleInput input = new ConsoleInput();
+        //ConsoleInput input = new ConsoleInput();
         String s = new String();
         for (;;) {
             System.out.print("0. Add new item\n1. Show all items\n2. Edit item\n3. Delete item\n4. Find item by id\n5. Find items by name\n6. Exit program\nSelect: ");
@@ -137,8 +128,15 @@ public class StartUI {
                 continue;
             }
         }
-
-
+    }
+    /**
+     * method main.
+     * @param args - arguments
+     */
+    public static void main(String[] args) {
+        String[] array = {"0", "1", "2", "3", "4", "5", "6"};
+        StartUI obj = new StartUI(new ConsoleInput()/*StubInput(array)*/);
+        obj.init();
 
     }
 }

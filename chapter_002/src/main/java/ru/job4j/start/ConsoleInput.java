@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * Class for input data.
  */
-public class ConsoleInput {
+public class ConsoleInput implements Input {
     /**
      * scanner object.
      */
@@ -15,14 +15,14 @@ public class ConsoleInput {
      * Method input data.
      * @return input data
      */
-    String ask() {
+    public String ask() {
         return in.next();
     }
     /**
      * Method input data.
      * @return input data
      */
-    long askDate() {
+    public long askDate() {
         return in.nextLong();
     }
 

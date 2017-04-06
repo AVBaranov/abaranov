@@ -109,7 +109,7 @@ public class Tracker {
         Item[] array = new Item[items.length];
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && key.equals(items[i].getName())) {
-                array[i]=items[i];
+                array[i] = items[i];
                 counter++;
             }
         }

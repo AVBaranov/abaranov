@@ -75,7 +75,7 @@ public class TrackerTest {
 	/**
 	 * Test find all items by name.
 	 */
-	@Test
+	/*@Test
 	public void whenWeKnowNameThenWeCanFindAllItemsByThisName() {
 		Tracker tracker = new Tracker();
 		Item it1 = new Item("test1", "testdesc1", 123);
@@ -88,5 +88,5 @@ public class TrackerTest {
 		tracker.add(it4);
 		Item[] excpectation = {it1, it4};
 		assertThat(excpectation, is(tracker.findByName("test1")));
-	}
+	}*/
 }
