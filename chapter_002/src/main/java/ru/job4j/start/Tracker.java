@@ -66,11 +66,11 @@ public class Tracker {
      */
     public void update(Item item) {
         for (int i = 0; i < items.length; i++) {
-            Item temp = items[i];
-            if (items[i] != null && items[i].getName().equals(item.getName()) && items[i].getDescription().equals(item.getDescription()) && items[i].getCreate() == (item.getCreate())) {
-                items[i].setName("newname");
-                items[i].setDescription("newdescription");
-                items[i].setCreate(100);
+            Item temp = null;
+            if (items[i] != null && items[i].getId().equals(item.getId())) {
+                items[i].setName(item.getName());
+                items[i].setDescription(item.getDescription());
+                items[i].setCreate(item.getCreate());
                 break;
             }
         }
@@ -107,17 +107,14 @@ public class Tracker {
         int counter = 0;
         Item obs = null;
         Item[] array = new Item[items.length];
+        int j = 0;
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && key.equals(items[i].getName())) {
-                array[i] = items[i];
+                array[j] = items[i];
                 counter++;
+                j++;
             }
         }
-        /*for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && key.equals(items[i].getName())) {
-                array[i] = items[i];
-            }
-        }*/
         return Arrays.copyOf(array, counter);
     }
 

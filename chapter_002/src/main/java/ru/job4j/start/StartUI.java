@@ -6,10 +6,20 @@ import java.util.Scanner;
  * class StartUI.
  */
 public class StartUI {
+    /**
+     * Input object.
+     */
     private Input input;
+    /**
+     * Constructor.
+     * @param input - Input object
+     */
     StartUI(Input input) {
         this.input = input;
     }
+    /**
+     * Method for all calculate in program.
+     */
     public void init() {
         Tracker tracker = new Tracker();
         Scanner in = new Scanner(System.in);
@@ -64,7 +74,7 @@ public class StartUI {
                 }
             }
             if (s.equals(String.valueOf(2))) {
-                System.out.print("Enter your name: ");
+                /*System.out.print("Enter your name: ");
                 String name = input.ask();
                 System.out.print("Enter task's description: ");
                 String desc = input.ask();
@@ -84,7 +94,33 @@ public class StartUI {
                     System.out.println("Done");
                 } else {
                     System.out.println("You entered incorrect value!");
+                }*/
+                System.out.print("Enter item's id to replace: ");
+                String id = input.ask();
+                boolean b = true;
+                for (int i = 0; i < tracker.findAll().length; i++) {
+                    if (tracker.findAll()[i].getId().equals(id)) {
+                        System.out.print("Enter new name: ");
+                        tracker.findAll()[i].setName(input.ask());
+                        System.out.print("Enter new description: ");
+                        tracker.findAll()[i].setDescription(input.ask());
+                        System.out.print("Enter new date: ");
+                        tracker.findAll()[i].setCreate(input.askDate());
+                        b = false;
+                        //tracker.update(new Item(name, desc, create));
+                        break;
+                    }
                 }
+                if (b) {
+                    System.out.println("You entered incorrect value!");
+                }
+
+                /*for (int i = 0; i < tracker.findAll().length; i++) {
+                    if (tracker.findAll()[i].getId().equals(id)) {
+                        tracker.findAll()[i] = temp;
+                        break;
+                    }
+                }*/
 
 
             }

@@ -4,8 +4,18 @@ package ru.job4j.start;
  * .
  */
 public class StubInput implements Input {
+    /**
+     * String array.
+     */
     private String[] answers;
+    /**
+     * counter.
+     */
     private int counter = 0;
+    /**
+     * Constructor.
+     * @param answers - String array
+     */
     public StubInput(String[] answers) {
         this.answers = answers;
     }

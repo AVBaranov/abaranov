@@ -1,6 +1,6 @@
 package ru.job4j.start;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  * Interface for input date.
