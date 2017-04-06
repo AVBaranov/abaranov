@@ -73,6 +73,7 @@ public class StartUI {
                     System.out.println("Nothing to display");
                 }
             }
+
             if (s.equals(String.valueOf(2))) {
                 /*System.out.print("Enter your name: ");
                 String name = input.ask();
