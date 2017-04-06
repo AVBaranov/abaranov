@@ -2,6 +2,7 @@ package ru.job4j.start;
 
 import ru.job4j.models.Item;
 import java.util.Random;
+import java.util.Arrays;
 /**
  * class Tracker.
  */
@@ -105,18 +106,19 @@ public class Tracker {
     public Item[] findByName(String key) {
         int counter = 0;
         Item obs = null;
+        Item[] array = new Item[items.length];
         for (int i = 0; i < items.length; i++) {
             if (items[i] != null && key.equals(items[i].getName())) {
+                array[i]=items[i];
                 counter++;
             }
         }
-        Item[] array = new Item[counter];
-        for (int i = 0; i < items.length; i++) {
+        /*for (int i = 0; i < items.length; i++) {
             if (items[i] != null && key.equals(items[i].getName())) {
                 array[i] = items[i];
             }
-        }
-        return array;
+        }*/
+        return Arrays.copyOf(array, counter);
     }
 
 

@@ -1,6 +1,6 @@
 package ru.job4j.start;
 import ru.job4j.models.Item;
-//import java.util.Random;
+//import java.util.Arrays;
 import java.util.Scanner;
 /**
  * class StartUI.
@@ -65,7 +65,8 @@ public class StartUI {
                 if (tracker.findAll().length != 0) {
                     System.out.println("Your items:");
                     for (int i = 0; i < tracker.findAll().length; i++) {
-                        System.out.println(tracker.findAll()[i].getName() + " " + tracker.findAll()[i].getDescription() + " " + tracker.findAll()[i].getCreate() + " " + tracker.findAll()[i].getId());
+                        System.out.println(String.format("%s %s %s %s", tracker.findAll()[i].getName(), tracker.findAll()[i].getDescription(), tracker.findAll()[i].getCreate(), tracker.findAll()[i].getId()));
+                        //System.out.println(tracker.findAll()[i].getName() + " " + tracker.findAll()[i].getDescription() + " " + tracker.findAll()[i].getCreate() + " " + tracker.findAll()[i].getId());
                     }
                 } else {
                     System.out.println("Nothing to display");
@@ -113,7 +114,8 @@ public class StartUI {
                 }*/
                 Item it = tracker.findById(temp);
                 if (it != null) {
-                    System.out.println(it.getName() + " " + it.getDescription() + " " + it.getCreate() + " " + it.getId());
+                    System.out.println(String.format("%s %s %s %s", it.getName(), it.getDescription(), it.getCreate(), it.getId()));
+                    /*System.out.println(it.getName() + " " + it.getDescription() + " " + it.getCreate() + " " + it.getId());*/
                 } else {
                     System.out.println("You entered incorrect value!");
                 }
@@ -122,7 +124,8 @@ public class StartUI {
                 System.out.print("Enter your name: ");
                 String name = input.ask();
                 for (int i = 0; i < tracker.findByName(name).length; i++) {
-                    System.out.println(tracker.findByName(name)[i].getName() + " " + tracker.findByName(name)[i].getDescription() + " " + tracker.findByName(name)[i].getCreate() + " " + tracker.findByName(name)[i].getId());
+                    System.out.println(String.format("%s %s %s %s", tracker.findByName(name)[i].getName(), tracker.findByName(name)[i].getDescription(), tracker.findByName(name)[i].getCreate(), tracker.findByName(name)[i].getId()));
+                    //System.out.println(tracker.findByName(name)[i].getName() + " " + tracker.findByName(name)[i].getDescription() + " " + tracker.findByName(name)[i].getCreate() + " " + tracker.findByName(name)[i].getId());
                 }
             }
             if (s.equals(String.valueOf(6))) {
