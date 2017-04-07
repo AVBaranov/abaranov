@@ -28,6 +28,7 @@ public class StartUI {
         for (;;) {
             System.out.print("0. Add new item\n1. Show all items\n2. Edit item\n3. Delete item\n4. Find item by id\n5. Find items by name\n6. Exit program\nSelect: ");
             s = in.next();
+
             if (s.equals(String.valueOf(0))) {
                 System.out.print("Enter your name: ");
                 String name = input.ask();
@@ -38,6 +39,7 @@ public class StartUI {
                 Item it1 = new Item(name, desc, create);
                 tracker.add(it1);
             }
+
             if (s.equals(String.valueOf(3))) {
                 System.out.print("Enter your name: ");
                 String name = input.ask();
@@ -60,8 +62,8 @@ public class StartUI {
                 } else {
                     System.out.println("You entered incorrect value!");
                 }
-
             }
+
             if (s.equals(String.valueOf(1))) {
                 if (tracker.findAll().length != 0) {
                     System.out.println("Your items:");
@@ -74,57 +76,29 @@ public class StartUI {
                 }
             }
 
-            
             if (s.equals(String.valueOf(2))) {
-                /*System.out.print("Enter your name: ");
-                String name = input.ask();
-                System.out.print("Enter task's description: ");
-                String desc = input.ask();
-                System.out.print("Enter current date: ");
-                long create = input.askDate();
-                Item temp = null;
-                boolean b = false;
-                for (int i = 0; i < tracker.findAll().length; i++) {
-                    if (name.equals(tracker.findAll()[i].getName()) && desc.equals(tracker.findAll()[i].getDescription()) && create == tracker.findAll()[i].getCreate()) {
-                        temp = tracker.findAll()[i];
-                        b = true;
-                        break;
-                    }
-                }
-                if (b) {
-                    tracker.update(temp);
-                    System.out.println("Done");
-                } else {
-                    System.out.println("You entered incorrect value!");
-                }*/
                 System.out.print("Enter item's id to replace: ");
                 String id = input.ask();
                 boolean b = true;
                 for (int i = 0; i < tracker.findAll().length; i++) {
                     if (tracker.findAll()[i].getId().equals(id)) {
                         System.out.print("Enter new name: ");
-                        tracker.findAll()[i].setName(input.ask());
+                        //tracker.findAll()[i].setName(input.ask());
+                        String name = input.ask();
                         System.out.print("Enter new description: ");
-                        tracker.findAll()[i].setDescription(input.ask());
+                        //tracker.findAll()[i].setDescription(input.ask());
+                        String desc = input.ask();
                         System.out.print("Enter new date: ");
-                        tracker.findAll()[i].setCreate(input.askDate());
+                        //tracker.findAll()[i].setCreate(input.askDate());
+                        long create = input.askDate();
                         b = false;
-                        //tracker.update(new Item(name, desc, create));
+                        tracker.update(id, new Item(name, desc, create));
                         break;
                     }
                 }
                 if (b) {
                     System.out.println("You entered incorrect value!");
                 }
-
-                /*for (int i = 0; i < tracker.findAll().length; i++) {
-                    if (tracker.findAll()[i].getId().equals(id)) {
-                        tracker.findAll()[i] = temp;
-                        break;
-                    }
-                }*/
-
-
             }
             if (s.equals(String.valueOf(4))) {
                 System.out.print("Enter ID: ");

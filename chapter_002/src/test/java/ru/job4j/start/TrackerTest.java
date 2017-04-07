@@ -89,4 +89,28 @@ public class TrackerTest {
 		Item[] excpectation = {it1, it4};
 		assertThat(excpectation, is(tracker.findByName("test1")));
 	}
+	/**
+	 * Test find all items by name.
+	 */
+	@Test
+	public void whenNeedToReplaceItemByIdThenEnterNewItem() {
+		Tracker tracker = new Tracker();
+		Item it1 = new Item("test1", "testdesc1", 123);
+		Item it2 = new Item("test2", "testdesc2", 234);
+		Item it3 = new Item("test3", "testdesc3", 345);
+		Item it4 = new Item("test1", "testdesc3", 345);
+		tracker.add(it1);
+		tracker.add(it2);
+		tracker.add(it3);
+		tracker.add(it4);
+		Tracker newtracker = new Tracker();
+		Item newitem = new Item("newtest", "newtestdesc", 77777);
+		//Item[] excpectation = {it1, it4};
+		newtracker.add(it1);
+		newtracker.add(it2);
+		newtracker.add(newitem);
+		newtracker.add(it4);
+		tracker.update(it3.getId(), newitem);
+		assertThat(newtracker.findAll()[2].getId(), is(tracker.findAll()[2].getId()));
+	}
 }

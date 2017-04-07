@@ -63,14 +63,15 @@ public class Tracker {
     /**
      * Method update list of requests.
      * @param item - updated request
+     * @param id - id of replaced item
      */
-    public void update(Item item) {
+    public void update(String id, Item item) {
         for (int i = 0; i < items.length; i++) {
-            Item temp = null;
-            if (items[i] != null && items[i].getId().equals(item.getId())) {
+            if (items[i] != null && items[i].getId().equals(id)) {
                 items[i].setName(item.getName());
                 items[i].setDescription(item.getDescription());
                 items[i].setCreate(item.getCreate());
+                items[i].setId(items[i].getCreate() + items[i].getName());
                 break;
             }
         }
