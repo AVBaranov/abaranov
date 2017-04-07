@@ -1,16 +1,19 @@
 package ru.job4j.figure;
 
-import sun.security.provider.SHA;
-
 /**
  *  Class.
  */
 public class Paint {
+    /**
+     *  object of interface.
+     */
     private Shape shape;
-    /*Paint(Shape shape) {
-        this.shape = shape;
-    }*/
-    public void draw(Shape shape) {
-        System.out.println((shape.pic(5)));
+    /**
+     *  method returns selected figure.
+     *  @param shape - interface(selected figure)
+     *  @return figure
+     */
+    public String draw(Shape shape) {
+        return (shape.pic(3));
     }
 }
