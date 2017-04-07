@@ -2,6 +2,7 @@ package ru.job4j.start;
 import ru.job4j.models.Item;
 //import java.util.Arrays;
 import java.util.Scanner;
+import ru.job4j.figure.*;
 /**
  * class StartUI.
  */
@@ -10,6 +11,7 @@ public class StartUI {
      * Input object.
      */
     private Input input;
+    private Tracker tracker;
     /**
      * Constructor.
      * @param input - Input object
@@ -18,10 +20,18 @@ public class StartUI {
         this.input = input;
     }
     /**
+     * Constructor.
+     * @param input - Input object
+     */
+    StartUI(Tracker tracker, Input input) {
+        this.input = input;
+        this.tracker = tracker;
+    }
+    /**
      * Method for all calculate in program.
      */
     public void init() {
-        Tracker tracker = new Tracker();
+        //Tracker tracker = new Tracker();
         Scanner in = new Scanner(System.in);
         //ConsoleInput input = new ConsoleInput();
         String s = new String();
@@ -148,7 +158,50 @@ public class StartUI {
     public static void main(String[] args) {
         String[] array = {"0", "1", "2", "3", "4", "5", "6"};
         StartUI obj = new StartUI(new ConsoleInput()/*StubInput(array)*/);
-        obj.init();
+        //obj.init();
+        /*StringBuffer str = new StringBuffer();
+        int h = 4;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < h - i - 1; j++) {
+                str.append(" ");
+            }
+            for (int j = 0; j < 2 * i + 1; j++) {
+                str.append("*");
+            }
+            str.append("\n");
+        }*/
+        /*System.out.println(obj.pic(10));
+        System.out.println();
+        System.out.println(obj.kvadr(5));*/
+        Paint paint = new Paint();
+        paint.draw(new Triangle());
+        System.out.println();
+        paint.draw(new Square());
 
+    }
+    String pic(int height) {
+        StringBuffer str = new StringBuffer();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < height - i - 1; j++) {
+                str.append(" ");
+            }
+            for (int j = 0; j < 2 * i + 1; j++) {
+                str.append("*");
+            }
+            str.append("\n");
+        }
+        String string=str.toString();
+        return string;
+    }
+    String kvadr(int height) {
+        StringBuffer str = new StringBuffer();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < height; j++) {
+                str.append("* ");
+            }
+            str.append("\n");
+        }
+        String string=str.toString();
+        return string;
     }
 }

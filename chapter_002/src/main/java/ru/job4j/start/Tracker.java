@@ -98,7 +98,7 @@ public class Tracker {
         if (b) {
             System.out.println("не существующий элемент");
         }
-    } 
+    }
     /**
      * Method search element by name.
      * @param key - name
