@@ -8,7 +8,7 @@ public class StubInput implements Input {
      * String array.
      */
     private String[] answers;
-    /**
+     /**
      * counter.
      */
     private int counter = 0;

@@ -29,7 +29,7 @@ public class Tracker {
             System.out.println("Wrong parametr! Exiting...");
             return null;
         }
-        item.setId(String.valueOf(/*System.currentTimeMillis() + RN.nextInt()*/item.getCreate()) + item.getName());
+        item.setId(String.valueOf(/*System.currentTimeMillis() + RN.nextInt()*/item.getDescription()) + item.getName());
         this.items[position++] = item;
         return item;
     }
@@ -70,7 +70,7 @@ public class Tracker {
             if (items[i] != null && items[i].getId().equals(id)) {
                 items[i].setName(item.getName());
                 items[i].setDescription(item.getDescription());
-                items[i].setCreate(item.getCreate());
+                //items[i].setCreate(item.getCreate());
                 items[i].setId(items[i].getCreate() + items[i].getName());
                 break;
             }

@@ -33,6 +33,15 @@ public class Item {
         this.create = create;
     }
     /**
+     * Constructor.
+     * @param name - name of request
+     * @param description - description of request
+     */
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+    /**
      * Method returns name of request.
      * @return name of request
      */
