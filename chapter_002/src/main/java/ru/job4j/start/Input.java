@@ -13,6 +13,12 @@ public interface Input {
     String ask();
     /**
      * Method input data.
+     * @param str str
+     * @return input data
+     */
+    String ask(String str);
+    /**
+     * Method input data.
      * @return input data
      */
     long askDate();

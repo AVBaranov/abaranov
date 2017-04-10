@@ -30,6 +30,14 @@ public class StubInput implements Input {
      * Method input data.
      * @return input data
      */
+    public String ask(String str) {
+        System.out.print(str);
+        return this.answers[counter++];
+    }
+    /**
+     * Method input data.
+     * @return input data
+     */
     public long askDate() {
         return 1;
     }

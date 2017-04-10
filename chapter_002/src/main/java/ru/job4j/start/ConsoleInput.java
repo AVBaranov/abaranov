@@ -22,6 +22,14 @@ public class ConsoleInput implements Input {
      * Method input data.
      * @return input data
      */
+    public String ask(String str) {
+        System.out.print(str);
+        return in.next();
+    }
+    /**
+     * Method input data.
+     * @return input data
+     */
     public long askDate() {
         return in.nextLong();
     }
