@@ -71,7 +71,7 @@ public class Tracker {
                 items[i].setName(item.getName());
                 items[i].setDescription(item.getDescription());
                 //items[i].setCreate(item.getCreate());
-                items[i].setId(items[i].getCreate() + items[i].getName());
+                items[i].setId(items[i].getDescription() + items[i].getName());
                 break;
             }
         }

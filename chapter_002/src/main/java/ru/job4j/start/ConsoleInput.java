@@ -20,6 +20,7 @@ public class ConsoleInput implements Input {
     }
     /**
      * Method input data.
+     * @param str - message for user
      * @return input data
      */
     public String ask(String str) {

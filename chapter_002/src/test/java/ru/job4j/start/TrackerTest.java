@@ -70,7 +70,7 @@ public class TrackerTest {
 		tracker.add(it2);
 		tracker.add(it3);
 		Item excpectation = tracker.findAll()[1];
-		assertThat(tracker.findById("234test2"), is(excpectation));
+		assertThat(tracker.findById("testdesc2test2"), is(excpectation));
 	}
 	/**
 	 * Test find all items by name.

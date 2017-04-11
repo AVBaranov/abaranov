@@ -1,7 +1,7 @@
 package ru.job4j.start;
-import ru.job4j.models.Item;
+//import ru.job4j.models.Item;
 //import java.util.Arrays;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 //import ru.job4j.figure.Paint;
 //import ru.job4j.figure.Square;
@@ -28,6 +28,7 @@ public class StartUI {
     /**
      * Constructor.
      * @param input - Input object
+     * @param tracker - Tracker object
      */
     StartUI(Input input, Tracker tracker) {
         this.input = input;
@@ -43,8 +44,12 @@ public class StartUI {
         do {
             menu.show();
             int key = Integer.valueOf(input.ask("Select: "));
+            if (key == 6) {
+                System.out.println("Bye");
+                break;
+            }
             menu.select(key);
-        } while(!"y".equals(this.input.ask("Exit? : y/n")));
+        } while (/*!"y".equals(this.input.ask("Exit? : y/n"))*/true);
     }
 
     /**
