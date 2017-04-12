@@ -17,7 +17,7 @@ public class MenuTracker {
     /**
      * array of UserAction objects.
      */
-    private UserAction[] actions = new UserAction[7];
+    private BaseClass[] actions = new BaseClass[7];
     /**
      * constructor.
      * @param input sets input object
@@ -77,7 +77,13 @@ public class MenuTracker {
     /**
      * class for adding items.
      */
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseClass {
+        /**
+         * constructor.
+         */
+        AddItem() {
+            super("add new item");
+        }
         /**
          * method determines action.
          * @return key
@@ -102,14 +108,20 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
            return String.format("%s. %s", this.key(), "add new item");
-        }
+        }*/
     }
     /**
      * class for show all items.
      */
-    private static class ShowAll implements UserAction {
+    private static class ShowAll extends BaseClass {
+        /**
+         * constructor.
+         */
+        ShowAll() {
+            super("show all items");
+        }
         /**
          * method determines action.
          * @return key
@@ -137,14 +149,20 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
             return String.format("%s. %s", this.key(), "show all items");
-        }
+        }*/
     }
     /**
      * class for edit item.
      */
-    private static class EditItem implements UserAction {
+    private static class EditItem extends BaseClass {
+        /**
+         * constructor.
+         */
+        EditItem() {
+            super("edit item");
+        }
         /**
          * method determines action.
          * @return key
@@ -180,14 +198,20 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
             return String.format("%s. %s", this.key(), "edit item");
-        }
+        }*/
     }
     /**
      * class for delete item.
      */
-    class DeleteItem implements UserAction {
+    class DeleteItem extends BaseClass {
+        /**
+         * constructor.
+         */
+        DeleteItem() {
+            super("delete item");
+        }
         /**
          * method determines action.
          * @return key
@@ -225,14 +249,20 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
             return String.format("%s. %s", this.key(), "delete item");
-        }
+        }*/
     }
     /**
      * class for searching item by id.
      */
-    private static class FindById implements UserAction {
+    private static class FindById extends BaseClass {
+        /**
+         * constructor.
+         */
+        FindById() {
+            super("find item by id");
+        }
         /**
          * method determines action.
          * @return key
@@ -259,14 +289,20 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
             return String.format("%s. %s", this.key(), "find item by id");
-        }
+        }*/
     }
     /**
      * class for searching items by name.
      */
-    private class FindByName implements UserAction {
+    private class FindByName extends BaseClass {
+        /**
+         * constructor.
+         */
+        FindByName() {
+            super("find items by name");
+        }
         /**
          * method determines action.
          * @return key
@@ -293,14 +329,20 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
             return String.format("%s. %s", this.key(), "find item by name");
-        }
+        }*/
     }
     /**
      * class for searching items by name.
      */
-    private class Exit implements UserAction {
+    private class Exit extends BaseClass {
+        /**
+         * constructor.
+         */
+        Exit() {
+            super("exit");
+        }
         /**
          * method determines action.
          * @return key
@@ -320,8 +362,8 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        public String info() {
+        /*public String info() {
             return String.format("%s. %s", this.key(), "exit");
-        }
+        }*/
     }
 }
