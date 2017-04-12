@@ -26,7 +26,7 @@ public class ValidStubInput extends StubInput {
                 b = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("you entered incorrect value! try again");
-            } catch (MenuOutOfBoundsAxception noe) {
+            } catch (MenuOutOfBoundsException noe) {
                 System.out.println("you are out of bounds! try again");
             }
         } while (b);

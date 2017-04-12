@@ -53,7 +53,7 @@ public class ConsoleInput implements Input {
         if (b) {
             return key;
         }
-        throw new MenuOutOfBoundsAxception("out of bounds");
+        throw new MenuOutOfBoundsException("out of bounds");
     }
 }
 
