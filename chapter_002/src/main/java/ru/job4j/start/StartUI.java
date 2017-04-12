@@ -43,7 +43,7 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            int key = Integer.valueOf(input.ask("Select: "));
+            int key = input.ask("Select: ", menu.count());
             if (key == 6) {
                 System.out.println("Bye");
                 break;
@@ -57,7 +57,7 @@ public class StartUI {
      * @param args - arguments
      */
     public static void main(String[] args) {
-        StartUI obj = new StartUI(new ConsoleInput(), new Tracker());
+        StartUI obj = new StartUI(new ValidateInput(), new Tracker());
         obj.init();
     }
 }

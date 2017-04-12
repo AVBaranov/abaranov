@@ -42,4 +42,25 @@ public class StubInput implements Input {
     public long askDate() {
         return 1;
     }
+    /**
+     * Method input data.
+     * @param str str
+     * @param range - array of valid actions
+     * @return input data
+     */
+    public int ask(String str, int[] range) {
+        System.out.print(str);
+        int key = Integer.valueOf(this.answers[counter++]);
+        boolean b = false;
+        for (int i : range) {
+            if (i == key) {
+                b = true;
+                break;
+            }
+        }
+        if (b) {
+            return key;
+        }
+        throw new MenuOutOfBoundsAxception("out of bounds");
+    }
 }

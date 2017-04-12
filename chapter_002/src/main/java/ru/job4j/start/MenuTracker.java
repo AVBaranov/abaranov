@@ -40,6 +40,17 @@ public class MenuTracker {
         this.actions[6] = new Exit();
     }
     /**
+     * method returns array of valid numbers for actions.
+     * @return array of valid numbers
+     */
+    int[] count() {
+        int[] array = new int[actions.length];
+        for (int i = 0; i < actions.length; i++) {
+            array[i] = i;
+        }
+        return array;
+    }
+    /**
      * method select action.
      * @param key sets user's action
      */
