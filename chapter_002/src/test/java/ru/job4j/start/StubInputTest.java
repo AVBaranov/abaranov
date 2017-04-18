@@ -5,7 +5,8 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 /**
  * Test.
  * @author Andrey Baranov
@@ -46,5 +47,18 @@ public class StubInputTest {
         assertThat(tracker.findAll()[0].getName(), is("testname2"));
         //assertThat(tracker.findAll()[0].getDescription(), is("testdesc"));
     }
+    /**
+     * Test add item.
+     */
+    /*@Test
+    public void whenThen() {
+        Tracker tracker = new Tracker();
+        Input input = new ValidStubInput(new String[]{"0", "a", "b", "1", "6"});
+        new StartUI(input, tracker).init();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        StartUI.main(null);
+        assertThat(out.toString(), is(String.format("a b ba%s", System.getProperty("line.separator"))));
+    }*/
 
 }

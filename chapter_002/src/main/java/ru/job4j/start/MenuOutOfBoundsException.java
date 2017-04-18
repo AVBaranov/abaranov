@@ -6,9 +6,9 @@ package ru.job4j.start;
 public class MenuOutOfBoundsException extends RuntimeException {
     /**
      * constructor for class RuntimeException.
-     * @param mesage - exception message
+     * @param message - exception message
      */
-    public MenuOutOfBoundsException(String mesage) {
-        super(mesage);
+    public MenuOutOfBoundsException(String message) {
+        super(message);
     }
 }
