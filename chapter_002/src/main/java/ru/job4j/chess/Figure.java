@@ -9,6 +9,19 @@ public class Figure {
         Cell poss = new Cell(x, y);
         this.position = poss;
     }
+    int count = 0;
+    private Cell[] cells = new Cell[64];
+    public Cell[] getAllCells() {
+        return this.cells;
+    }
+    public Cell add(Cell cell) {
+        if (cell == null) {
+            System.out.println("wrong parametr!");
+            return null;
+        }
+        this.cells[count++] = cell;
+        return cell;
+    }
     public Cell[] way(Cell dist) {
         int coord1 = position.getX();
         int coord2 = position.getY();
