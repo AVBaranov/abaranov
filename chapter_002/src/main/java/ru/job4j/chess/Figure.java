@@ -11,22 +11,6 @@ abstract public class Figure /*implements Cloneable*/{
     }
     abstract public Cell[] way(Cell dist);
 
-    /*public void setPosition(int x, int y) {
-        this.position.setX(x);
-        this.position.setY(y);
-    }*/
-
-
-    /*public Figure clone(Cell dest)
-    {
-        try {
-
-            return (Figure)super.clone();
-        }
-        catch( CloneNotSupportedException ex ) {
-            throw new InternalError();
-        }
-    }*/
     abstract public void clone(Cell dest);
 
 
