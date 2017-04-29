@@ -43,4 +43,19 @@ public class ConvertArrayList {
         }
         return array;
     }
+
+    /**
+     * Method converts collection of arrays to collection of Integer.
+     * @param list - input collection of arrays
+     * @return collection of Integer
+     */
+    public List<Integer> convert(List<int[]> list) {
+        ArrayList<Integer> collectionlist = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(i).length; j++) {
+                collectionlist.add(list.get(i)[j]);
+            }
+        }
+        return collectionlist;
+    }
 }

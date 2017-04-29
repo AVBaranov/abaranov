@@ -57,4 +57,28 @@ public class ConvertArrayListTest {
         reality = ob.toArray(sourcecollection);
         assertThat(expectetion, is(reality));
     }
+    /**
+     * Convert collectionof arrays to collection of Integer.
+     */
+    @Test
+    public void whenThenArrayIsTheSame() {
+        ConvertArrayList ob = new ConvertArrayList();
+        ArrayList<int[]> sourcecollection = new ArrayList<>();
+        sourcecollection.add(new int[]{1,2,3});
+        sourcecollection.add(new int[]{4,5,6});
+        sourcecollection.add(new int[]{7,8,9});
+        ArrayList<Integer> expectedcollection = new ArrayList<>();
+        expectedcollection.add(0,1);
+        expectedcollection.add(1,2);
+        expectedcollection.add(2,3);
+        expectedcollection.add(3,4);
+        expectedcollection.add(4,5);
+        expectedcollection.add(5,6);
+        expectedcollection.add(6,7);
+        expectedcollection.add(7,8);
+        expectedcollection.add(8,9);
+        ArrayList<Integer> realitycollection = new ArrayList<>();
+        realitycollection = (ArrayList) ob.convert(sourcecollection);
+        assertThat(expectedcollection, is(realitycollection));
+    }
 }

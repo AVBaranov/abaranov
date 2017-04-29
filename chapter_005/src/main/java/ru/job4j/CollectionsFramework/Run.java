@@ -1,4 +1,5 @@
 package ru.job4j.CollectionsFramework;
+import java.lang.reflect.Array;
 import java.util.*;
 /**
  * Created by Andrey on 29.04.2017.
@@ -79,6 +80,28 @@ public class Run {
             }
             System.out.println();
         }
+
+        ArrayList<int[]> obz = new ArrayList<>();
+        ArrayList<Integer> obq = new ArrayList<>();
+        int[] mass = {1,2,3,4,5,6,7,8,9};
+        int[] mass2 = {10,11,12,123,456,2134,58};
+        int[] mass3 = {13,14,15,16,17,124,6,58,234};
+        obz.add(mass);
+        obz.add(mass2);
+        obz.add(mass3);
+        /*for (int i = 0; i < obz.size(); i++) {
+            for (int j = 0; j < obz.get(i).length; j++) {
+                System.out.print(obz.get(i)[j] + " ");
+                obq.add(obz.get(i)[j]);
+            }
+            System.out.println();
+        }*/
+        //System.out.println(obz);
+        ArrayList<Integer> obt = new ArrayList<>();
+        obt = (ArrayList) obj.convert(obz);
+        System.out.println(obt);
+
+
     }
 
     public List<Integer> toList(int[][] array) {
@@ -106,6 +129,16 @@ public class Run {
             }
         }
         return array;
+    }
+
+    public List<Integer> convert(List<int[]> list) {
+        ArrayList<Integer> collectionlist = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(i).length; j++) {
+                collectionlist.add(list.get(i)[j]);
+            }
+        }
+        return collectionlist;
     }
 
 }
