@@ -101,6 +101,14 @@ public class Run {
         obt = (ArrayList) obj.convert(obz);
         System.out.println(obt);
 
+        LinkedList<Integer> list = new LinkedList<>();
+        list.addLast(1);
+        list.add(2);
+        list.addFirst(3);
+        int temp = list.get(0);
+        list.set(0, temp + 1);
+        System.out.println(list);
+
 
     }
 

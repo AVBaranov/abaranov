@@ -28,11 +28,11 @@ public class ConvertArrayList {
      * @return array
      */
     public int[][] toArray(List<Integer> list) {
-        if (list.size()%Math.sqrt(list.size()) != 0) {
+
             while (list.size()%Math.sqrt(list.size()) != 0) {
                 list.add(0);
             }
-        }
+
         int[][] array = new int[(int)Math.sqrt(list.size())][(int)Math.sqrt(list.size())];
         int count = 0;
         for (int i = 0; i < (int)Math.sqrt(list.size()); i++) {

@@ -49,10 +49,10 @@ public class ConvertArrayListTest {
         sourcecollection.add(3,4);
         sourcecollection.add(4,5);
         sourcecollection.add(5,6);
-        sourcecollection.add(6,7);
+        //sourcecollection.add(6,7);
         //sourcecollection.add(7,8);
         //sourcecollection.add(8,9);
-        int[][] expectetion = {{1, 2, 3}, {4, 5, 6}, {7, 0, 0}};
+        int[][] expectetion = {{1, 2, 3}, {4, 5, 6}, {0, 0, 0}};
         int[][] reality;
         reality = ob.toArray(sourcecollection);
         assertThat(expectetion, is(reality));
