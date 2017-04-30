@@ -26,56 +26,31 @@ public class Run {
                 array[i][j] = (int) (Math.random()*10);
             }
         }
-        /*ArrayList<Integer> ar = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-                ar.add(array[i][j]);
-            }
-        }*/
-
-
 
         System.out.println(ob.toList(array));
         ArrayList<Integer> ar = new ArrayList<>();
-        ar = (ArrayList<Integer>) obj.toList(array);
+        ar = (ArrayList<Integer>) ob.toList(array);
         System.out.println(ar.get(0));
         //ar.remove(1);
         ar.remove(4);
         ar.remove(4);
 
-        /*ar.add(1);
-        ar.add(4);
-        ar.add(1);*/
-        /*System.out.println(ar);
 
-        if (ar.size()%Math.sqrt(ar.size()) != 0) {
-            System.out.println("kaka");
-            while (ar.size()%Math.sqrt(ar.size()) != 0) {
-                ar.add(0);
-            }
-        }
-        System.out.println(ar.size());
-        System.out.println(ar);
-        int[][] mas = new int[(int)Math.sqrt(ar.size())][(int)Math.sqrt(ar.size())];
-        System.out.println(mas.length);
-        int count = 0;
-        for (int i = 0; i < (int)Math.sqrt(ar.size()); i++) {
-            for (int j = 0; j < (int)Math.sqrt(ar.size()); j++) {
-                mas[i][j] = ar.get(count);
-                count++;
-            }
-        }
-        for (int i = 0; i < (int)Math.sqrt(ar.size()); i++) {
-            for (int j = 0; j < (int)Math.sqrt(ar.size()); j++) {
-                System.out.print(mas[i][j] + " ");
-            }
-            System.out.println();
-        }*/
-
+        ArrayList<Integer> ars = new ArrayList<>();
+        ars.add(0, 1);
+        ars.add(1, 2);
+        ars.add(2, 3);
+        ars.add(3, 4);
+        ars.add(4, 5);
+        ars.add(5, 6);
+        ars.add(6, 7);
+        //ars.add(7, 8);
+        //ars.add(8, 9);
         int[][] arr;
-        arr = obj.toArray(ar);
+        arr = obj.toArray(ars, 2);
+        System.out.println(arr.length);
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
+            for (int j = 0; j < ars.size()/2; j++) {
                 System.out.print(arr[i][j] + " ");
             }
             System.out.println();
@@ -89,25 +64,24 @@ public class Run {
         obz.add(mass);
         obz.add(mass2);
         obz.add(mass3);
-        /*for (int i = 0; i < obz.size(); i++) {
-            for (int j = 0; j < obz.get(i).length; j++) {
-                System.out.print(obz.get(i)[j] + " ");
-                obq.add(obz.get(i)[j]);
-            }
-            System.out.println();
-        }*/
-        //System.out.println(obz);
-        ArrayList<Integer> obt = new ArrayList<>();
+
+        ArrayList<Integer> obt;
         obt = (ArrayList) obj.convert(obz);
         System.out.println(obt);
-
-        LinkedList<Integer> list = new LinkedList<>();
-        list.addLast(1);
-        list.add(2);
-        list.addFirst(3);
-        int temp = list.get(0);
-        list.set(0, temp + 1);
-        System.out.println(list);
+        int[][] ar10 = new int[2][4];
+        int count = 0;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                ar10[i][j] = ars.get(count);
+                count++;
+            }
+        }
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(ar10[i][j] + " ");
+            }
+            System.out.println();
+        }
 
 
     }
@@ -122,16 +96,14 @@ public class Run {
         return list;
     }
 
-    public int[][] toArray(List<Integer> list) {
-        if (list.size()%Math.sqrt(list.size()) != 0) {
-            while (list.size()%Math.sqrt(list.size()) != 0) {
-                list.add(0);
-            }
+    public int[][] toArray(List<Integer> list, int rows) {
+        while (list.size() % rows != 0) {
+            list.add(0);
         }
-        int[][] array = new int[(int)Math.sqrt(list.size())][(int)Math.sqrt(list.size())];
+        int[][] array = new int[rows][list.size()/rows];
         int count = 0;
-        for (int i = 0; i < (int)Math.sqrt(list.size()); i++) {
-            for (int j = 0; j < (int)Math.sqrt(list.size()); j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < list.size()/rows; j++) {
                 array[i][j] = list.get(count);
                 count++;
             }
