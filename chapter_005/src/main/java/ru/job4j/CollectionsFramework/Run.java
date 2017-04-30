@@ -4,6 +4,23 @@ import java.util.*;
 /**
  * Created by Andrey on 29.04.2017.
  */
+class Car {
+    private double enginecapacity;
+    private int weight;
+    private String color;
+    private int power;
+    public Car(double enginecapacity, int weight, String color, int power) {
+        this.enginecapacity = enginecapacity;
+        this.color = color;
+        this.power = power;
+        this.weight = weight;
+    }
+    public String showAll() {
+        return this.enginecapacity + "\n" + this.color + "\n" + this.power + "\n" + this.weight + "\n";
+    }
+}
+
+
 public class Run {
     public static void main(String[] args) {
         EditCollection obs = new EditCollection();
@@ -20,68 +37,79 @@ public class Run {
 
         Run ob = new Run();
         ConvertArrayList obj = new ConvertArrayList();
-        int[][] array = new int[3][3];
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-                array[i][j] = (int) (Math.random()*10);
-            }
-        }
-
-        System.out.println(ob.toList(array));
         ArrayList<Integer> ar = new ArrayList<>();
-        ar = (ArrayList<Integer>) ob.toList(array);
-        System.out.println(ar.get(0));
-        //ar.remove(1);
-        ar.remove(4);
-        ar.remove(4);
-
-
-        ArrayList<Integer> ars = new ArrayList<>();
-        ars.add(0, 1);
-        ars.add(1, 2);
-        ars.add(2, 3);
-        ars.add(3, 4);
-        ars.add(4, 5);
-        ars.add(5, 6);
-        ars.add(6, 7);
-        //ars.add(7, 8);
-        //ars.add(8, 9);
-        int[][] arr;
-        arr = obj.toArray(ars, 2);
-        System.out.println(arr.length);
+        ar.add(0,1);
+        ar.add(1,2);
+        ar.add(2,3);
+        ar.add(3,4);
+        ar.add(4,5);
+        int[][] arr = new int[2][3];
+        arr = obj.toArray(ar, 2);
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < ars.size()/2; j++) {
+            for (int j = 0; j < 3; j++) {
                 System.out.print(arr[i][j] + " ");
             }
             System.out.println();
         }
-
-        ArrayList<int[]> obz = new ArrayList<>();
-        ArrayList<Integer> obq = new ArrayList<>();
-        int[] mass = {1,2,3,4,5,6,7,8,9};
-        int[] mass2 = {10,11,12,123,456,2134,58};
-        int[] mass3 = {13,14,15,16,17,124,6,58,234};
-        obz.add(mass);
-        obz.add(mass2);
-        obz.add(mass3);
-
-        ArrayList<Integer> obt;
-        obt = (ArrayList) obj.convert(obz);
-        System.out.println(obt);
-        int[][] ar10 = new int[2][4];
-        int count = 0;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 4; j++) {
-                ar10[i][j] = ars.get(count);
-                count++;
-            }
+        ArrayList<Car> list = new ArrayList<>();
+        list.add(new Car(1.6, 1200, "black", 123));
+        list.add(new Car(2.0, 1400, "black", 140));
+        for (Car car : list) {
+            System.out.println(car.showAll());
         }
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 4; j++) {
-                System.out.print(ar10[i][j] + " ");
-            }
-            System.out.println();
+        HashMap<String, Double> hm = new HashMap<>();
+        HashMap<String, Double> hm2 = new HashMap<>();
+        HashMap<String, Double> hm3 = new HashMap<>();
+        hm2.put("loh", 100.0);
+        hm2.put("dibil", 10.0);
+        hm2.put("penek", 11.0);
+        hm2.put("chelovekoid", 100.0);
+        hm.put("loh", 100.0);
+        hm.put("dibil", 10.0);
+        hm.put("penek", 11.0);
+        hm.put("chelovekoid", 100.0);
+        Set<Map.Entry<String, Double>> set = hm.entrySet();
+        System.out.println(hm.containsKey("lohh"));
+        System.out.println(hm.equals(hm2));
+        System.out.println(hm.hashCode());
+        System.out.println(hm3.isEmpty());
+        for (Map.Entry<String, Double> suka : set) {
+            System.out.print(suka.getKey() + " : ");
+            System.out.println(suka.getValue());
         }
+        hm.put("loh",1000000.0);
+        for (Map.Entry<String, Double> suka : set) {
+            System.out.print(suka.getKey() + " : ");
+            System.out.println(suka.getValue());
+        }
+
+        User user = new User(11, "mouse", "mouseland");
+        User user2 = new User(1112, "fish", "fishland");
+        User user3 = new User(11234, "volf", "volfland");
+
+        List<User> ls = new ArrayList<>();
+        ls.add(user);
+        ls.add(user2);
+        ls.add(user3);
+        HashMap<Integer, User> hash = new HashMap<>();
+        Iterator<User> it = ls.iterator();
+        int i = 0;
+        /*while(it.hasNext()) {
+            hash.put(i, it.next());
+            i++;
+        }*/
+        /*for (User l : ls) {
+            hash.put(l.getId(), l);
+        }*/
+        //hash = ob.process(ls);
+        UserConvert us = new UserConvert();
+        hash = us.process(ls);
+        Set<Map.Entry<Integer, User>> sets = hash.entrySet();
+        for (Map.Entry<Integer, User> suka : sets) {
+            System.out.print(suka.getKey() + " : ");
+            System.out.println(suka.getValue());
+        }
+
 
 
     }
@@ -100,11 +128,13 @@ public class Run {
         while (list.size() % rows != 0) {
             list.add(0);
         }
+        Iterator<Integer> iter = list.iterator();
         int[][] array = new int[rows][list.size()/rows];
         int count = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < list.size()/rows; j++) {
-                array[i][j] = list.get(count);
+                //array[i][j] = list.get(count);
+                array[i][j] = iter.next();
                 count++;
             }
         }
@@ -121,4 +151,11 @@ public class Run {
         return collectionlist;
     }
 
+    public HashMap<Integer, User> process(List<User> list) {
+        HashMap<Integer, User> hash = new HashMap<>();
+        for (User ls : list) {
+            hash.put(ls.getId(), ls);
+        }
+        return hash;
+    }
 }

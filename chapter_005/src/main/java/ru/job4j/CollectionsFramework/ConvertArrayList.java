@@ -28,15 +28,16 @@ public class ConvertArrayList {
      * @return array
      */
     public int[][] toArray(List<Integer> list, int rows) {
-
         while (list.size() % rows != 0) {
             list.add(0);
         }
+        Iterator<Integer> iter = list.iterator();
         int[][] array = new int[rows][list.size()/rows];
         int count = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < list.size()/rows; j++) {
-                array[i][j] = list.get(count);
+                //array[i][j] = list.get(count);
+                array[i][j] = iter.next();
                 count++;
             }
         }
