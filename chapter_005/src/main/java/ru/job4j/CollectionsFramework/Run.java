@@ -109,7 +109,7 @@ public class Run {
             System.out.print(suka.getKey() + " : ");
             System.out.println(suka.getValue());
         }
-
+        ArrayList<Integer> a = new ArrayList<>();
 
 
     }

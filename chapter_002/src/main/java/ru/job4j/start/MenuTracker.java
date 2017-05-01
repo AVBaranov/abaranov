@@ -1,7 +1,7 @@
 package ru.job4j.start;
 
 import ru.job4j.models.Item;
-
+import java.util.*;
 /**
  * main class.
  */
@@ -17,7 +17,8 @@ public class MenuTracker {
     /**
      * array of UserAction objects.
      */
-    private BaseClass[] actions = new BaseClass[7];
+    //private BaseClass[] actions = new BaseClass[7];
+    private ArrayList<BaseClass> actions = new ArrayList<>();
     /**
      * constructor.
      * @param input sets input object
@@ -31,31 +32,39 @@ public class MenuTracker {
      * method fill array of actions.
      */
     public void fillActions() {
-        this.actions[0] = this.new AddItem();
+        /*this.actions[0] = this.new AddItem();
         this.actions[1] = new MenuTracker.ShowAll();
         this.actions[2] = new MenuTracker.EditItem();
         this.actions[3] = new DeleteItem();
         this.actions[4] = new FindById();
         this.actions[5] = new FindByName();
-        this.actions[6] = new Exit();
+        this.actions[6] = new Exit();*/
+        this.actions.add(new AddItem());
+        this.actions.add(new ShowAll());
+        this.actions.add(new EditItem());
+        this.actions.add(new DeleteItem());
+        this.actions.add(new FindById());
+        this.actions.add(new FindByName());
+        this.actions.add(new Exit());
     }
     /**
      * method returns array of valid numbers for actions.
      * @return array of valid numbers
      */
     int[] count() {
-        int[] array = new int[actions.length];
-        for (int i = 0; i < actions.length; i++) {
+        int[] array = new int[actions.size()];
+        for (int i = 0; i < actions.size(); i++) {
             array[i] = i;
         }
         return array;
     }
+
     /**
      * method select action.
      * @param key sets user's action
      */
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
     /**
      * method show start information.
@@ -66,13 +75,6 @@ public class MenuTracker {
                 System.out.println(action.info());
             }
         }
-        /*for(int i=0; i<actions.length; i++) {
-            UserAction add = new AddItem();
-            if (add != null) {
-                System.out.println(add.info());
-                break;
-            }
-        }*/
     }
     /**
      * class for adding items.
@@ -135,15 +137,15 @@ public class MenuTracker {
          * @param tracker - tracker object
          */
         public void execute(Input input, Tracker tracker) {
-            if (tracker.findAll().length != 0) {
+            if (tracker.findAll().size()  != 0) {
                 System.out.println("Your items:");
-                for (int i = 0; i < tracker.findAll().length; i++) {
-                    System.out.println(String.format("%s %s %s", tracker.findAll()[i].getName(), tracker.findAll()[i].getDescription(), /*tracker.findAll()[i].getCreate(),*/tracker.findAll()[i].getId()));
-                    Item item = tracker.findAll()[i];
+                for (int i = 0; i < tracker.findAll().size(); i++) {
+                    System.out.println(String.format("%s %s %s", tracker.findAll().get(i).getName(), tracker.findAll().get(i).getDescription(), tracker.findAll().get(i).getId()));
+                    Item item = tracker.findAll().get(i);
                 }
             } else {
-                System.out.println("Nothing to display");
-            }
+            System.out.println("Nothing to display");
+        }
         }
         /**
          * method show information about action.
@@ -179,8 +181,8 @@ public class MenuTracker {
             System.out.print("Enter item's id to replace: ");
             String id = input.ask();
             boolean b = true;
-            for (int i = 0; i < tracker.findAll().length; i++) {
-                if (tracker.findAll()[i].getId().equals(id)) {
+            for (int i = 0; i < tracker.findAll().size(); i++) {
+                if (tracker.findAll().get(i).getId().equals(id)) {
                     System.out.print("Enter new name: ");
                     String name = input.ask();
                     System.out.print("Enter new description: ");
@@ -193,6 +195,7 @@ public class MenuTracker {
             if (b) {
                 System.out.println("You entered incorrect value!");
             }
+
         }
         /**
          * method show information about action.
@@ -231,9 +234,9 @@ public class MenuTracker {
             String desc = input.ask();
             Item temp = null;
             boolean b = false;
-            for (int i = 0; i < tracker.findAll().length; i++) {
-                if (name.equals(tracker.findAll()[i].getName()) && desc.equals(tracker.findAll()[i].getDescription())/* && create == tracker.findAll()[i].getCreate()*/) {
-                    temp = tracker.findAll()[i];
+            for (int i = 0; i < tracker.findAll().size(); i++) {
+                if (name.equals(tracker.findAll().get(i).getName()) && desc.equals(tracker.findAll().get(i).getDescription())/* && create == tracker.findAll()[i].getCreate()*/) {
+                    temp = tracker.findAll().get(i);
                     b = true;
                     break;
                 }
@@ -318,11 +321,11 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.print("Enter your name: ");
             String name = input.ask();
-            if (tracker.findByName(name).length == 0) {
+            if (tracker.findByName(name).size() == 0) {
                 System.out.println("You entered incorrect value!");
             }
-            for (int i = 0; i < tracker.findByName(name).length; i++) {
-                System.out.println(String.format("%s %s %s", tracker.findByName(name)[i].getName(), tracker.findByName(name)[i].getDescription(), /*tracker.findByName(name)[i].getCreate(), */tracker.findByName(name)[i].getId()));
+            for (int i = 0; i < tracker.findByName(name).size(); i++) {
+                System.out.println(String.format("%s %s %s", tracker.findByName(name).get(i).getName(), tracker.findByName(name).get(i).getDescription(), /*tracker.findByName(name)[i].getCreate(), */tracker.findByName(name).get(i).getId()));
             }
         }
         /**

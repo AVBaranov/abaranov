@@ -1,6 +1,9 @@
 package ru.job4j.start;
 
 import ru.job4j.models.Item;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Arrays;
 /**
@@ -10,7 +13,7 @@ public class Tracker {
     /**
      * Array of Item objects.
      */
-    private Item[] items = new Item[10];
+    private ArrayList<Item> items = new ArrayList<>();
     /**
      * Describes position in array.
      */
@@ -29,8 +32,8 @@ public class Tracker {
             System.out.println("Wrong parametr! Exiting...");
             return null;
         }
-        item.setId(String.valueOf(/*System.currentTimeMillis() + RN.nextInt()*/item.getDescription()) + item.getName());
-        this.items[position++] = item;
+        item.setId(String.valueOf(item.getDescription()) + item.getName());
+        this.items.add(item);
         return item;
     }
     /**
@@ -40,25 +43,26 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item obs = null;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                obs = items[i];
+        Iterator<Item> iter = items.iterator();
+        int k = 0;
+        int j = 0;
+        for (Item it : items) {
+            if (items.get(k) != null && items.get(j++).getId().equals(id)) {
+                obs = items.get(k);
                 break;
             }
+            k++;
         }
-
         return obs;
     }
     /**
      * Method return list of requests.
      * @return list of requests
      */
-    public Item[] findAll() {
-        Item[] mas = new Item[position];
-        for (int i = 0; i < mas.length; i++) {
-            mas[i] = items[i];
-        }
-        return mas;
+    public ArrayList<Item> findAll() {
+        ArrayList<Item> fn = new ArrayList<>();
+        fn.addAll(items);
+        return fn;
     }
     /**
      * Method update list of requests.
@@ -66,14 +70,14 @@ public class Tracker {
      * @param id - id of replaced item
      */
     public void update(String id, Item item) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && items[i].getId().equals(id)) {
-                items[i].setName(item.getName());
-                items[i].setDescription(item.getDescription());
-                //items[i].setCreate(item.getCreate());
-                items[i].setId(items[i].getDescription() + items[i].getName());
+        int k = 0;
+        int j = 0;
+        for (Item it : items) {
+            if (items.get(k) != null && items.get(j++).getId().equals(id)) {
+                items.set(k, item);
                 break;
             }
+            k++;
         }
     }
     /**
@@ -82,18 +86,15 @@ public class Tracker {
      */
     public void delete(Item item) {
         boolean b = true;
-        for (int i = 0; i < items.length; i++) {
-            Item temp = items[i];
-            if (temp != null && temp.getId().equals(item.getId())) {
-                for (int j = i; j < items.length - 1; j++) {
-                    Item buf = items[j];
-                    items[j] = items[j + 1];
-                    items[j + 1] = buf;
-                }
-                position--;
+        int k = 0;
+        int j = 0;
+        for (Item it : items) {
+            if (items.get(k) != null && items.get(j++).getId().equals(item.getId())) {
+                items.remove(k);
                 b = false;
                 break;
             }
+            k++;
         }
         if (b) {
             System.out.println("не существующий элемент");
@@ -104,19 +105,17 @@ public class Tracker {
      * @param key - name
      * @return new array
      */
-    public Item[] findByName(String key) {
-        int counter = 0;
-        Item obs = null;
-        Item[] array = new Item[items.length];
+    public /*Item[]*/ ArrayList<Item> findByName(String key) {
+        ArrayList<Item> its = new ArrayList<>();
+        int k = 0;
         int j = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null && key.equals(items[i].getName())) {
-                array[j] = items[i];
-                counter++;
-                j++;
+        for (Item it : items) {
+            if (items.get(k) != null && items.get(j++).getName().equals(key)) {
+                its.add(it);
             }
+            k++;
         }
-        return Arrays.copyOf(array, counter);
+        return its;
     }
 
 
