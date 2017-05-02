@@ -18,101 +18,125 @@ class Car {
     public String showAll() {
         return this.enginecapacity + "\n" + this.color + "\n" + this.power + "\n" + this.weight + "\n";
     }
+
+}
+
+class comp implements Comparator<String> {
+    public int compare(String a, String b) {
+        /*String astr, bstr;
+        astr = a;
+        bstr = b;*/
+        return a.compareTo(b);
+    }
 }
 
 
 public class Run {
-    public static void main(String[] args) {
-        EditCollection obs = new EditCollection();
-        ArrayList<String> arrayList = new ArrayList<>();
-        LinkedList<String> linkedList = new LinkedList<>();
-        TreeSet<String> treeSet = new TreeSet<>();
-        System.out.println("время добавления 10000 элементов в коллекцию LinkedList: " + obs.add(linkedList, "string", 100) + " нс");
-        System.out.println("время добавления 10000 элементов в коллекцию ArrayList: " + obs.add(treeSet, "string", 100) + " нс");
-        System.out.println("время добавления 10000 элементов в коллекцию TreeSet: " + obs.add(arrayList, "string", 100) + " нс");
-        System.out.println();
-        System.out.println("время удаления первых 1000 элементов из коллекции LinkedList: " + obs.delete(linkedList, 1000) + " нс");
-        //System.out.println(obs.delete(treeSet, 1000));
-        System.out.println("время удаления первых 1000 элементов из коллекции ArrayList: " + obs.delete(arrayList, 1000) + " нс");
-
-        Run ob = new Run();
-        ConvertArrayList obj = new ConvertArrayList();
-        ArrayList<Integer> ar = new ArrayList<>();
-        ar.add(0,1);
-        ar.add(1,2);
-        ar.add(2,3);
-        ar.add(3,4);
-        ar.add(4,5);
-        int[][] arr = new int[2][3];
-        arr = obj.toArray(ar, 2);
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-        ArrayList<Car> list = new ArrayList<>();
-        list.add(new Car(1.6, 1200, "black", 123));
-        list.add(new Car(2.0, 1400, "black", 140));
-        for (Car car : list) {
-            System.out.println(car.showAll());
-        }
-        HashMap<String, Double> hm = new HashMap<>();
-        HashMap<String, Double> hm2 = new HashMap<>();
-        HashMap<String, Double> hm3 = new HashMap<>();
-        hm2.put("loh", 100.0);
-        hm2.put("dibil", 10.0);
-        hm2.put("penek", 11.0);
-        hm2.put("chelovekoid", 100.0);
-        hm.put("loh", 100.0);
-        hm.put("dibil", 10.0);
-        hm.put("penek", 11.0);
-        hm.put("chelovekoid", 100.0);
-        Set<Map.Entry<String, Double>> set = hm.entrySet();
-        System.out.println(hm.containsKey("lohh"));
-        System.out.println(hm.equals(hm2));
-        System.out.println(hm.hashCode());
-        System.out.println(hm3.isEmpty());
-        for (Map.Entry<String, Double> suka : set) {
-            System.out.print(suka.getKey() + " : ");
-            System.out.println(suka.getValue());
-        }
-        hm.put("loh",1000000.0);
-        for (Map.Entry<String, Double> suka : set) {
-            System.out.print(suka.getKey() + " : ");
-            System.out.println(suka.getValue());
+    static class user implements Comparable<user>{
+        private String name;
+        private Integer age;
+        public user(String name, int age) {
+            this.name = name;
+            this.age = age;
         }
 
-        User user = new User(11, "mouse", "mouseland");
-        User user2 = new User(1112, "fish", "fishland");
-        User user3 = new User(11234, "volf", "volfland");
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
 
-        List<User> ls = new ArrayList<>();
-        ls.add(user);
-        ls.add(user2);
-        ls.add(user3);
-        HashMap<Integer, User> hash = new HashMap<>();
-        Iterator<User> it = ls.iterator();
-        int i = 0;
-        /*while(it.hasNext()) {
-            hash.put(i, it.next());
-            i++;
-        }*/
-        /*for (User l : ls) {
-            hash.put(l.getId(), l);
-        }*/
-        //hash = ob.process(ls);
-        UserConvert us = new UserConvert();
-        hash = us.process(ls);
-        Set<Map.Entry<Integer, User>> sets = hash.entrySet();
-        for (Map.Entry<Integer, User> suka : sets) {
-            System.out.print(suka.getKey() + " : ");
-            System.out.println(suka.getValue());
+            user user = (user) o;
+
+            return name != null ? name.equals(user.name) : user.name == null;
         }
-        ArrayList<Integer> a = new ArrayList<>();
 
-
+        @Override
+        public int hashCode() {
+            return name != null ? name.hashCode() : 0;
+        }
+        @Override
+        public int compareTo(user o) {
+            //return this.name.compareTo(o.name);
+            return this.age.compareTo(o.age);
+        }
     }
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("str1");
+        list.add("str2");
+
+        ArrayList<String> list2 = new ArrayList<>();
+        list2.add("str1");
+        list2.add("str2");
+        list2.add("str3");
+        list2.add("str4");
+        list2.add("str5");
+        list.addAll(list2);
+        Iterator<String> iter = list.iterator();
+        while (iter.hasNext()) {
+            System.out.println(iter.next());
+        }
+        list.remove("str1");
+        list.remove("str2");
+        if (list.equals(list2)) {
+            System.out.println("hi");
+        }
+        ArrayList<String> list3 = new ArrayList<>();
+        list3.add("str1");
+        list3.add("str2");
+        list.retainAll(list3);
+        for (String s : list) {
+            System.out.println(s);
+        }
+        List<Integer> ar = new ArrayList<>();
+        ar.add(12);
+        ar.add(1,17);
+        ar.add(127);
+        for (Integer i : ar) {
+            System.out.println(i);
+        }
+        ar.add(121);
+        ar.add(7);
+        List<Integer> ar2 = new ArrayList<>();
+        ar2 = ar.subList(1, 4);
+        System.out.println(ar2);
+        Set<Integer> set = new TreeSet<>();
+        set.add(10);
+        set.add(120);
+        set.add(135);
+        set.add(12);
+        set.add(10);
+        for (Integer value : set) {
+            System.out.println(value);
+        }
+        Set<String> ts = new TreeSet<>(new comp().reversed());
+        ts.add("A");
+        ts.add("C");
+        ts.add("Z");
+        ts.add("Q");
+        ts.add("E");
+        for (String str : ts) {
+            System.out.println(str);
+        }
+
+        Set<user> users = new TreeSet<>();
+        //users.addAll(Arrays.asList(new user("suka", 1), new user("loh", 10), new user("valenok", 2)));
+
+        List<user> lt = new ArrayList<>();
+        lt.addAll(Arrays.asList(new user("petya", 27), new user("vasya", 41), new user("nadya", 19)));
+        for (user us : lt) {
+            users.add(us);
+        }
+        for (user user : users) {
+            System.out.println(user.name);
+        }
+    }
+
+
+
+
+
+
 
     public List<Integer> toList(int[][] array) {
         ArrayList<Integer> list = new ArrayList<>();
@@ -158,4 +182,5 @@ public class Run {
         }
         return hash;
     }
+
 }
