@@ -88,13 +88,20 @@ public class Tracker {
         boolean b = true;
         int k = 0;
         int j = 0;
-        for (Item it : items) {
+        /*for (Item it : items) {
             if (items.get(k) != null && items.get(j++).getId().equals(item.getId())) {
                 items.remove(k);
                 b = false;
                 break;
             }
             k++;
+        }*/
+        for (Item it : items) {
+            if (it != null && it.getId().equals(item.getId())) {
+                items.remove(k);
+                b = false;
+                break;
+            }
         }
         if (b) {
             System.out.println("не существующий элемент");
@@ -105,7 +112,7 @@ public class Tracker {
      * @param key - name
      * @return new array
      */
-    public /*Item[]*/ ArrayList<Item> findByName(String key) {
+    public ArrayList<Item> findByName(String key) {
         ArrayList<Item> its = new ArrayList<>();
         int k = 0;
         int j = 0;

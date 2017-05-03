@@ -17,7 +17,6 @@ public class MenuTracker {
     /**
      * array of UserAction objects.
      */
-    //private BaseClass[] actions = new BaseClass[7];
     private ArrayList<BaseClass> actions = new ArrayList<>();
     /**
      * constructor.
@@ -32,13 +31,6 @@ public class MenuTracker {
      * method fill array of actions.
      */
     public void fillActions() {
-        /*this.actions[0] = this.new AddItem();
-        this.actions[1] = new MenuTracker.ShowAll();
-        this.actions[2] = new MenuTracker.EditItem();
-        this.actions[3] = new DeleteItem();
-        this.actions[4] = new FindById();
-        this.actions[5] = new FindByName();
-        this.actions[6] = new Exit();*/
         this.actions.add(new AddItem());
         this.actions.add(new ShowAll());
         this.actions.add(new EditItem());
@@ -110,9 +102,6 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-           return String.format("%s. %s", this.key(), "add new item");
-        }*/
     }
     /**
      * class for show all items.
@@ -151,9 +140,6 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-            return String.format("%s. %s", this.key(), "show all items");
-        }*/
     }
     /**
      * class for edit item.
@@ -201,9 +187,6 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-            return String.format("%s. %s", this.key(), "edit item");
-        }*/
     }
     /**
      * class for delete item.
@@ -252,9 +235,6 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-            return String.format("%s. %s", this.key(), "delete item");
-        }*/
     }
     /**
      * class for searching item by id.
@@ -292,9 +272,6 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-            return String.format("%s. %s", this.key(), "find item by id");
-        }*/
     }
     /**
      * class for searching items by name.
@@ -332,9 +309,6 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-            return String.format("%s. %s", this.key(), "find item by name");
-        }*/
     }
     /**
      * class for searching items by name.
@@ -365,8 +339,5 @@ public class MenuTracker {
          * method show information about action.
          * @return information
          */
-        /*public String info() {
-            return String.format("%s. %s", this.key(), "exit");
-        }*/
     }
 }
