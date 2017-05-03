@@ -8,4 +8,22 @@ public class SortUser {
 
         return new TreeSet<>(list);
     }
+    public List<User> sortLength(List<User> users) {
+        users.sort(new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o2.getNameLength().compareTo(o1.getNameLength());
+            }
+        });
+        return users;
+    }
+    public List<User> sortHash(List<User> users) {
+        users.sort(new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o2.getHashcode().compareTo(o1.getHashcode());
+            }
+        });
+        return users;
+    }
 }

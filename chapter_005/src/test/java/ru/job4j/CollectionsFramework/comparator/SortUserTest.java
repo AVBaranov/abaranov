@@ -24,4 +24,32 @@ public class SortUserTest {
         Set<User> reality = sortuser.sort(list);
         assertThat(expectetion, is(reality));
     }
+    /**
+     * Convert array to collection.
+     */
+    @Test
+    public void whenUseSortLengthThenSortedList() {
+        SortUser sortuser = new SortUser();
+        List<User> expectetion = new ArrayList<>();
+        expectetion.addAll(Arrays.asList(new User("petrushka", 27), new User("nadya", 41), new User("bird", 19)));
+        List<User> reality = new ArrayList<>();
+        reality.addAll(Arrays.asList(new User("nadya", 41), new User("bird", 19), new User("petrushka", 27)));
+        sortuser.sortLength(reality);
+        assertThat(expectetion, is(reality));
+    }
+    /**
+     * Convert array to collection.
+     */
+    @Test
+    public void whenUseSortHashThenSortedList() {
+        SortUser sortuser = new SortUser();
+        List<User> expectetion = new ArrayList<>();
+        expectetion.addAll(Arrays.asList(new User("petrushka", 27), new User("nadya", 41), new User("bird", 19)));
+        List<User> reality = new ArrayList<>();
+        reality.addAll(Arrays.asList(new User("nadya", 41), new User("bird", 19), new User("petrushka", 27)));
+        sortuser.sortLength(reality);
+        assertThat(expectetion, is(reality));
+    }
+
+
 }
