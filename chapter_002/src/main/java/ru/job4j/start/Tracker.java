@@ -44,14 +44,12 @@ public class Tracker {
     public Item findById(String id) {
         Item obs = null;
         Iterator<Item> iter = items.iterator();
-        int k = 0;
-        int j = 0;
-        for (Item it : items) {
-            if (items.get(k) != null && items.get(j++).getId().equals(id)) {
-                obs = items.get(k);
+        while (iter.hasNext()) {
+            Item buf = iter.next();
+            if (buf != null && buf.getId().equals(id)) {
+                obs = buf;
                 break;
             }
-            k++;
         }
         return obs;
     }
@@ -73,7 +71,7 @@ public class Tracker {
         int k = 0;
         int j = 0;
         for (Item it : items) {
-            if (items.get(k) != null && items.get(j++).getId().equals(id)) {
+            if (it != null && it.getId().equals(id)) {
                 items.set(k, item);
                 break;
             }
@@ -86,19 +84,11 @@ public class Tracker {
      */
     public void delete(Item item) {
         boolean b = true;
-        int k = 0;
-        int j = 0;
-        /*for (Item it : items) {
-            if (items.get(k) != null && items.get(j++).getId().equals(item.getId())) {
-                items.remove(k);
-                b = false;
-                break;
-            }
-            k++;
-        }*/
-        for (Item it : items) {
-            if (it != null && it.getId().equals(item.getId())) {
-                items.remove(k);
+        Iterator<Item> iter = items.iterator();
+        while (iter.hasNext()) {
+            Item buf = iter.next();
+            if (buf != null && buf.getId().equals(item.getId())) {
+                iter.remove();
                 b = false;
                 break;
             }
@@ -114,13 +104,10 @@ public class Tracker {
      */
     public ArrayList<Item> findByName(String key) {
         ArrayList<Item> its = new ArrayList<>();
-        int k = 0;
-        int j = 0;
         for (Item it : items) {
-            if (items.get(k) != null && items.get(j++).getName().equals(key)) {
+            if (it != null && it.getName().equals(key)) {
                 its.add(it);
             }
-            k++;
         }
         return its;
     }
