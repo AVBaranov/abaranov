@@ -19,10 +19,10 @@ public class run {
         //ob.addAccountToUser(user1, new Account(100000, 12231234));
         //ob.addAccountToUser(user1, new Account(20000000, 12234));
         ob.addAccountToUser(user1, ac2);
-        //ob.addAccountToUser(user2, ac3);
-        //ob.addAccountToUser(user2, ac1);
+        ob.addAccountToUser(user1, ac3);
+        ob.addAccountToUser(user2, ac1);
+        System.out.println(ob.meth(user1));
         System.out.println(ob.meth(user2));
-
         int i = 0;
         /*for (Account value : ob.getUserAccounts(user1))
         {

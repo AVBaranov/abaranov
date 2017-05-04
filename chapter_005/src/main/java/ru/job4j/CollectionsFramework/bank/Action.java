@@ -16,11 +16,11 @@ public class Action {
         map.remove(user);
     }
     public void addAccountToUser(User user, Account account) {
-        List<Account> temp = map.get(user);
-                temp.add(account);
+
+                user.accounts.add(account);
                 //List<Account> tempaccounts = new ArrayList<>();
                 //tempaccounts.add(account);
-                map.put(user, temp);
+                map.put(user, user.accounts);
 
 
     }
