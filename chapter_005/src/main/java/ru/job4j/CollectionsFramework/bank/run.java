@@ -21,8 +21,13 @@ public class run {
         ob.addAccountToUser(user1, ac2);
         ob.addAccountToUser(user1, ac3);
         ob.addAccountToUser(user2, ac1);
-        System.out.println(ob.meth(user1));
-        System.out.println(ob.meth(user2));
+        System.out.println(ob.getUserAccounts(user1).get(0).getValue());
+        System.out.println(ob.getUserAccounts(user2).get(0).getValue());
+        ob.transferMoney(user1, user1.accounts.get(0), user2, user2.accounts.get(0), 5000);
+        System.out.println(ob.getUserAccounts(user2).get(0).getValue());
+        System.out.println(ob.getUserAccounts(user1).get(0).getValue());
+
+
         int i = 0;
         /*for (Account value : ob.getUserAccounts(user1))
         {
