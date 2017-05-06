@@ -6,17 +6,31 @@ import java.util.*;
 public class Action {
     private Map<User, List<Account>> map = new HashMap<>();
     public void addUser(User user) {
-
-        map.put(user, user.accounts);
+        ArrayList<Account> list = new ArrayList<Account>();
+        map.put(user, list);
     }
     public void deleteUser(User user) {
         map.remove(user);
     }
+
+    public Map<User, List<Account>> getMap() {
+        return map;
+    }
+
     public void addAccountToUser(User user, Account account) {
-                user.accounts.add(account);
-                map.put(user, user.accounts);
+        if (!map.containsKey(user)) {
+            throw new UserNotFoundException("user not found");
+        }
+        if (map.containsKey(user)) {
+            List<Account> temp = map.get(user);
+            temp.add(account);
+            map.put(user, temp);
+        }
     }
     public void deleteAccountFromUser(User user, Account account) {
+        if (!map.containsKey(user)) {
+            throw new UserNotFoundException("user not found");
+        }
         List<Account> temp = map.get(user);
         temp.remove(account);
         map.replace(user, temp);
@@ -26,8 +40,18 @@ public class Action {
     }
     public boolean transferMoney (User srcUser, Account srcAccount, User dstUser, Account dstAccount, int amount) {
         boolean b = true;
-        Iterator<Account> srciter = srcUser.accounts.iterator();
-        boolean src = true;
+        Iterator<Account> srciter = map.get(srcUser).iterator();
+        boolean src = false;
+        // проверка что есть пользователь, который будет переводить деньги
+        if (!map.containsKey(srcUser)) {
+            src = true;
+        }
+        // проверка что есть пользователь, которому будут переводиться деньги
+        if (!map.containsKey(dstUser)) {
+            src = true;
+        }
+
+        // проверка что есть счет, куда будут переводиться деньги
         while (srciter.hasNext()) {
             if (srciter.next().equals(srcAccount)) {
                 src = false;
@@ -37,8 +61,9 @@ public class Action {
             return false;
         }
 
-        Iterator<Account> dstiter = dstUser.accounts.iterator();
+        Iterator<Account> dstiter = map.get(dstUser).iterator();
         boolean dst = true;
+        // проверка что есть счет, откуда будут переводиться деньги
         while (dstiter.hasNext()) {
             if (dstiter.next().equals(dstAccount)) {
                 dst = false;

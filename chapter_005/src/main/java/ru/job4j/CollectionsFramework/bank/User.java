@@ -6,7 +6,6 @@ import java.util.*;
 public class User {
     private String name;
     private String passport;
-    public List<Account> accounts = new ArrayList<>();
     public User(String name, String passport) {
         this.name = name;
         this.passport = passport;
