@@ -38,63 +38,40 @@ public class Action {
     public List<Account> getUserAccounts(User user) {
         return map.get(user);
     }
+    public Account checkAccount(User user, Account account) {
+        Account ac = null;
+        boolean b1 = true;
+        boolean b2 = false;
+        if (!map.containsKey(user)) {
+            b1 = false;
+        }
+        Iterator<Account> iter = map.get(user).iterator();
+        while (iter.hasNext()) {
+            if (iter.next().equals(account)) {
+                b2 = true;
+            }
+        }
+        if (b1 && b2) {
+            ac = account;
+        }
+        return ac;
+    }
     public boolean transferMoney (User srcUser, Account srcAccount, User dstUser, Account dstAccount, int amount) {
-        boolean b = true;
-        Iterator<Account> srciter = map.get(srcUser).iterator();
-        boolean src = false;
-        // проверка что есть пользователь, который будет переводить деньги
-        if (!map.containsKey(srcUser)) {
-            src = true;
-        }
-        // проверка что есть пользователь, которому будут переводиться деньги
-        if (!map.containsKey(dstUser)) {
-            src = true;
-        }
+        boolean b = false;
 
-        // проверка что есть счет, куда будут переводиться деньги
-        while (srciter.hasNext()) {
-            if (srciter.next().equals(srcAccount)) {
-                src = false;
-            }
-        }
-        if (src) {
+        if (checkAccount(srcUser, srcAccount) == null) {
             return false;
         }
-
-        Iterator<Account> dstiter = map.get(dstUser).iterator();
-        boolean dst = true;
-        // проверка что есть счет, откуда будут переводиться деньги
-        while (dstiter.hasNext()) {
-            if (dstiter.next().equals(dstAccount)) {
-                dst = false;
-            }
-        }
-        if (dst) {
+        if (checkAccount(dstUser, dstAccount) == null) {
             return false;
         }
-        boolean total = false;
-            if (srcAccount.getValue() < amount) {
-                total = true;
-            }
-            if (total) {
-                System.out.println("недостаточно средств для перевода!");
-                return false;
-            }
-        List<Account> srcTemp= map.get(srcUser);
-            for (Account account : srcTemp) {
-                if (account.equals(srcAccount)) {
-                    account.setValue(srcAccount.getValue() - amount);
-                }
-            }
-            map.replace(srcUser, srcTemp);
-        List<Account> dstTemp= map.get(dstUser);
-        for (Account account : dstTemp) {
-            if (account.equals(dstAccount)) {
-                account.setValue(dstAccount.getValue() + amount);
-            }
+        Account src = checkAccount(srcUser, srcAccount);
+        Account dst = checkAccount(dstUser, dstAccount);
+        if (src.getValue() >= amount) {
+            src.setValue(srcAccount.getValue() - amount);
+            dst.setValue(dstAccount.getValue() + amount);
+            b = true;
         }
-        map.replace(dstUser, dstTemp);
-
         return b;
     }
 
