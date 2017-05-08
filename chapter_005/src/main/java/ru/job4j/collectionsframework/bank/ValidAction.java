@@ -43,5 +43,24 @@ public class ValidAction extends Action {
         }
         return ac;
     }
+    /**
+     * method for valid account's checking.
+     * @param srcUser - source user
+     * @param srcAccount - source account
+     * @param dstUser - destination user
+     * @param dstAccount - destination account
+     * @param amount - amount of money
+     * @return true or false
+     */
+    public boolean transferMoney(User srcUser, Account srcAccount, User dstUser, Account dstAccount, int amount) {
+        boolean b = false;
+        try {
+            super.transferMoney(srcUser, srcAccount, dstUser, dstAccount, amount);
+            b = true;
+        } catch (UserNotFoundException ufe) {
+           System.out.println();
+        }
+        return b;
+    }
 
 }

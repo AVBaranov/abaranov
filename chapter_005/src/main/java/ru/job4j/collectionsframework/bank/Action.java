@@ -122,7 +122,7 @@ public class Action {
         boolean b = false;
 
         if (checkAccount(srcUser, srcAccount) == null || checkAccount(dstUser, dstAccount) == null) {
-            return false;
+            throw new UserNotFoundException("user not found");
         }
         Account src = checkAccount(srcUser, srcAccount);
         Account dst = checkAccount(dstUser, dstAccount);
