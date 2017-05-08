@@ -7,11 +7,11 @@ package ru.job4j.start;
 //import ru.job4j.figure.Square;
 //import ru.job4j.figure.Triangle;
 
-import java.io.ByteArrayOutputStream;
+/*import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
+import java.util.Date;*/
 
 /**
  * class StartUI.
@@ -62,6 +62,7 @@ public class StartUI {
     /**
      * method main.
      * @param args - arguments
+     * @throws Exception - exception
      */
     public static void main(String[] args) throws Exception {
         StartUI obj = new StartUI(new ValidateInput(), new Tracker());

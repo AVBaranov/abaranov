@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+//import java.io.ByteArrayOutputStream;
+//import java.io.PrintStream;
 /**
  * Test.
  * @author Andrey Baranov

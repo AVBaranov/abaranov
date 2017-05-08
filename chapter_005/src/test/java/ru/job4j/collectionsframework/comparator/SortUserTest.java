@@ -1,8 +1,12 @@
-package ru.job4j.CollectionsFramework.comparator;
+package ru.job4j.collectionsframework.comparator;
 
 import org.junit.Test;
 
-import java.util.*;
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

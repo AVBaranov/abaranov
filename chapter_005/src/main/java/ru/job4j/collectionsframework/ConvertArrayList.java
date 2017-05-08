@@ -1,6 +1,8 @@
-package ru.job4j.CollectionsFramework;
+package ru.job4j.collectionsframework;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Andrey on 29.04.2017.
@@ -21,10 +23,10 @@ public class ConvertArrayList {
         }
         return list;
     }
-
     /**
      * Method converts collection to array.
      * @param list - input collection
+     * @param rows - rows
      * @return array
      */
     public int[][] toArray(List<Integer> list, int rows) {
@@ -32,10 +34,10 @@ public class ConvertArrayList {
             list.add(0);
         }
         Iterator<Integer> iter = list.iterator();
-        int[][] array = new int[rows][list.size()/rows];
+        int[][] array = new int[rows][list.size() / rows];
         int count = 0;
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < list.size()/rows; j++) {
+            for (int j = 0; j < list.size() / rows; j++) {
                 //array[i][j] = list.get(count);
                 array[i][j] = iter.next();
                 count++;

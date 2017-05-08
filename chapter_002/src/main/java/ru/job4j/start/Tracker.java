@@ -5,7 +5,7 @@ import ru.job4j.models.Item;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-import java.util.Arrays;
+//import java.util.Arrays;
 /**
  * class Tracker.
  */

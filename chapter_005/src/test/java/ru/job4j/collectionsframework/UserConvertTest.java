@@ -1,8 +1,10 @@
-package ru.job4j.CollectionsFramework;
+package ru.job4j.collectionsframework;
 
 import org.junit.Test;
 
-import java.util.*;
+import java.util.List;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -11,6 +13,9 @@ import static org.junit.Assert.assertThat;
  * Created by Andrey on 30.04.2017.
  */
 public class UserConvertTest {
+    /**
+     * Test convert collection to array.
+     */
     @Test
     public void whenCollectionHasNineElementsThenArrayIsTheSame() {
         UserConvert usercon = new UserConvert();
