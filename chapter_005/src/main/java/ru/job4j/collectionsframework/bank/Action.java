@@ -78,27 +78,9 @@ public class Action {
      * @return checked account
      */
     public Account checkAccount(User user, Account account) {
-        /*Account ac = null;
-        boolean b1 = true;
-        boolean b2 = false;
-        if (!map.containsKey(user)) {
-            b1 = false;
-        }
-        Iterator<Account> iter = map.get(user).iterator();
-        while (iter.hasNext()) {
-            if (iter.next().equals(account)) {
-                b2 = true;
-            }
-        }
-        if (b1 && b2) {
-            ac = account;
-        }
-        return ac;*/
         if (!map.containsKey(user) || !map.get(user).contains(account)) {
             throw new UserNotFoundException("user not found");
         }
-
-
             Account result = null;
             List<Account> list = map.get(user);
 
