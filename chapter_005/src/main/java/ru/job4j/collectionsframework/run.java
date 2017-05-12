@@ -1,5 +1,10 @@
 package ru.job4j.collectionsframework;
 
+import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
+import ru.job4j.collectionsframework.iterator.DoubleArray;
+import ru.job4j.collectionsframework.iterator.EvenNumbers;
+import ru.job4j.collectionsframework.iterator.PrimeNumbers;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
@@ -10,14 +15,9 @@ import java.util.*;
 class cl implements Iterator {
     private final int[] values;
     private int index = 0;
-
     public cl(int[] values) {
         this.values = values;
     }
-
-
-
-
     int size = 0;
     public Object next() {
         int count = 0;
@@ -72,6 +72,68 @@ class cl2 implements Iterator {
         }
         return temp > count;
     }
+}
+
+class cl3 implements Iterator {
+    private final int[] values;
+    private int index = 0;
+    public cl3(int[] values) {
+        this.values = values;
+    }
+    int size = 0;
+    public Object next() {
+        int counter = 0;
+        for (int i = values.length - 1; i >= 0 ; i--) {
+            boolean b = true;
+            for (int k = i - 1; k >= 0; k--) {
+                if (values[i] != 1 && values[k] != 1) {
+                    if (values[i] % values[k] == 0) {
+                        b = false;
+                    }
+                }
+            }
+            if (b) {
+                counter++;
+            }
+        }
+        size = counter;
+        int[] temp = new int[counter];
+        for (int i = values.length - 1; i >= 0 ; i--) {
+            boolean b = true;
+            for (int k = i - 1; k >= 0; k--) {
+                if (values[i] != 1 && values[k] != 1) {
+                    if (values[i] % values[k] == 0) {
+                        b = false;
+                    }
+                }
+            }
+            if (b) {
+                temp[counter - 1] = values[i];
+                counter--;
+            }
+        }
+        return temp[index++];
+    }
+
+    public boolean hasNext() {
+        return size > index;
+    }
+}
+
+class cl4  {
+    Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
+        List<Integer> list = new ArrayList<>();
+        Iterator<Integer> iter = list.iterator();
+        iter = it.next();
+        //while(it.hasNext()){
+            while (iter.hasNext()) {
+                list.add(iter.next());
+            }
+        //}
+
+        return iter;
+    }
+
 }
 
 public class run {
@@ -218,27 +280,27 @@ public class run {
         }
         String z1 = ("asd");
         System.out.println(z1.compareTo(new String("asd2")));
-
-
+        System.out.println();
+        DoubleArray da = new DoubleArray(new int[][] {{1,2,3,100,200,1000},{4,5,6,123},{7,8,9,10,11}});
         int[][] arr = new int[10][10];
         arr[1] = new int[] {1,2,3};
         cl2 cl2 = new cl2(new int[][] {{1,2,3,100,200,1000},{4,5,6,123},{7,8,9,10,11}});
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.next());
-        System.out.println(cl2.hasNext());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.next());
+        System.out.println(da.hasNext());
 
         int[] values = {1,2,3,4,5,6,7,8,9};
         int count = 0;
@@ -261,13 +323,97 @@ public class run {
             System.out.print(value + " ");
         }
         System.out.println();
-        cl cl = new cl(new int[] {1,2,3,4,5,6,7,8,9});
-        System.out.println(cl.next());
-        System.out.println(cl.next());
-        System.out.println(cl.next());
-        System.out.println(cl.next());
-        System.out.println(cl.hasNext());
+        EvenNumbers en = new EvenNumbers(new int[] {1,2,3,4,5,6,7,8,9});
+        System.out.println(en.next());
+        System.out.println(en.next());
+        System.out.println(en.next());
+        System.out.println(en.next());
+        System.out.println(en.hasNext());
+
+
+        PrimeNumbers pn = new PrimeNumbers(new int[] {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,23});
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.hasNext());
+
+        cl4 cl4 = new cl4();
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        list1.add(3);
+        list1.add(4);
+        list1.add(8);
+        list1.add(12);
+        List<Integer> list2 = new ArrayList<>();
+        list2.add(112);
+        list2.add(1);
+        list2.add(3);
+        list2.add(5);
+        list2.add(9);
+        List<Integer> list3 = new ArrayList<>();
+        list3.add(2);
+        list3.add(4);
+        list3.add(14);
+        list3.add(87);
+        list3.add(10);
+        Iterator<Integer> it1 = list1.iterator();
+        Iterator<Integer> it2 = list2.iterator();
+        Iterator<Integer> it3 = list3.iterator();
+        List<Iterator<Integer>> iterlist = new ArrayList<>();
+        iterlist.add(it1);
+        iterlist.add(it2);
+        iterlist.add(it3);
+        Iterator<Iterator<Integer>> it = iterlist.iterator();
+        Iterator<Integer> iter = cl4.convert(it);
+        //Iterator<Integer> t = it.next();
+        while (it.hasNext()) {
+            while ()
+            System.out.println(it.next());
+        }
+
 
 
 }
+int[] findnaturalnumbers(int[] sourcearray) {
+
+    int counter = 0;
+    for (int i = sourcearray.length - 1; i >= 0 ; i--) {
+        boolean b = true;
+        for (int k = i - 1; k >= 0; k--) {
+            if (sourcearray[i] != 1 && sourcearray[k] != 1) {
+                if (sourcearray[i] % sourcearray[k] == 0) {
+                    b = false;
+                }
+            }
+        }
+        if (b) {
+            counter++;
+        }
+    }
+
+    int[] template = new int[counter];
+    for (int i = sourcearray.length - 1; i >= 0 ; i--) {
+        boolean b = true;
+        for (int k = i - 1; k >= 0; k--) {
+            if (sourcearray[i] != 1 && sourcearray[k] != 1) {
+                if (sourcearray[i] % sourcearray[k] == 0) {
+                    b = false;
+                }
+            }
+        }
+        if (b) {
+            template[counter - 1] = sourcearray[i];
+            counter--;
+        }
+    }
+    return template;
+}
+
 }
