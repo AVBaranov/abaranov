@@ -1,6 +1,7 @@
 package ru.job4j.collectionsframework;
 
 import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
+import ru.job4j.collectionsframework.iterator.ConvertIterator;
 import ru.job4j.collectionsframework.iterator.DoubleArray;
 import ru.job4j.collectionsframework.iterator.EvenNumbers;
 import ru.job4j.collectionsframework.iterator.PrimeNumbers;
@@ -123,15 +124,13 @@ class cl3 implements Iterator {
 class cl4  {
     Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         List<Integer> list = new ArrayList<>();
-        Iterator<Integer> iter = list.iterator();
-        iter = it.next();
-        //while(it.hasNext()){
+        while (it.hasNext()) {
+            Iterator<Integer> iter= it.next();
             while (iter.hasNext()) {
                 list.add(iter.next());
             }
-        //}
-
-        return iter;
+        }
+        return list.iterator();
     }
 
 }
@@ -344,6 +343,9 @@ public class run {
         System.out.println(pn.next());
         System.out.println(pn.hasNext());
 
+
+
+
         cl4 cl4 = new cl4();
         List<Integer> list1 = new ArrayList<>();
         list1.add(1);
@@ -363,20 +365,42 @@ public class run {
         list3.add(14);
         list3.add(87);
         list3.add(10);
+
         Iterator<Integer> it1 = list1.iterator();
         Iterator<Integer> it2 = list2.iterator();
         Iterator<Integer> it3 = list3.iterator();
+
         List<Iterator<Integer>> iterlist = new ArrayList<>();
+
         iterlist.add(it1);
         iterlist.add(it2);
         iterlist.add(it3);
-        Iterator<Iterator<Integer>> it = iterlist.iterator();
-        Iterator<Integer> iter = cl4.convert(it);
-        //Iterator<Integer> t = it.next();
+
+        /*Iterator<Iterator<Integer>> it = iterlist.iterator();
+
+
+        List<Integer> templist = new ArrayList<>();
+
         while (it.hasNext()) {
-            while ()
-            System.out.println(it.next());
+            Iterator<Integer> tempiter= it.next();
+
+            while (tempiter.hasNext()) {
+
+                templist.add(tempiter.next());
+            }
         }
+        Iterator<Integer> itr = templist.iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }*/
+
+        ConvertIterator ci = new ConvertIterator();
+        Iterator<Integer> its = ci.convert(iterlist.listIterator());
+        while (its.hasNext()) {
+            System.out.println(its.next());
+        }
+
+
 
 
 
