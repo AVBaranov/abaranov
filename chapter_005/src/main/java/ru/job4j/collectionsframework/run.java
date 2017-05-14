@@ -1,10 +1,6 @@
 package ru.job4j.collectionsframework;
 
-import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
-import ru.job4j.collectionsframework.iterator.ConvertIterator;
-import ru.job4j.collectionsframework.iterator.DoubleArray;
-import ru.job4j.collectionsframework.iterator.EvenNumbers;
-import ru.job4j.collectionsframework.iterator.PrimeNumbers;
+import ru.job4j.collectionsframework.testtask.MyComp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +9,61 @@ import java.util.*;
 /**
  * Created by Andrey on 09.05.2017.
  */
+class sorting implements Comparator<String> {
+    @Override
+    public int compare(String o1, String o2) {
+        int count1 = 0;
+        int count2 = 0;
+        for (int i = 0; i < o1.length(); i++) {
+            if(o1.toCharArray()[i] == ' ') {
+                count1++;
+            }
+        }
+        for (int i = 0; i < o2.length(); i++) {
+            if(o2.toCharArray()[i] == ' ') {
+                count2++;
+            }
+        }
+        if (count1 > count2) {
+            return 1;
+        } else if (count1 < count2) {
+            return -1;
+        }
+        return 0;
+    }
+}
+
+class megasort implements Comparator<String> {
+    @Override
+    public int compare(String o1, String o2) {
+
+        String[] ar1 = o1.split("/");
+        String[] ar2 = o2.split("/");
+
+        for (int i = 0; i < ar1.length && i < ar2.length; i++) {
+
+        }
+        boolean b = true;
+        for (int i = 0; i < ar1.length && i < ar2.length; i++) {
+            if (ar1[i].compareTo(ar2[i]) > 0) {
+                b = false;
+                return 1;
+            } else if (ar1[i].compareTo(ar2[i]) < 0) {
+                b = false;
+                return -1;
+            }
+        }
+        if (b) {
+            if (ar1.length < ar2.length) {
+                return -1;
+            } else if (ar1.length > ar2.length) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+}
+
 class cl implements Iterator {
     private final int[] values;
     private int index = 0;
@@ -141,15 +192,7 @@ public class run {
         for (String value : ar) {
             System.out.print(value + " ");
         }
-        /*for (int i = 0; i < ar.length; i++) {
-            for (int j = i + 1; j < ar.length; j++) {
-                if (ar[i].charAt(ar[i].indexOf('/') - 1) > ar[j].charAt(ar[j].indexOf('/') - 1)) {
-                    String temp = ar[i];
-                    ar[i] = ar[j];
-                    ar[j] = temp;
-                }
-            }
-        }*/
+
         for (int i = 0; i < ar.length; i++) {
             for (int j = i + 1; j < ar.length; j++) {
                 if (ar[i].length() > ar[j].length()) {
@@ -159,15 +202,6 @@ public class run {
                 }
             }
         }
-        /*for (int i = 0; i < ar.length; i++) {
-            for (int j = i + 1; j < ar.length; j++) {
-                if (ar[i].charAt(ar[i].indexOf('/') - 1) > ar[j].charAt(ar[j].indexOf('/') - 1)) {
-                    String temp = ar[i];
-                    ar[i] = ar[j];
-                    ar[j] = temp;
-                }
-            }
-        }*/
 
         for (int i = 0; i < ar.length; i++) {
             for (int j = i + 1; j < ar.length; j++) {
@@ -185,11 +219,6 @@ public class run {
                         }
                     }
                 }
-               // if (ar[i].charAt(ar[i].indexOf('/') - 1) > ar[j].charAt(ar[j].indexOf('/') - 1)) {
-                 //   String temp = ar[i];
-                  //  ar[i] = ar[j];
-                  //  ar[j] = temp;
-                //}
             }
         }
 
@@ -199,30 +228,18 @@ public class run {
             System.out.print(value + " ");
         }
 
-        /*for (String s : ar) {
-            System.out.println(s.charAt('/'));
-        }*/
 
 
         System.out.println();
 
         String str = new String("k1/sk1/ssk1/");
-        //System.out.println(str.indexOf('/'));
-        //System.out.println(str.charAt(str.indexOf('/') - 1));
         char[] mas = new char[str.length()];
         mas = str.toCharArray();
-        /*for (int i = 0; i < mas.length; i++) {
-            if (mas[i] == '/') {
-
-            }
-        }*/
-
             for (int i = 0; i < str.length(); i++) {
                 if(str.toCharArray()[i] == '/') {
                     System.out.println("kuku");
                 }
             }
-            //System.out.println(str.charAt('/'));
         System.out.println(str.indexOf('/'));
             System.out.println(str.charAt(str.indexOf('/') - 1));
         String[] ar2 = {"k1/sk1", "k1", "k1/sk1/ssk1", "k2", "k1/sk1/ssk2", "k1/sk2", "k1/sk1/ssk3"};
@@ -280,127 +297,67 @@ public class run {
         String z1 = ("asd");
         System.out.println(z1.compareTo(new String("asd2")));
         System.out.println();
-        DoubleArray da = new DoubleArray(new int[][] {{1,2,3,100,200,1000},{4,5,6,123},{7,8,9,10,11}});
-        int[][] arr = new int[10][10];
-        arr[1] = new int[] {1,2,3};
-        cl2 cl2 = new cl2(new int[][] {{1,2,3,100,200,1000},{4,5,6,123},{7,8,9,10,11}});
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.next());
-        System.out.println(da.hasNext());
+        String[] strarr = {"k1/sk1", "k1/sk2", "k2/sk1/ssk1", "k3", "k1/sk1/ssk2", "k2/sk1", "k3/sk1", "k1", "k2", "k1/sk1/ssk1"};
+        int a = strarr[0].split("/").length;
+        System.out.println(a);
+        String[][] distarr = new String[strarr.length][];
+        for (int i = 0; i < strarr.length; i++) {
+            distarr[i] = strarr[i].split("/");
+        }
 
-        int[] values = {1,2,3,4,5,6,7,8,9};
-        int count = 0;
-        System.out.println(count);
-        for (int i = 0; i < values.length; i++) {
-            if (values[i] % 2 == 0) {
-                count++;
+        for (int i = 0; i < distarr.length; i++) {
+            for (int j = 0; j < distarr[i].length; j++) {
+                System.out.print(distarr[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0; i < distarr.length; i++) {
+            for (int j = 0; j < distarr[i].length; j++) {
+                for (int k = j + 1; k < distarr[i][j].length() - 1; k++) {
+                    //if (!(distarr[i][j].length() > k) || )
+                    if (distarr[i][k].compareTo(distarr[i][k + 1]) < 0) {
+                        String temp = distarr[i][k];
+                        distarr[i][k] = distarr[i][k + 1];
+                        distarr[i][k + 1] = temp;
+                    }
+                }
             }
         }
-        int j = 0;
-        int[] temp = new int[count];
-        for (int i = 0; i < values.length; i++) {
-
-            if (values[i] % 2 == 0) {
-                temp[j] = values[i];
-                j++;
+        String st1 = new String("ssk1");
+        System.out.println(st1.compareTo(new String("sk2")));
+        for (int i = 0; i < distarr.length; i++) {
+            for (int j = 0; j < distarr[i].length; j++) {
+                System.out.print(distarr[i][j] + " ");
             }
+            System.out.println();
         }
-        for (int value : temp) {
+
+
+
+        Set<String> ls = new TreeSet<String>(new sorting());
+        ls.add("я пошёл гулять");
+        ls.add("раз два три четыре пять");
+        ls.add("один два");
+        ls.add("один я три я");
+        System.out.println(ls);
+
+        List<String> lz = Arrays.asList(strarr);
+        Set<String> st = new TreeSet<>(new MyComp());
+        for (String value : lz) {
+            st.add(value);
+        }
+        System.out.println(st);
+
+        /*String[] ar1 = new String("str").split("/");
+        for (String value : ar1) {
             System.out.print(value + " ");
         }
         System.out.println();
-        EvenNumbers en = new EvenNumbers(new int[] {1,2,3,4,5,6,7,8,9});
-        System.out.println(en.next());
-        System.out.println(en.next());
-        System.out.println(en.next());
-        System.out.println(en.next());
-        System.out.println(en.hasNext());
-
-
-        PrimeNumbers pn = new PrimeNumbers(new int[] {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,23});
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.hasNext());
-
-
-
-
-        cl4 cl4 = new cl4();
-        List<Integer> list1 = new ArrayList<>();
-        list1.add(1);
-        list1.add(3);
-        list1.add(4);
-        list1.add(8);
-        list1.add(12);
-        List<Integer> list2 = new ArrayList<>();
-        list2.add(112);
-        list2.add(1);
-        list2.add(3);
-        list2.add(5);
-        list2.add(9);
-        List<Integer> list3 = new ArrayList<>();
-        list3.add(2);
-        list3.add(4);
-        list3.add(14);
-        list3.add(87);
-        list3.add(10);
-
-        Iterator<Integer> it1 = list1.iterator();
-        Iterator<Integer> it2 = list2.iterator();
-        Iterator<Integer> it3 = list3.iterator();
-
-        List<Iterator<Integer>> iterlist = new ArrayList<>();
-
-        iterlist.add(it1);
-        iterlist.add(it2);
-        iterlist.add(it3);
-
-        /*Iterator<Iterator<Integer>> it = iterlist.iterator();
-
-
-        List<Integer> templist = new ArrayList<>();
-
-        while (it.hasNext()) {
-            Iterator<Integer> tempiter= it.next();
-
-            while (tempiter.hasNext()) {
-
-                templist.add(tempiter.next());
-            }
-        }
-        Iterator<Integer> itr = templist.iterator();
-        while (itr.hasNext()) {
-            System.out.println(itr.next());
+        String[] ar3 = new String("str/asq/xcv").split("/");
+        for (String value : ar3) {
+            System.out.println(value + " ");
         }*/
-
-        ConvertIterator ci = new ConvertIterator();
-        Iterator<Integer> its = ci.convert(iterlist.listIterator());
-        while (its.hasNext()) {
-            System.out.println(its.next());
-        }
-
-
 
 
 
