@@ -5,6 +5,7 @@ import ru.job4j.collectionsframework.testtask.MyComp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
+import ru.job4j.collectionsframework.iterator.*;
 
 /**
  * Created by Andrey on 09.05.2017.
@@ -101,6 +102,7 @@ class cl2 implements Iterator {
     private int index = 0;
     private int index2 = 0;
     int count = 0;
+    int template = 0;
 
     public cl2(int[][] values) {
         this.values = values;
@@ -110,6 +112,7 @@ class cl2 implements Iterator {
         count++;
         if (index2 == values[index].length) {
             index++;
+            template += index2;
             index2 = 0;
         }
         return values[index][index2++];
@@ -335,12 +338,7 @@ public class run {
 
 
 
-        Set<String> ls = new TreeSet<String>(new sorting());
-        ls.add("я пошёл гулять");
-        ls.add("раз два три четыре пять");
-        ls.add("один два");
-        ls.add("один я три я");
-        System.out.println(ls);
+
 
         List<String> lz = Arrays.asList(strarr);
         Set<String> st = new TreeSet<>(new MyComp());
@@ -358,6 +356,10 @@ public class run {
         for (String value : ar3) {
             System.out.println(value + " ");
         }*/
+        DoubleArray ob = new DoubleArray(new int[][] {{1,2,3},{4,5,6},{7,8,9}});
+        while (ob.hasNext()) {
+            System.out.println(ob.next());
+        }
 
 
 

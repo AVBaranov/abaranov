@@ -10,6 +10,7 @@ public class DoubleArray implements Iterator {
     private int index = 0;
     private int index2 = 0;
     int count = 0;
+    int template = 0;
 
     public DoubleArray(int[][] values) {
         this.values = values;
@@ -19,6 +20,7 @@ public class DoubleArray implements Iterator {
         count++;
         if (index2 == values[index].length) {
             index++;
+            template += index2;
             index2 = 0;
         }
         return values[index][index2++];
@@ -26,10 +28,13 @@ public class DoubleArray implements Iterator {
 
     public boolean hasNext() {
         int temp = 0;
-        for (int i = 0; i < values.length; i++) {
+        /*for (int i = 0; i < values.length; i++) {
             for (int j= 0; j < values[i].length; j++) {
                 temp++;
             }
+        }*/
+        for (int i = 0; i < values.length; i++) {
+                temp += values[i].length;
         }
         return temp > count;
     }
