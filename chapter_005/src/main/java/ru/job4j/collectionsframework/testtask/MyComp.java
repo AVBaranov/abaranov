@@ -8,13 +8,8 @@ import java.util.Comparator;
 public class MyComp implements Comparator<String> {
     @Override
     public int compare(String o1, String o2) {
-
         String[] ar1 = o1.split("/");
         String[] ar2 = o2.split("/");
-
-        for (int i = 0; i < ar1.length && i < ar2.length; i++) {
-
-        }
         boolean b = true;
         for (int i = 0; i < ar1.length && i < ar2.length; i++) {
             if (ar1[i].compareTo(ar2[i]) > 0) {
