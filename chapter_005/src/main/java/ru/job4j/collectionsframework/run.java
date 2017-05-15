@@ -1,5 +1,6 @@
 package ru.job4j.collectionsframework;
 
+import ru.job4j.collectionsframework.generic.*;
 import ru.job4j.collectionsframework.testtask.MyComp;
 
 import java.util.ArrayList;
@@ -361,6 +362,22 @@ public class run {
             System.out.println(ob.next());
         }
 
+
+        SimpleArray<Integer> obs = new SimpleArray<>();
+        obs.add(1);
+        obs.add(2);
+        obs.add(3);
+        obs.add(4);
+        obs.add(5);
+        obs.add(6);
+        obs.add(7);
+        obs.add(8);
+        System.out.println(obs.get(0));
+        obs.delete(1);
+        System.out.println(obs.get(0));
+        System.out.println(obs.get(4));
+        obs.update(4,100);
+        System.out.println(obs.get(4));
 
 
 }

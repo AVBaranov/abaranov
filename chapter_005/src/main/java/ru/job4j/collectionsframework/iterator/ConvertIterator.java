@@ -1,5 +1,4 @@
 package ru.job4j.collectionsframework.iterator;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,9 +11,14 @@ public class ConvertIterator {
         List<Integer> list = new ArrayList<>();
         while (it.hasNext()) {
             Iterator<Integer> iter= it.next();
+            myiter myit = new myiter(list);
             while (iter.hasNext()) {
                 list.add(iter.next());
             }
+            /*while (myit.hasNext()) {
+                list.add(myit.next());
+            }*/
+
         }
         return list.iterator();
     }
