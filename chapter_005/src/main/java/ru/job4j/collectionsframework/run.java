@@ -1,13 +1,13 @@
 package ru.job4j.collectionsframework;
 
 import ru.job4j.collectionsframework.generic.*;
+import ru.job4j.collectionsframework.generic.User;
 import ru.job4j.collectionsframework.testtask.MyComp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
-
 /**
  * Created by Andrey on 09.05.2017.
  */
@@ -189,6 +189,50 @@ class cl4  {
     }
 
 }
+
+
+
+
+abstract class abs {
+    abstract public String getId();
+    abstract public void setId(String id);
+}
+class uzer extends Base{
+    private String id;
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}
+
+class uzer2 extends Base{
+    private String id;
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+}
+
+interface inter<E extends Base> {
+
+}
+class cl1<E extends Base> implements inter {
+
+}
+class cl10<E extends Base> implements inter {
+
+}
+
+
+
 
 public class run {
     public static void main(String[] args) {
@@ -378,6 +422,12 @@ public class run {
         System.out.println(obs.get(4));
         obs.update(4,100);
         System.out.println(obs.get(4));
+
+        //inter<Base> cl1 = new cl1<uzer>();
+        //inter<Base> cl10 = new cl10<uzer2>();
+        Store<Base> userstore = new UserStore<User>();
+        userstore.add(new User());
+
 
 
 }
