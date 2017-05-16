@@ -6,13 +6,21 @@ import java.util.Iterator;
  * Created by Андрей on 12.05.2017.
  */
 public class EvenNumbers implements Iterator {
+
     private final int[] values;
+
+    private int[] newvalues;
+
     private int index = 0;
+
     public EvenNumbers(int[] values) {
         this.values = values;
+        this.newvalues = this.init();
     }
+
     int size = 0;
-    public Object next() {
+
+    private int[] init() {
         int count = 0;
         for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
@@ -28,7 +36,12 @@ public class EvenNumbers implements Iterator {
                 j++;
             }
         }
-        return temp[index++];
+        //size = temp.length;
+        return temp;
+    }
+
+    public Object next() {
+        return newvalues[index++];
     }
 
     public boolean hasNext() {

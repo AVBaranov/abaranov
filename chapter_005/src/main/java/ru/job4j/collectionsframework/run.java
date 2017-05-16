@@ -427,6 +427,12 @@ public class run {
         //inter<Base> cl10 = new cl10<uzer2>();
         Store<Base> userstore = new UserStore<User>();
         userstore.add(new User());
+        int[] arr = {1};
+        EvenNumbers en = new EvenNumbers(arr);
+        //System.out.println(en.next());
+        System.out.println(en.hasNext());
+
+
 
 
 
