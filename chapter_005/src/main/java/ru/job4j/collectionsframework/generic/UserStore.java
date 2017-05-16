@@ -18,6 +18,4 @@ public class UserStore<T extends Base> implements Store {
         return store.get(position);
     }
 
-
-
 }
