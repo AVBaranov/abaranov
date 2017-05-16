@@ -6,6 +6,10 @@ package ru.job4j.collectionsframework.generic;
 public class Role extends Base {
     private String id;
 
+    public Role(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return this.id;
     }

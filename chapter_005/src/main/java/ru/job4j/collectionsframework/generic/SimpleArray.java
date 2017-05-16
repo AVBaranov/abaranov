@@ -20,6 +20,7 @@ public class SimpleArray<E> {
     }
     public void update(int index, E value) {
         this.list.add(index, value);
+        this.list.remove(index + 1);
     }
 
 }

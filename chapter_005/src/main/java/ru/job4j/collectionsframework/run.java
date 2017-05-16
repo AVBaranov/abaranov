@@ -425,12 +425,23 @@ public class run {
 
         //inter<Base> cl1 = new cl1<uzer>();
         //inter<Base> cl10 = new cl10<uzer2>();
-        Store<Base> userstore = new UserStore<User>();
-        userstore.add(new User());
+        //SimpleArray<User> simplearr = new SimpleArray<>();
+        Store<User> userstore = new UserStore(new SimpleArray<>());
+        Store<Role> rolerstore = new RoleStore(new SimpleArray<>());
+        User us = new User("asf");
+        userstore.add(us);
+        System.out.println(userstore.get(0).getId());
+        userstore.update(0, new User("sdfsdgsdg"));
+        System.out.println(userstore.get(0).getId());
+        //System.out.println(userstore.get(1).getId());
+
+
         int[] arr = {1};
         EvenNumbers en = new EvenNumbers(arr);
         //System.out.println(en.next());
         System.out.println(en.hasNext());
+
+
 
 
 
