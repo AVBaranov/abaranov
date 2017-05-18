@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Andrey on 13.05.2017.
  */
-public class ConvertIterator {
+/*public class ConvertIterator {
     public Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
         List<Integer> list = new ArrayList<>();
         while (it.hasNext()) {
@@ -15,11 +15,31 @@ public class ConvertIterator {
             while (iter.hasNext()) {
                 list.add(iter.next());
             }
-            /*while (myit.hasNext()) {
-                list.add(myit.next());
-            }*/
+            //while (myit.hasNext()) {
+            //   list.add(myit.next());
+            //}
 
         }
         return list.iterator();
     }
+}*/
+
+
+/**
+ * Created by Andrey on 13.05.2017.
+ */
+public class ConvertIterator {
+    public Iterator<Integer> convert(myiterofiters it) {
+        List<Integer> list = new ArrayList<>();
+        while (it.hasNext()) {
+            myiter<Integer> iter = new myiter<>(it.next());
+            //Iterator<Integer> iter= it.next();
+            while (iter.hasNext()) {
+                list.add(iter.next());
+            }
+        }
+        return list.iterator();
+    }
 }
+
+

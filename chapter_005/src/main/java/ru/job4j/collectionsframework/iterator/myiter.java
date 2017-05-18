@@ -3,26 +3,27 @@ import java.util.*;
 /**
  * Created by Андрей on 15.05.2017.
  */
-public class myiter implements Iterator {
-    //private final Integer[] values;
-    private List<Integer> list = new ArrayList<>();
+public class myiter<T> implements Iterator {
+    private List<T> list = new ArrayList<T>();
     private int count;
 
-    public myiter(List<Integer> list) {
-        //this.values = values;
+    public myiter(List<T> list) {
         this.list = list;
+    }
+
+    public myiter(Iterator<T> it) {
+        while (it.hasNext()) {
+            this.list.add(it.next());
+        }
     }
 
     @Override
     public boolean hasNext() {
-        //return values.length > count;
         return list.size() > count;
     }
 
     @Override
-    public Integer next() {
-        //return values[count++];
-
+    public T next() {
         return list.get(count++);
     }
 }

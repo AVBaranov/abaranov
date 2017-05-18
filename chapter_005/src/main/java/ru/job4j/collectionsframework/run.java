@@ -4,6 +4,7 @@ import ru.job4j.collectionsframework.generic.*;
 import ru.job4j.collectionsframework.generic.User;
 import ru.job4j.collectionsframework.testtask.MyComp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
@@ -199,6 +200,10 @@ abstract class abs {
 }
 class uzer extends Base{
     private String id;
+
+    public uzer(String id) {
+        this.id = id;
+    }
 
     public String getId() {
         return this.id;
@@ -440,6 +445,63 @@ public class run {
         EvenNumbers en = new EvenNumbers(arr);
         //System.out.println(en.next());
         System.out.println(en.hasNext());
+
+        ///////////////////////////////////////
+
+        List<String> ls = new ArrayList<>();
+        ls.add("str1");
+        ls.add("str1");
+        myiter<String> myiter = new myiter<>(ls);
+        System.out.println(myiter.next());
+        System.out.println(myiter.hasNext());
+
+        ArrayList<Iterator<Integer>> ls2 = new ArrayList<>();
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(10);
+        list1.add(1000);
+        Iterator<Integer> it = list1.iterator();
+        Iterator<Integer> it2 = new ArrayList<Integer>().iterator();
+        ls2.add(it);
+        ls2.add(it2);
+
+        myiterofiters<Integer> myitofits = new myiterofiters<Integer>(ls2);
+        System.out.println(myitofits.next().next());
+        System.out.println(myitofits.hasNext());
+
+
+        List<Integer> l1 = new ArrayList<>();
+        l1.add(10);
+        l1.add(20);
+        l1.add(50);
+        List<Integer> l2 = new ArrayList<>();
+        l1.add(100);
+        l1.add(200);
+        l1.add(500);
+        List<Integer> l3 = new ArrayList<>();
+        l1.add(1000);
+        l1.add(2000);
+        l1.add(5000);
+        Iterator<Integer> i1 = l1.iterator();
+        Iterator<Integer> i2 = l2.iterator();
+        Iterator<Integer> i3 = l3.iterator();
+        ArrayList<Iterator<Integer>> itlist = new ArrayList<>();
+        itlist.add(i1);
+        itlist.add(i2);
+        itlist.add(i3);
+        Iterator<Iterator<Integer>> megaiter = itlist.iterator();
+        myiterofiters<Integer> myitofits2 = new myiterofiters<Integer>(itlist);
+        ConvertIterator conv = new ConvertIterator();
+        Iterator<Integer> result = conv.convert(myitofits2);
+        while (result.hasNext()) {
+            System.out.println(result.next());
+        }
+
+
+
+
+
+
+
 
 
 

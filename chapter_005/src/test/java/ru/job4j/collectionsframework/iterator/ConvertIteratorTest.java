@@ -41,11 +41,12 @@ public class ConvertIteratorTest {
         Iterator<Integer> it2 = list2.iterator();
         Iterator<Integer> it3 = list3.iterator();
 
-        List<Iterator<Integer>> iterlist = new ArrayList<>();
+        ArrayList<Iterator<Integer>> iterlist = new ArrayList<>();
         iterlist.add(it1);
         iterlist.add(it2);
         iterlist.add(it3);
-        Iterator<Integer> expectation = ci.convert(iterlist.iterator());
+        myiterofiters<Integer> myitofits = new myiterofiters<Integer>(iterlist);
+        Iterator<Integer> expectation = ci.convert(myitofits);
         List<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(3);
