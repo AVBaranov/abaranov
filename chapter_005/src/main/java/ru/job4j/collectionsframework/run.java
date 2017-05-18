@@ -3,6 +3,7 @@ package ru.job4j.collectionsframework;
 import ru.job4j.collectionsframework.generic.*;
 import ru.job4j.collectionsframework.generic.User;
 import ru.job4j.collectionsframework.testtask.MyComp;
+import java.util.Arrays;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -495,6 +496,17 @@ public class run {
         while (result.hasNext()) {
             System.out.println(result.next());
         }
+
+        int[] ar1 = {1,2,3,4,5,6,7,8,9};
+        int temp = ar1.length + (ar1.length >> 1);
+        System.out.println(temp);
+        ar1 = Arrays.copyOf(ar1, ar1.length + (ar1.length >> 1));
+
+        for (int value : ar1) {
+            System.out.print(value + " ");
+        }
+        System.out.println("\n" + Object[].class);
+
 
 
 
