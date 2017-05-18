@@ -7,12 +7,19 @@ import java.util.Iterator;
  */
 public class PrimeNumbers implements Iterator {
     private final int[] values;
+
+    private int[] newvalues;
+
     private int index = 0;
+
     public PrimeNumbers(int[] values) {
         this.values = values;
+        this.newvalues = this.init();
     }
+
     int size = 0;
-    public Object next() {
+
+    private int[] init() {
         int counter = 0;
         for (int i = values.length - 1; i >= 0 ; i--) {
             boolean b = true;
@@ -43,7 +50,11 @@ public class PrimeNumbers implements Iterator {
                 counter--;
             }
         }
-        return temp[index++];
+        return temp;
+    }
+
+    public Object next() {
+        return newvalues[index++];
     }
 
     public boolean hasNext() {

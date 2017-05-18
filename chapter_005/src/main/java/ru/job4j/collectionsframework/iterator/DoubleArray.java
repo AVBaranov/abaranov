@@ -37,5 +37,7 @@ public class DoubleArray implements Iterator {
                 temp += values[i].length;
         }
         return temp > count;
+
+
     }
 }

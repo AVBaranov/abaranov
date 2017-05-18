@@ -507,7 +507,10 @@ public class run {
         }
         System.out.println("\n" + Object[].class);
 
-
+        PrimeNumbers pn = new PrimeNumbers(new int[] {1,2,3,4,5,6,7,8,9});
+        while (pn.hasNext()) {
+            System.out.println(pn.next());
+        }
 
 
 
