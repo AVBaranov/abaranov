@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
+import ru.job4j.collectionsframework.list.*;
 /**
  * Created by Andrey on 09.05.2017.
  */
@@ -511,6 +512,33 @@ public class run {
         while (pn.hasNext()) {
             System.out.println(pn.next());
         }
+
+        myArrayList<String> myar = new myArrayList<>();
+        myar.add("str1");
+        myar.add("str2");
+        /*myar.add("str2");
+        myar.add("str2");
+        myar.add("str2");
+        myar.add("str2");
+        myar.add("str2");
+        myar.add("str2");
+        myar.add("str2");
+        myar.add("str2");*/
+
+        while (myar.iterator().hasNext()) {
+            System.out.println(myar.iterator().next());
+        }
+
+        System.out.println(myar.get(1));
+
+
+
+
+
+
+
+
+
 
 
 
