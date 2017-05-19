@@ -16,16 +16,11 @@ public class myArrayList<E> implements Iterable{
 
     private int itercount = 0;
 
-    /*public myArrayList(int initialCapacity) {
-        if (initialCapacity > 0) {
-            this.values = new Object[initialCapacity];
-        } else if (initialCapacity == 0) {
-            this.values = new Object[DEFAULT_CAPACITY];
-        } else {
-            throw new IllegalArgumentException("Illegal Capacity: "+
-                    initialCapacity);
-        }
-    }*/
+    public myArrayList(Object[] array) {
+        count = array.length;
+        index = array.length;
+        this.values = array;
+    }
 
     public myArrayList() {
         this.values = EMPTY_ELEMENTDATA;

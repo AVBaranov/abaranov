@@ -513,7 +513,7 @@ public class run {
             System.out.println(pn.next());
         }
 
-        myArrayList<String> myar = new myArrayList<>();
+        myArrayList<String> myar = new myArrayList<>(new String[] {"a", "b", "c"});
         myar.add("str1");
         myar.add("str2");
         /*myar.add("str2");
@@ -530,6 +530,8 @@ public class run {
         }
 
         System.out.println(myar.get(1));
+        System.out.println(myar.size());
+
 
 
 
