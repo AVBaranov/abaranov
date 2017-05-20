@@ -6,7 +6,7 @@ import java.util.Iterator;
 /**
  * Created by Андрей on 18.05.2017.
  */
-public class myArrayList<E> implements Iterable{
+public class DynamicArray<E> implements Iterable{
 
     private static final Object[] EMPTY_ELEMENTDATA = {};
 
@@ -16,13 +16,13 @@ public class myArrayList<E> implements Iterable{
 
     private int itercount = 0;
 
-    public myArrayList(Object[] array) {
+    public DynamicArray(Object[] array) {
         count = array.length;
         index = array.length;
         this.values = array;
     }
 
-    public myArrayList() {
+    public DynamicArray() {
         this.values = EMPTY_ELEMENTDATA;
     }
 

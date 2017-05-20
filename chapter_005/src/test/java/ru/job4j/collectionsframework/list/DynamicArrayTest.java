@@ -8,17 +8,17 @@ import static org.junit.Assert.*;
 /**
  * Created by Андрей on 19.05.2017.
  */
-public class myArrayListTest {
+public class DynamicArrayTest {
     @Test
     public void whenAddOneElementthenGetOneElement() {
-        myArrayList<String> myar = new myArrayList<>();
+        DynamicArray<String> myar = new DynamicArray<>();
         myar.add("str");
         assertThat(myar.get(0), is("str"));
     }
 
     @Test
     public void whenUseIteratorthenCanFindElementWithIterator() {
-        myArrayList<String> myar = new myArrayList<>();
+        DynamicArray<String> myar = new DynamicArray<>();
         myar.add("str1");
         myar.add("str2");
         myar.add("str3");

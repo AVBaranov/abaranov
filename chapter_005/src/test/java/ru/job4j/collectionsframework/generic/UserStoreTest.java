@@ -11,13 +11,15 @@ import static org.junit.Assert.*;
 public class UserStoreTest {
     @Test
     public void whenAddNewUserThenHaveOneNewUser() {
-        Store<User> userstore = new UserStore(new SimpleArray<>());
+
+        Store userstore = new UserStore(new SimpleArray<>());
         userstore.add(new User("someuser"));
         assertThat(userstore.get(0).getId(), is("someuser"));
     }
+
     @Test
     public void vhewDeleteFirstUserThenSecondUserBecomesFirstUser() {
-        Store<User> userstore = new UserStore(new SimpleArray<>());
+        Store userstore = new UserStore(new SimpleArray<>());
         User user1 = new User("firstuser");
         User user2 = new User("seconduser");
         userstore.add(user1);
@@ -27,10 +29,9 @@ public class UserStoreTest {
     }
     @Test
     public void whenUpdateUserStoreThenHaveNewUser() {
-        Store<User> userstore = new UserStore(new SimpleArray<>());
+        Store userstore = new UserStore(new SimpleArray<>());
         userstore.add(new User("user"));
         userstore.update(0, new User("changeduser"));
         assertThat(userstore.get(0).getId(), is("changeduser"));
     }
-
 }

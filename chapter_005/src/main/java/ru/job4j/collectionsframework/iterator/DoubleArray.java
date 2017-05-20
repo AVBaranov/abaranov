@@ -36,7 +36,8 @@ public class DoubleArray implements Iterator {
         for (int i = 0; i < values.length; i++) {
                 temp += values[i].length;
         }
-        return temp > count;
+        //return temp > count;
+        return values.length > index && values[index].length > index2;
 
 
     }
