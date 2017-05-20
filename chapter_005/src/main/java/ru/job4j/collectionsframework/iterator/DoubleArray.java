@@ -27,18 +27,11 @@ public class DoubleArray implements Iterator {
     }
 
     public boolean hasNext() {
-        int temp = 0;
-        /*for (int i = 0; i < values.length; i++) {
-            for (int j= 0; j < values[i].length; j++) {
-                temp++;
-            }
-        }*/
+        /*int temp = 0;
         for (int i = 0; i < values.length; i++) {
                 temp += values[i].length;
         }
-        //return temp > count;
+        return temp > count;*/
         return values.length > index && values[index].length > index2;
-
-
     }
 }
