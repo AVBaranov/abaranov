@@ -22,7 +22,7 @@ public class Linkedlist<E> implements Iterable<E>{
     public Linkedlist() {
     }
 
-    public class Node<E> {
+    private class Node<E> {
         Node<E> prev;
         Node<E> next;
         E item;
@@ -30,10 +30,6 @@ public class Linkedlist<E> implements Iterable<E>{
             this.item = item;
             this.next = next;
             this.prev = prev;
-        }
-
-        public E getItem() {
-            return item;
         }
     }
 
@@ -72,7 +68,7 @@ public class Linkedlist<E> implements Iterable<E>{
         }
     }
 
-    public boolean hasCycle(Node first) {
+    private boolean hasCycle(Node first) {
         boolean b = false;
         Node<E> temp = first.next;
         while (!temp.item.equals(last.item)) {

@@ -309,6 +309,7 @@ public class run {
 
 
 
+
     }
     int[] findnaturalnumbers(int[] sourcearray) {
 
