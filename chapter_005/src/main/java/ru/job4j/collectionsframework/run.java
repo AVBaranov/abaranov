@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
 import ru.job4j.collectionsframework.list.*;
-
 import javax.swing.*;
 
 /**
@@ -270,7 +269,7 @@ public class run {
         myls.add("str3");
         myls.add("str4");
         myls.add("str5");
-        myls.add("str6");
+        myls.add("str1");
         myls.add("str7");
         //
         /*System.out.println(myls.iterator().next());
@@ -286,6 +285,7 @@ public class run {
             System.out.println(myls.iterator().next());
         }
         //myls.iterator().next();
+        System.out.println(myls.runhasCycle());
 
 
 
