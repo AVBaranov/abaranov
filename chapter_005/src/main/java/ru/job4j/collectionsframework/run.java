@@ -3,10 +3,10 @@ package ru.job4j.collectionsframework;
 import ru.job4j.collectionsframework.generic.*;
 import ru.job4j.collectionsframework.generic.User;
 
-import java.util.ArrayList;
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
 import ru.job4j.collectionsframework.list.*;
+import ru.job4j.collectionsframework.list.Dequeue;
 
 /**
  * Created by Andrey on 09.05.2017.
@@ -176,64 +176,6 @@ class cl3 implements Iterator {
     }
 }
 
-class cl4  {
-    Iterator<Integer> convert(Iterator<Iterator<Integer>> it) {
-        List<Integer> list = new ArrayList<>();
-        while (it.hasNext()) {
-            Iterator<Integer> iter= it.next();
-            while (iter.hasNext()) {
-                list.add(iter.next());
-            }
-        }
-        return list.iterator();
-    }
-
-}
-
-
-
-
-abstract class abs {
-    abstract public String getId();
-    abstract public void setId(String id);
-}
-class uzer extends Base{
-    private String id;
-
-    public uzer(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-}
-
-class uzer2 extends Base{
-    private String id;
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-}
-
-interface inter<E extends Base> {
-
-}
-class cl1<E extends Base> implements inter {
-
-}
-class cl10<E extends Base> implements inter {
-
-}
 
 
 
@@ -248,12 +190,10 @@ public class run {
         System.out.println(userstore.get(0).getId());
         userstore.update(0, new User("sdfsdgsdg"));
         System.out.println(userstore.get(0).getId());
-        //System.out.println(userstore.get(1).getId());
 
 
         int[] arr = {1};
         EvenNumbers en = new EvenNumbers(arr);
-        //System.out.println(en.next());
         System.out.println(en.hasNext());
 
         ///////////////////////////////////////
@@ -268,7 +208,6 @@ public class run {
         myls.add("str5");
         myls.add("str1");
         myls.add("str7");
-        //
         /*System.out.println(myls.iterator().next());
         System.out.println(myls.iterator().next());
         System.out.println(myls.iterator().next());
@@ -282,18 +221,24 @@ public class run {
             System.out.println(myls.iterator().next());
         }
         //myls.iterator().next();
-        System.out.println(myls.runhasCycle());
+        //System.out.println(myls.runhasCycle());
 
-        Linkedlist<String> lss = new Linkedlist<>();
-        lss.add("asd");
-        lss.add("asdasd");
-        System.out.println(lss.get(0));
-        myDequeue<String> d = new myDequeue<>();
+
+        Dequeue<String> d = new Dequeue<>();
         d.push("asd");
-        d.push("asdasd");
-        System.out.println(d.get(0));
-        //System.out.println(d.poll());
-        //System.out.println(d.get(0));
+        /*d.push("asdasd");
+        d.push("dasf");
+        d.offer("wser");
+        d.offer("werwe");*/
+
+        System.out.println(d.poll());
+        //System.out.println(d.pollLast());
+
+
+
+
+
+
 
 
 
