@@ -13,7 +13,11 @@ public class Linkedlist<E> implements Iterable<E>{
 
     private Node<E> first;
 
+    private Node<E> iternext;
+
     private int size = 0;
+
+    private int itercount = 0;
 
     public Linkedlist() {
     }
@@ -28,14 +32,20 @@ public class Linkedlist<E> implements Iterable<E>{
             this.prev = prev;
         }
 
+        public E getItem() {
+            return item;
+        }
     }
 
     public void add(E e) {
         final Node<E> l = last;
         final Node<E> newNode = new Node<>(l, e, null);
         last = newNode;
-        if (l == null)
+        if (l == null) {
             first = newNode;
+            iternext = newNode;
+        }
+
         else
             l.next = newNode;
         size++;
@@ -64,38 +74,24 @@ public class Linkedlist<E> implements Iterable<E>{
 
     @Override
     public Iterator iterator() {
-
-        return null;
-    }
-
-    public Iterator<E> myiterator(int index) {
-        if (!(index >= 0 && index < size)) {
-            throw new IndexOutOfBoundsException("out of linkedlist bounds");
-        }
-        return new Itr(index);
+        return new Itr();
     }
 
     private class Itr implements Iterator<E> {
-        private Node<E> lastReturned;
-        private Node<E> next;
-        private int nextIndex;
 
-        Itr(int index) {
-            next = (index == size) ? null : node(index);
-            nextIndex = index;
-        }
+        private Node<E> lastReturned;
 
         public boolean hasNext() {
-            return nextIndex < size;
+            return itercount < size;
         }
 
         public E next() {
-            if (!hasNext())
-                throw new NoSuchElementException();
-
-            lastReturned = next;
-            next = next.next;
-            nextIndex++;
+            if (!hasNext()) {
+                throw new IndexOutOfBoundsException("out of iterator() bounds");
+            }
+            lastReturned = iternext;
+            iternext = iternext.next;
+            itercount++;
             return lastReturned.item;
         }
     }

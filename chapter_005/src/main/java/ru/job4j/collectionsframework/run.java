@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
 import ru.job4j.collectionsframework.list.*;
+
+import javax.swing.*;
+
 /**
  * Created by Andrey on 09.05.2017.
  */
@@ -269,29 +272,25 @@ public class run {
         myls.add("str5");
         myls.add("str6");
         myls.add("str7");
-        System.out.println(myls.get(0));
-        System.out.println(myls.get(4));
-        System.out.println(myls.myiterator(0).next());
-        System.out.println(myls.myiterator(1).next());
-        //System.out.println(myls.myiterator(7).hasNext());
-        LinkedList<String> ls = new LinkedList<>();
-        //ListIterator<String> iter = ls.listIterator();
-        ls.add("strsdgdfgh1");
-        //iter.next();
-        System.out.println(ls.iterator().next());
-        System.out.println(ls.iterator().hasNext());
-        DoubleArray d = new DoubleArray(new int[][] {{1,2,3},{4,5,6},{7,8,9}});
-        System.out.println(d.next());
-        d.next();
-        d.next();
-        d.next();
-        d.next();
-        d.next();
-        d.next();
-        d.next();
-        System.out.println(d.hasNext());
-        System.out.println(d.next());
-        System.out.println(d.hasNext());
+        //
+        /*System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().hasNext());
+        System.out.println(myls.iterator().next());
+        System.out.println(myls.iterator().hasNext());*/
+        while (myls.iterator().hasNext()) {
+            System.out.println(myls.iterator().next());
+        }
+        //myls.iterator().next();
+
+
+
+
+
 
 
 
