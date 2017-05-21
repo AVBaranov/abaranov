@@ -2,14 +2,11 @@ package ru.job4j.collectionsframework;
 
 import ru.job4j.collectionsframework.generic.*;
 import ru.job4j.collectionsframework.generic.User;
-import ru.job4j.collectionsframework.testtask.MyComp;
-import java.util.Arrays;
 
 import java.util.ArrayList;
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
 import ru.job4j.collectionsframework.list.*;
-import javax.swing.*;
 
 /**
  * Created by Andrey on 09.05.2017.
@@ -287,6 +284,16 @@ public class run {
         //myls.iterator().next();
         System.out.println(myls.runhasCycle());
 
+        Linkedlist<String> lss = new Linkedlist<>();
+        lss.add("asd");
+        lss.add("asdasd");
+        System.out.println(lss.get(0));
+        myDequeue<String> d = new myDequeue<>();
+        d.push("asd");
+        d.push("asdasd");
+        System.out.println(d.get(0));
+        //System.out.println(d.poll());
+        //System.out.println(d.get(0));
 
 
 
