@@ -7,6 +7,8 @@ import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
 import ru.job4j.collectionsframework.list.*;
 import ru.job4j.collectionsframework.list.Dequeue;
+import ru.job4j.collectionsframework.set.ArraySet;
+import ru.job4j.collectionsframework.set.LinkedSet;
 
 /**
  * Created by Andrey on 09.05.2017.
@@ -225,14 +227,34 @@ public class run {
 
 
         Dequeue<String> d = new Dequeue<>();
-        d.push("asd");
-        /*d.push("asdasd");
-        d.push("dasf");
-        d.offer("wser");
-        d.offer("werwe");*/
+        d.offer("asd");
+        d.offer("asdasd");
+        d.offer("dasf");
 
-        System.out.println(d.poll());
+        //System.out.println(d.poll());
         //System.out.println(d.pollLast());
+        System.out.println(d.get(0));
+        System.out.println(d.iterator().next());
+        ArraySet<String> ars = new ArraySet<String>();
+        ars.add("asq1");
+        ars.add("asq1");
+        ars.add("asq3");
+        while (ars.hasNext()) {
+            System.out.println(ars.next());
+        }
+
+        LinkedSet<String> linkset = new LinkedSet<>();
+        System.out.println(linkset.add("str"));
+        System.out.println(linkset.add("str"));
+        System.out.println(linkset.add("str2"));
+        while (linkset.hasNext()) {
+            System.out.println(linkset.next());
+        }
+
+
+
+
+
 
 
 
