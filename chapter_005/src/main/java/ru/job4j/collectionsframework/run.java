@@ -251,6 +251,8 @@ public class run {
         map.put(user2, "robocop");
         System.out.println(map);
         //System.out.println(user1.equals(user2));
+        //System.out.println(Double.doubleToLongBits(10.012));
+        System.out.println(123^5);
 
 
 

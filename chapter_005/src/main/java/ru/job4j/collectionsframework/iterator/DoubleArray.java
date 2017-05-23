@@ -9,29 +9,20 @@ public class DoubleArray implements Iterator {
     private final int[][] values;
     private int index = 0;
     private int index2 = 0;
-    int count = 0;
-    int template = 0;
 
     public DoubleArray(int[][] values) {
         this.values = values;
     }
 
     public Object next() {
-        count++;
         if (index2 == values[index].length) {
             index++;
-            template += index2;
             index2 = 0;
         }
         return values[index][index2++];
     }
 
     public boolean hasNext() {
-        /*int temp = 0;
-        for (int i = 0; i < values.length; i++) {
-                temp += values[i].length;
-        }
-        return temp > count;*/
         return values.length > index && values[index].length > index2;
     }
 }

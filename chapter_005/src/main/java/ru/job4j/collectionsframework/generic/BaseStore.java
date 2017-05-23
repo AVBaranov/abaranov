@@ -3,7 +3,7 @@ package ru.job4j.collectionsframework.generic;
 /**
  * Created by Andrey on 20.05.2017.
  */
-abstract public class BaseStore implements Store<Base> {
+abstract public class BaseStore<T> implements Store<Base> {
     private SimpleArray<Base> store;
 
     public BaseStore(SimpleArray<Base> store) {
