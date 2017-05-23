@@ -1,7 +1,7 @@
 package ru.job4j.collectionsframework;
 
 import ru.job4j.collectionsframework.generic.*;
-import ru.job4j.collectionsframework.generic.User;
+import ru.job4j.collectionsframework.map.User;
 
 import java.util.*;
 import ru.job4j.collectionsframework.iterator.*;
@@ -181,17 +181,10 @@ class cl3 implements Iterator {
 
 
 
-
 public class run {
     public static void main(String[] args) {
 
-        Store userstore = new UserStore(new SimpleArray<>());
-        Store rolerstore = new RoleStore(new SimpleArray<>());
-        User us = new User("asf");
-        userstore.add(us);
-        System.out.println(userstore.get(0).getId());
-        userstore.update(0, new User("sdfsdgsdg"));
-        System.out.println(userstore.get(0).getId());
+
 
 
         int[] arr = {1};
@@ -251,31 +244,13 @@ public class run {
             System.out.println(linkset.next());
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        User user1 = new User("robot", new GregorianCalendar(1002, 1, 1), 2);
+        User user2 = new User("robot", new GregorianCalendar(1002, 1, 1), 2);
+        Map<User, String> map = new HashMap<>();
+        map.put(user1, "biorobot");
+        map.put(user2, "robocop");
+        System.out.println(map);
+        //System.out.println(user1.equals(user2));
 
 
 
