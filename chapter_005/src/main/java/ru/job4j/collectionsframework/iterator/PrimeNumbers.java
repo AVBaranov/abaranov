@@ -63,37 +63,44 @@ import java.util.Iterator;
 }*/
 public class PrimeNumbers implements Iterator {
     private final int[] values;
-
-    private int index = 0;
-    int count;
+    public int count = 0;
+    private int index;
     public PrimeNumbers(int[] values) {
         this.values = values;
         init();
     }
     private void init() {
-        count = values[0];
+        int j=0;
+        index = values[0];
+        for(int i = index; i <= values.length + 2; i++) {
+            for(j = 2; (i % j) != 0; j++) {
+            }
+            if(i == j) {
+                size++;
+            }
+        }
     }
 
-    int size = 0;
+    public int size = 0;
+
 
 
     public Object next() {
+        count++;
         int j=0;
-        //count = values[0];
-        for(int i = count; i < values.length; i++) {
+        for(int i = index; i <= values.length + 2; i++) {
             for(j = 2; (i % j) != 0; j++) {
-                count++;
             }
+            index ++;
             if(i == j) {
-                //count = j;
                 break;
             }
         }
-        //index++;
         return j;
     }
 
     public boolean hasNext() {
-        return size > index;
+
+        return size > count;
     }
 }

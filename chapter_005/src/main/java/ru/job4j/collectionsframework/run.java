@@ -266,7 +266,7 @@ public class run {
             System.out.println(even.next());
         }*/
 
-        int[] ar = new int[100];
+        /*int[] ar = new int[100];
         for (int i = 0; i < ar.length; i++) {
             ar[i] = i + 2;
         }
@@ -278,23 +278,45 @@ public class run {
             }
             if(i == j) System.out.print(i + "\t");
         }
+
         System.out.println();
         int num, arg;
         for(num = 2; num <= 100; num++) {
             for(arg = 2; (num % arg) != 0; arg++) {
             }
             if(arg == num) System.out.print(num + "\t");
-        }
+        }*/
         System.out.println();
-        /*PrimeNumbers pn = new PrimeNumbers(new int[] {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20});
+        PrimeNumbers pn = new PrimeNumbers(new int[] {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29});
         System.out.println(pn.next());
         System.out.println(pn.next());
         System.out.println(pn.next());
         System.out.println(pn.next());
         System.out.println(pn.next());
         System.out.println(pn.next());
-        System.out.println(pn.next());*/
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.hasNext());
+        System.out.println(pn.next());
+        System.out.println(pn.hasNext());
 
+
+        int[] mas = new int[] {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29};
+        int j;
+        int k = 0;
+        for(int i = mas[k]; i <= mas.length+2; i++) {
+            for(j = 2; (i % j) != 0; j++) {
+            }
+            if(i == j) System.out.print(i + "\t");
+            k++;
+        }
+
+        int num, arg;
+        for(num = 2; num < 29; num++) {
+            for(arg = 2; (num % arg) != 0; arg++) {
+            }
+            if(arg == num) System.out.print(num + "\t");
+        }
 
 
 
