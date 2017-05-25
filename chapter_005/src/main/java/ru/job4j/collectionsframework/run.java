@@ -187,9 +187,7 @@ public class run {
 
 
 
-        int[] arr = {1};
-        EvenNumbers en = new EvenNumbers(arr);
-        System.out.println(en.hasNext());
+
 
         ///////////////////////////////////////
 
@@ -253,6 +251,52 @@ public class run {
         //System.out.println(user1.equals(user2));
         //System.out.println(Double.doubleToLongBits(10.012));
         System.out.println(123^5);
+        System.out.println(1<<11);
+        //EvenNumbers even = new EvenNumbers(new int[] {1,2,3,20,11,22,24,23,14,13,4,5,6,7,8,9});
+        /*System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.next());
+        System.out.println(even.count + " " + even.size);*/
+        /*while (even.hasNext()) {
+            System.out.println(even.next());
+        }*/
+
+        int[] ar = new int[100];
+        for (int i = 0; i < ar.length; i++) {
+            ar[i] = i + 2;
+        }
+        int count = 0;
+        int j;
+        for(int i = ar[7]; i < ar.length; i++) {
+            for(j = 2; (i % j) != 0; j++) {
+                count++;
+            }
+            if(i == j) System.out.print(i + "\t");
+        }
+        System.out.println();
+        int num, arg;
+        for(num = 2; num <= 100; num++) {
+            for(arg = 2; (num % arg) != 0; arg++) {
+            }
+            if(arg == num) System.out.print(num + "\t");
+        }
+        System.out.println();
+        /*PrimeNumbers pn = new PrimeNumbers(new int[] {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20});
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());
+        System.out.println(pn.next());*/
+
+
+
 
 
 

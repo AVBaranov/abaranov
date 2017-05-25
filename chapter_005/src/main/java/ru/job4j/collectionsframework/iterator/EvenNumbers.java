@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Created by Андрей on 12.05.2017.
  */
-public class EvenNumbers implements Iterator {
+/*public class EvenNumbers implements Iterator {
 
     private final int[] values;
 
@@ -47,4 +47,43 @@ public class EvenNumbers implements Iterator {
     public boolean hasNext() {
         return size > index;
     }
+}*/
+public class EvenNumbers implements Iterator {
+
+    private final int[] values;
+
+    private int index = 0;
+
+    public EvenNumbers(int[] values) {
+        this.values = values;
+        init();
+    }
+
+    int size = 0;
+
+    private void init() {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] % 2 == 0) {
+                size++;
+            }
+        }
+    }
+    int count = 0;
+    public Object next() {
+        count++;
+        while (index < values.length) {
+            if (values[index] % 2 == 0) {
+                break;
+            }
+            index++;
+        }
+        return values[index++];
+    }
+
+    public boolean hasNext() {
+
+        return size > count;
+    }
 }
+
+

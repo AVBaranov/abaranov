@@ -5,7 +5,7 @@ import java.util.Iterator;
 /**
  * Created by Андрей on 12.05.2017.
  */
-public class PrimeNumbers implements Iterator {
+/*public class PrimeNumbers implements Iterator {
     private final int[] values;
 
     private int[] newvalues;
@@ -55,6 +55,42 @@ public class PrimeNumbers implements Iterator {
 
     public Object next() {
         return newvalues[index++];
+    }
+
+    public boolean hasNext() {
+        return size > index;
+    }
+}*/
+public class PrimeNumbers implements Iterator {
+    private final int[] values;
+
+    private int index = 0;
+    int count;
+    public PrimeNumbers(int[] values) {
+        this.values = values;
+        init();
+    }
+    private void init() {
+        count = values[0];
+    }
+
+    int size = 0;
+
+
+    public Object next() {
+        int j=0;
+        //count = values[0];
+        for(int i = count; i < values.length; i++) {
+            for(j = 2; (i % j) != 0; j++) {
+                count++;
+            }
+            if(i == j) {
+                //count = j;
+                break;
+            }
+        }
+        //index++;
+        return j;
     }
 
     public boolean hasNext() {
