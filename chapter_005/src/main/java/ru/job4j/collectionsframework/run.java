@@ -1,14 +1,8 @@
 package ru.job4j.collectionsframework;
 
-import ru.job4j.collectionsframework.generic.*;
-import ru.job4j.collectionsframework.map.User;
-
 import java.util.*;
-import ru.job4j.collectionsframework.iterator.*;
-import ru.job4j.collectionsframework.list.*;
-import ru.job4j.collectionsframework.list.Dequeue;
-import ru.job4j.collectionsframework.set.ArraySet;
-import ru.job4j.collectionsframework.set.LinkedSet;
+
+import ru.job4j.collectionsframework.map.Hashmap;
 
 /**
  * Created by Andrey on 09.05.2017.
@@ -184,143 +178,85 @@ class cl3 implements Iterator {
 public class run {
     public static void main(String[] args) {
 
-
-
-
-
-
-        ///////////////////////////////////////
-
-        Set<String> set = new TreeSet<>();
-
-        Linkedlist<String> myls = new Linkedlist<>();
-        myls.add("str1");
-        myls.add("str2");
-        myls.add("str3");
-        myls.add("str4");
-        myls.add("str5");
-        myls.add("str1");
-        myls.add("str7");
-        /*System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().hasNext());
-        System.out.println(myls.iterator().next());
-        System.out.println(myls.iterator().hasNext());*/
-        while (myls.iterator().hasNext()) {
-            System.out.println(myls.iterator().next());
-        }
-        //myls.iterator().next();
-        //System.out.println(myls.runhasCycle());
-
-
-        Dequeue<String> d = new Dequeue<>();
-        d.offer("asd");
-        d.offer("asdasd");
-        d.offer("dasf");
-
-        //System.out.println(d.poll());
-        //System.out.println(d.pollLast());
-        System.out.println(d.get(0));
-        System.out.println(d.iterator().next());
-        ArraySet<String> ars = new ArraySet<String>();
-        ars.add("asq1");
-        ars.add("asq1");
-        ars.add("asq3");
-        while (ars.hasNext()) {
-            System.out.println(ars.next());
-        }
-
-        LinkedSet<String> linkset = new LinkedSet<>();
-        System.out.println(linkset.add("str"));
-        System.out.println(linkset.add("str"));
-        System.out.println(linkset.add("str2"));
-        while (linkset.hasNext()) {
-            System.out.println(linkset.next());
-        }
-
-        User user1 = new User("robot", new GregorianCalendar(1002, 1, 1), 2);
-        User user2 = new User("robot", new GregorianCalendar(1002, 1, 1), 2);
-        Map<User, String> map = new HashMap<>();
-        map.put(user1, "biorobot");
-        map.put(user2, "robocop");
-        System.out.println(map);
-        //System.out.println(user1.equals(user2));
-        //System.out.println(Double.doubleToLongBits(10.012));
-        System.out.println(123^5);
-        System.out.println(1<<11);
-        //EvenNumbers even = new EvenNumbers(new int[] {1,2,3,20,11,22,24,23,14,13,4,5,6,7,8,9});
-        /*System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.next());
-        System.out.println(even.count + " " + even.size);*/
-        /*while (even.hasNext()) {
-            System.out.println(even.next());
-        }*/
-
-        /*int[] ar = new int[100];
-        for (int i = 0; i < ar.length; i++) {
-            ar[i] = i + 2;
-        }
-        int count = 0;
-        int j;
-        for(int i = ar[7]; i < ar.length; i++) {
-            for(j = 2; (i % j) != 0; j++) {
-                count++;
+        class user {
+            private String name;
+            public user(String name) {
+                this.name = name;
             }
-            if(i == j) System.out.print(i + "\t");
-        }
-
-        System.out.println();
-        int num, arg;
-        for(num = 2; num <= 100; num++) {
-            for(arg = 2; (num % arg) != 0; arg++) {
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (!(o instanceof user)) return false;
+                user temp = (user) o;
+                return this.name.equals(temp.name);
             }
-            if(arg == num) System.out.print(num + "\t");
-        }*/
-        System.out.println();
-        PrimeNumbers pn = new PrimeNumbers(new int[] {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29});
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.next());
-        System.out.println(pn.hasNext());
-        System.out.println(pn.next());
-        System.out.println(pn.hasNext());
-
-
-        int[] mas = new int[] {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29};
-        int j;
-        int k = 0;
-        for(int i = mas[k]; i <= mas.length+2; i++) {
-            for(j = 2; (i % j) != 0; j++) {
+            @Override
+            public int hashCode() {
+                int result = this.name == null ? 0 : this.name.hashCode();
+                return result;
             }
-            if(i == j) System.out.print(i + "\t");
-            k++;
         }
+        Hashmap<user, String> temp = new Hashmap<user, String>();
+        System.out.println(temp.insert(new user("Freeman"), "Gordon"));
+        System.out.println(temp.insert(new user("Freeman"), "Gordon"));
+        System.out.println(temp.insert(new user("key"), "value"));
+        System.out.println(temp.delete(new user("key")));
+        System.out.println(temp.insert(new user("Freeman"), "Gordon"));
+        System.out.println(temp.delete(new user("key")));
+        System.out.println(temp.size());
+        System.out.println(temp.get(new user("Freeman")));
 
-        int num, arg;
-        for(num = 2; num < 29; num++) {
-            for(arg = 2; (num % arg) != 0; arg++) {
-            }
-            if(arg == num) System.out.print(num + "\t");
+
+       class country {
+           private String name;
+
+           public country(String name) {
+               this.name = name;
+           }
+
+           public String getName() {
+               return name;
+           }
+
+           public void setName(String name) {
+               this.name = name;
+           }
+
+           @Override
+           public boolean equals(Object o) {
+               country country = (country) o;
+               if (name.equalsIgnoreCase(country.name)) {
+                   return true;
+               }
+               return false;
+           }
+
+           @Override
+           public int hashCode() {
+               if (this.name.length() % 2 == 0) {
+                   return 31;
+               }
+               return 95;
+           }
+       }
+        country india=new country("India");
+        country japan=new country("Japan");
+
+        country france=new country("France");
+        country russia=new country("Russia");
+
+        HashMap<country,String> countryCapitalMap=new HashMap<>();
+        countryCapitalMap.put(india,"Delhi");
+        countryCapitalMap.put(japan,"Tokyo");
+        countryCapitalMap.put(france,"Paris");
+        countryCapitalMap.put(russia,"Moscow");
+        Iterator<country> countryCapitalIter=countryCapitalMap.keySet().iterator();
+        while(countryCapitalIter.hasNext())
+        {
+            country countryObj=countryCapitalIter.next();
+            String capital=countryCapitalMap.get(countryObj);
+            System.out.println(countryObj.getName()+"----"+capital);
         }
-
-
-
-
 
 
 
