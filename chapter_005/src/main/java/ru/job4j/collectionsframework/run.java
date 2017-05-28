@@ -3,6 +3,7 @@ package ru.job4j.collectionsframework;
 import java.util.*;
 
 import ru.job4j.collectionsframework.map.Hashmap;
+import ru.job4j.collectionsframework.tree.Tree;
 
 /**
  * Created by Andrey on 09.05.2017.
@@ -178,7 +179,7 @@ class cl3 implements Iterator {
 public class run {
     public static void main(String[] args) {
 
-        class user {
+        class user implements Comparable<user> {
             private String name;
             public user(String name) {
                 this.name = name;
@@ -195,6 +196,17 @@ public class run {
                 int result = this.name == null ? 0 : this.name.hashCode();
                 return result;
             }
+            @Override
+            public int compareTo(user o) {
+                return this.name.compareTo(o.name);
+            }
+
+            @Override
+            public String toString() {
+                return "user{" +
+                        "name='" + name + '\'' +
+                        '}';
+            }
         }
         Hashmap<user, String> temp = new Hashmap<user, String>();
         System.out.println(temp.insert(new user("Freeman"), "Gordon"));
@@ -207,7 +219,7 @@ public class run {
         System.out.println(temp.get(new user("Freeman")));
 
 
-       class country {
+       class country implements Comparable<country> {
            private String name;
 
            public country(String name) {
@@ -238,6 +250,11 @@ public class run {
                }
                return 95;
            }
+
+           @Override
+           public int compareTo(country o) {
+               return name.compareTo(o.name);
+           }
        }
         country india=new country("India");
         country japan=new country("Japan");
@@ -257,6 +274,21 @@ public class run {
             String capital=countryCapitalMap.get(countryObj);
             System.out.println(countryObj.getName()+"----"+capital);
         }
+
+        Tree<user> tree = new Tree<user>();
+        tree.add(new user("boss"), new user("negr"));
+        tree.add(new user("boss"), new user("negrilo"));
+        //tree.add(new user("boss"), new user("negrilo"));
+        tree.add(new user("bigboss"), new user("bignegr"));
+        System.out.println(tree.getChildren(new user("boss")));
+        System.out.println(tree.getChildren(new user("bigboss")));
+        System.out.println(tree.size());
+        System.out.println(tree.isBinary());
+
+
+
+
+        Tree<country> cnt = new Tree<>();
 
 
 
