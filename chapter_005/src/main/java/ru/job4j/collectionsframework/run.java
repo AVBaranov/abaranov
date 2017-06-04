@@ -2,7 +2,9 @@ package ru.job4j.collectionsframework;
 
 import java.util.*;
 
+import ru.job4j.collectionsframework.iterator.EvenNumbers;
 import ru.job4j.collectionsframework.map.Hashmap;
+import ru.job4j.collectionsframework.tree.Temp;
 import ru.job4j.collectionsframework.tree.Tree;
 
 /**
@@ -219,76 +221,24 @@ public class run {
         System.out.println(temp.get(new user("Freeman")));
 
 
-       class country implements Comparable<country> {
-           private String name;
-
-           public country(String name) {
-               this.name = name;
-           }
-
-           public String getName() {
-               return name;
-           }
-
-           public void setName(String name) {
-               this.name = name;
-           }
-
-           @Override
-           public boolean equals(Object o) {
-               country country = (country) o;
-               if (name.equalsIgnoreCase(country.name)) {
-                   return true;
-               }
-               return false;
-           }
-
-           @Override
-           public int hashCode() {
-               if (this.name.length() % 2 == 0) {
-                   return 31;
-               }
-               return 95;
-           }
-
-           @Override
-           public int compareTo(country o) {
-               return name.compareTo(o.name);
-           }
-       }
-        country india=new country("India");
-        country japan=new country("Japan");
-
-        country france=new country("France");
-        country russia=new country("Russia");
-
-        HashMap<country,String> countryCapitalMap=new HashMap<>();
-        countryCapitalMap.put(india,"Delhi");
-        countryCapitalMap.put(japan,"Tokyo");
-        countryCapitalMap.put(france,"Paris");
-        countryCapitalMap.put(russia,"Moscow");
-        Iterator<country> countryCapitalIter=countryCapitalMap.keySet().iterator();
-        while(countryCapitalIter.hasNext())
-        {
-            country countryObj=countryCapitalIter.next();
-            String capital=countryCapitalMap.get(countryObj);
-            System.out.println(countryObj.getName()+"----"+capital);
+        EvenNumbers en = new EvenNumbers(new int[] {1,2,3,4,5,6,7,8,9});
+        while (en.hasNext()) {
+            System.out.println(en.next());
         }
 
-        Tree<user> tree = new Tree<user>();
-        tree.add(new user("boss"), new user("negr"));
-        tree.add(new user("boss"), new user("negrilo"));
-        //tree.add(new user("boss"), new user("negrilo"));
-        tree.add(new user("bigboss"), new user("bignegr"));
-        System.out.println(tree.getChildren(new user("boss")));
-        System.out.println(tree.getChildren(new user("bigboss")));
-        System.out.println(tree.size());
-        System.out.println(tree.isBinary());
+        int COUNT = 100000;
+            long start = System.currentTimeMillis();
+            Map map = new HashMap<>(COUNT);
+            for (int i = 0; i < COUNT; i++) {
+                map.put(i,i);
+            }
+            System.out.println(System.currentTimeMillis() - start);
 
 
-
-
-        Tree<country> cnt = new Tree<>();
+        Temp<String> ob = new Temp<>();
+        ob.add("a", "b");
+        //ob.add("a", "c"); // код валится скорее всего из за того что не инициализируется поле children
+        //ob.add("a", "d");
 
 
 
@@ -296,6 +246,7 @@ public class run {
 
 
     }
+
     int[] findnaturalnumbers(int[] sourcearray) {
 
         int counter = 0;

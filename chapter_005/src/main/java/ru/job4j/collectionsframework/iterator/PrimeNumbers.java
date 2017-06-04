@@ -35,7 +35,7 @@ import java.util.Iterator;
             }
         }
         size = counter;
-        int[] temp = new int[counter];
+        int[] Temp = new int[counter];
         for (int i = values.length - 1; i >= 0 ; i--) {
             boolean b = true;
             for (int k = i - 1; k >= 0; k--) {
@@ -46,11 +46,11 @@ import java.util.Iterator;
                 }
             }
             if (b) {
-                temp[counter - 1] = values[i];
+                Temp[counter - 1] = values[i];
                 counter--;
             }
         }
-        return temp;
+        return Temp;
     }
 
     public Object next() {

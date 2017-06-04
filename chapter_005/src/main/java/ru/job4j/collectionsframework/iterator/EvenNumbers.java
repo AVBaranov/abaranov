@@ -29,15 +29,15 @@ import java.util.Iterator;
         }
         size = count;
         int j = 0;
-        int[] temp = new int[count];
+        int[] Temp = new int[count];
         for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
-                temp[j] = values[i];
+                Temp[j] = values[i];
                 j++;
             }
         }
-        //size = temp.length;
-        return temp;
+        //size = Temp.length;
+        return Temp;
     }
 
     public Object next() {
