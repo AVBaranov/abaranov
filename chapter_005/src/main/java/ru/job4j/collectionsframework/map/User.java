@@ -26,8 +26,8 @@ public class User {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        User Temp = (User) o;
-        return this.birthday.equals(Temp.birthday) && this.name.equals(Temp.name) && this.children == Temp.children;
+        User Tree = (User) o;
+        return this.birthday.equals(Tree.birthday) && this.name.equals(Tree.name) && this.children == Tree.children;
     }
     @Override
     public int hashCode() {

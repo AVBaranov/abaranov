@@ -35,7 +35,7 @@ import java.util.Iterator;
             }
         }
         size = counter;
-        int[] Temp = new int[counter];
+        int[] Tree = new int[counter];
         for (int i = values.length - 1; i >= 0 ; i--) {
             boolean b = true;
             for (int k = i - 1; k >= 0; k--) {
@@ -46,11 +46,11 @@ import java.util.Iterator;
                 }
             }
             if (b) {
-                Temp[counter - 1] = values[i];
+                Tree[counter - 1] = values[i];
                 counter--;
             }
         }
-        return Temp;
+        return Tree;
     }
 
     public Object next() {

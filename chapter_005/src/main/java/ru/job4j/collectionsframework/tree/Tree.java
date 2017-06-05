@@ -1,92 +1,80 @@
 package ru.job4j.collectionsframework.tree;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Andrey on 28.05.2017.
+ * Created by Andrey on 30.05.2017.
  */
-public class Tree<E extends Comparable<E>> implements SimpleTree<E> {
+public class Tree<E extends Comparable<E>> {
 
-    private List<Node<E>> list;
+    private Node<E> root;
 
-    int itercount = 0;
-
-    public Tree() {
-        this.list = new ArrayList<>();
-    }
-
-    class Node<E>
-    {
-        List<E> children;
+    class Node<E> {
+        List<Node<E>> children = new ArrayList<>();
         E value;
 
-        public Node(E value, List<E> children) {
+
+        public Node(E value) {
             this.value = value;
-            this.children = children;
+        }
+
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Node<?> node = (Node<?>) o;
+
+            return value != null ? value.equals(node.value) : node.value == null;
+        }
+
+        @Override
+        public int hashCode() {
+            return value != null ? value.hashCode() : 0;
         }
     }
 
-    @Override
-    public boolean add(E parent, E child) {
-        // проходим по списку деревьев, если находится дерево, корень которого совпадает с параметром parent, добавляем параметр child в список дочерних
-        // элементов этого дерева
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).children != null && list.get(i).value.compareTo(parent) == 0) {
-                    List<E> temp = list.get(i).children;
-                    temp.add(child);
-                    list.set(i, new Node<E>(parent, temp));
-                    return true;
+    private Node<E> findElement(E value) {
+        Node<E> temp = root;
+
+        /*if (temp == null) {
+            root = temp = new Node<E>(value);
+            return root ;
+        }*/
+
+        if (temp.children != null) {
+            for (int i = 0; i < temp.children.size(); i++) {
+                findElement(temp.children.get(i).value);
+                if (value.compareTo(temp.children.get(i).value) == 0) {
+                    return temp.children.get(i);
                 }
             }
-            // если в списке деревьев нет дерева с корнем parent, то добавляем это дерево и его дочерний элемент в список деревьев
-        List<E> ls = new ArrayList<E>();
-            ls.add(child);
-        list.add(new Node<E>(parent, ls));
-        return false;
-    }
-
-    public int size()
-    {
-        return list.size();
-    }
-
-    public List<E> getChildren(E parent) {
-        List<E> buff = null;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).value.equals(parent)) {
-                buff = list.get(i).children;
-            }
-        }
-        return buff;
-    }
-
-    // verify that tree is binary
-    public boolean isBinary() {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).children.size() > 2) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return new myItr();
-    }
-    private class myItr implements Iterator<E> {
-
-        @Override
-        public boolean hasNext() {
-            return list.size() != itercount;
         }
 
-        @Override
-        public E next() {
-            return  list.get(itercount++).value;
+        return null;
+    }
+
+    public boolean add(E parent, E child) {
+
+        Node<E> temp = root;
+        if (temp == null) {
+            root = temp = new Node<E>(parent);
+            return false ;
         }
+
+        if (findElement(parent) != null) {
+            List<Node<E>> list = findElement(parent).children;
+            System.out.println(new Node<>(child).value);
+            Node<E> node = new Node<>(child);
+            //list.add(new Node<>(child));
+            list.add(node);
+            //findElement(parent).children.add(new Node<>(child));
+            return true;
+        }
+        root.children.add(new Node<>(parent));
+        return  false;
     }
 
 }

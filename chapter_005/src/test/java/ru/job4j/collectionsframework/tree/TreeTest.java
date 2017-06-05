@@ -38,7 +38,7 @@ public class TreeTest {
     @Test
     public void whenAddThreeTimesTheSameRootthenHaveListOfThreeChilds() {
 
-        Tree<User> tree = new Tree<User>();
+        template<User> tree = new template<User>();
         tree.add(new User("Bird"), new User("Black"));
         tree.add(new User("Bird"), new User("Red"));
         tree.add(new User("Bird"), new User("Green"));
@@ -51,7 +51,7 @@ public class TreeTest {
 
     @Test
     public void whenAddThreeTimesTheSameRootthenTreeIsNotBinary() {
-        Tree<User> tree = new Tree<User>();
+        template<User> tree = new template<User>();
         tree.add(new User("Bird"), new User("Black"));
         tree.add(new User("Bird"), new User("Red"));
         tree.add(new User("Bird"), new User("Green"));

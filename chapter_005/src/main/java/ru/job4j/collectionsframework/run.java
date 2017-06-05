@@ -4,7 +4,6 @@ import java.util.*;
 
 import ru.job4j.collectionsframework.iterator.EvenNumbers;
 import ru.job4j.collectionsframework.map.Hashmap;
-import ru.job4j.collectionsframework.tree.Temp;
 import ru.job4j.collectionsframework.tree.Tree;
 
 /**
@@ -235,10 +234,10 @@ public class run {
             System.out.println(System.currentTimeMillis() - start);
 
 
-        Temp<String> ob = new Temp<>();
+        Tree<String> ob = new Tree<>();
         ob.add("a", "b");
-        //ob.add("a", "c"); // код валится скорее всего из за того что не инициализируется поле children
-        //ob.add("a", "d");
+        ob.add("a", "c"); // код валится скорее всего из за того что не инициализируется поле children
+        ob.add("a", "d");
 
 
 

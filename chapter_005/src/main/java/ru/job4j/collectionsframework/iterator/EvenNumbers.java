@@ -29,15 +29,15 @@ import java.util.Iterator;
         }
         size = count;
         int j = 0;
-        int[] Temp = new int[count];
+        int[] Tree = new int[count];
         for (int i = 0; i < values.length; i++) {
             if (values[i] % 2 == 0) {
-                Temp[j] = values[i];
+                Tree[j] = values[i];
                 j++;
             }
         }
-        //size = Temp.length;
-        return Temp;
+        //size = Tree.length;
+        return Tree;
     }
 
     public Object next() {

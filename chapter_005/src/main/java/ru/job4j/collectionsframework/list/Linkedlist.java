@@ -72,7 +72,7 @@ public class Linkedlist<E> implements Iterable<E>{
         boolean b = false;
         Node<E> temp = first.next;
         while (!temp.item.equals(last.item)) {
-            if (/*first.item.equals(Temp.item*/first.equals(temp.next)) {
+            if (/*first.item.equals(Tree.item*/first.equals(temp.next)) {
                 return true;
             }
             temp = temp.next;
