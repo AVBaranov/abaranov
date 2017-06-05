@@ -39,11 +39,6 @@ public class Tree<E extends Comparable<E>> {
     private Node<E> findElement(E value) {
         Node<E> temp = root;
 
-        /*if (temp == null) {
-            root = temp = new Node<E>(value);
-            return root ;
-        }*/
-
         if (temp.children != null) {
             for (int i = 0; i < temp.children.size(); i++) {
                 findElement(temp.children.get(i).value);
@@ -65,12 +60,8 @@ public class Tree<E extends Comparable<E>> {
         }
 
         if (findElement(parent) != null) {
-            List<Node<E>> list = findElement(parent).children;
-            System.out.println(new Node<>(child).value);
-            Node<E> node = new Node<>(child);
-            //list.add(new Node<>(child));
-            list.add(node);
-            //findElement(parent).children.add(new Node<>(child));
+
+            findElement(parent).children.add(new Node<>(child));
             return true;
         }
         root.children.add(new Node<>(parent));
