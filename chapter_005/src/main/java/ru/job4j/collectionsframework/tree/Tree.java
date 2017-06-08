@@ -1,16 +1,23 @@
 package ru.job4j.collectionsframework.tree;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by Andrey on 30.05.2017.
  */
-public class Tree<E extends Comparable<E>> {
+public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
-    private Node<E> root;
+    /*private*/public Node<E> root;
 
-    class Node<E> {
+    private int itercount = 0;
+
+    public Node<E> getRoot() {
+        return this.root;
+    }
+
+    public class Node<E> {
         List<Node<E>> children = new ArrayList<>();
         E value;
 
@@ -34,9 +41,17 @@ public class Tree<E extends Comparable<E>> {
         public int hashCode() {
             return value != null ? value.hashCode() : 0;
         }
+
+        public List<Node<E>> getChildren() {
+            return children;
+        }
+
+        public E getValue() {
+            return value;
+        }
     }
 
-    private Node<E> findElement(E value) {
+    /*private Node<E> findElement(E value) {
         Node<E> temp = root;
 
         if (temp.children != null) {
@@ -49,6 +64,25 @@ public class Tree<E extends Comparable<E>> {
         }
 
         return null;
+    }*/
+
+    private Node<E> findElement(E value) {
+        return this.find(this.root, value);
+    }
+
+    private Node<E> find(Node<E> parent, E value) {
+        Node<E> result = null;
+        if (parent.value.compareTo(value) == 0) {
+            result = parent;
+        } else if (parent.children != null) {
+            for (Node<E> node : parent.children) {
+                result = this.find(node, value);
+                if (result != null) {
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     public boolean add(E parent, E child) {
@@ -56,6 +90,7 @@ public class Tree<E extends Comparable<E>> {
         Node<E> temp = root;
         if (temp == null) {
             root = temp = new Node<E>(parent);
+            root.children.add(new Node<E>(child));
             return false ;
         }
 
@@ -68,4 +103,20 @@ public class Tree<E extends Comparable<E>> {
         return  false;
     }
 
+    @Override
+    public Iterator<E> iterator()  {
+        return new myItr();
+    }
+    private class myItr implements Iterator<E> {
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public E next() {
+            return null;
+        }
+    }
 }

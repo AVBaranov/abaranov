@@ -300,10 +300,14 @@ public class run {
         Tree<String> ob = new Tree<>();
         ob.add("a", "b");
         ob.add("a", "c"); // код валится скорее всего из за того что не инициализируется поле children
-        //ob.add("a", "d");
+        ob.add("a", "d");
+        ob.add("b", "ex");
+        ob.add("ex", "third");
+        ob.add("a", "g");
+        ob.add("a", "h");
+        System.out.println(ob.root.getChildren().get(0).getChildren().get(0).getChildren().get(0).getValue());
 
-
-
+/*
         test test = new test();
         Integer[] arr = { 1,12,23,34,55,61,67,77,88,89,101 };
         System.out.println(test.binarySearch(101, arr));
@@ -381,12 +385,8 @@ public class run {
         while (ars2.hasNext()) {
             System.out.print(ars2.next() + " ");
         }
-
-
-
-
         System.out.println();
-
+*/
 
     }
 
