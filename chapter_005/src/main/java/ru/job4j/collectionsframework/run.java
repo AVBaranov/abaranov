@@ -373,7 +373,7 @@ public class run {
         ArraySet<Integer> ars2 = new ArraySet<>();
         long begin2 = System.currentTimeMillis();
         for (int i = 0; i < 20; i++) {
-            ars2.oldAAdd(generator.nextInt(10));
+            ars2.oldAdd(generator.nextInt(10));
         }
         long end2 = System.currentTimeMillis();
         System.out.println(end2 - begin2);

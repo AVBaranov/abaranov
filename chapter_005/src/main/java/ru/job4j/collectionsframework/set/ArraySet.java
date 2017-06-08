@@ -120,7 +120,7 @@ public class ArraySet<E> implements Iterator<E> {
      * old method adding element to collection.
      *@param value - adding element
      */
-    public boolean oldAAdd(E value) {
+    public boolean oldAdd(E value) {
         for (int i = 0; i < values.length; i++) {
             if (values[i].equals(value)) {
                 return false;
