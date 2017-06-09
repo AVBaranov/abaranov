@@ -299,13 +299,17 @@ public class run {
 
         Tree<String> ob = new Tree<>();
         ob.add("a", "b");
-        ob.add("a", "c"); // код валится скорее всего из за того что не инициализируется поле children
-        ob.add("a", "d");
-        ob.add("b", "ex");
-        ob.add("ex", "third");
-        ob.add("a", "g");
-        ob.add("a", "h");
-        System.out.println(ob.root.getChildren().get(0).getChildren().get(0).getChildren().get(0).getValue());
+        ob.add("b", "c");// код валится скорее всего из за того что не инициализируется поле children
+        ob.add("b", "d");
+        ob.add("b", "e");
+
+
+        //System.out.println(ob.root.getChildren().get(0).getChildren().get(0).getChildren().get(0).getValue());
+        System.out.println(ob.root.getChildren().get(0).getChildren().size());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+
 
 /*
         test test = new test();
@@ -387,6 +391,7 @@ public class run {
         }
         System.out.println();
 */
+
 
     }
 

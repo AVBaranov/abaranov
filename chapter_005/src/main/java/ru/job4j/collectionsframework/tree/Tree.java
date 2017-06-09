@@ -11,7 +11,11 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
     /*private*/public Node<E> root;
 
+    Node<E> iternext;
+
     private int itercount = 0;
+
+    int count = 0;
 
     public Node<E> getRoot() {
         return this.root;
@@ -103,6 +107,7 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
         return  false;
     }
 
+
     @Override
     public Iterator<E> iterator()  {
         return new myItr();
@@ -114,9 +119,19 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
             return false;
         }
 
+        Node<E> template = root;
         @Override
         public E next() {
-            return null;
+            if (itercount >= template.children.size()) {
+                itercount = 0;
+                template = template.children.get(count);
+                /*if (template.children.size() > count) {
+                    count++;
+                }*/
+            }
+            return template.children.get(itercount++).value;
         }
+
+
     }
 }
