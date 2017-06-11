@@ -15,6 +15,11 @@ public class TreeTest {
 
     class User implements Comparable<User> {
         private String name;
+
+        public String getName() {
+            return name;
+        }
+
         public User(String name) {
             this.name = name;
         }
@@ -38,27 +43,13 @@ public class TreeTest {
     @Test
     public void whenAddThreeTimesTheSameRootthenHaveListOfThreeChilds() {
 
-        template<User> tree = new template<User>();
-        tree.add(new User("Bird"), new User("Black"));
-        tree.add(new User("Bird"), new User("Red"));
-        tree.add(new User("Bird"), new User("Green"));
-        List<User> expectedlist = new ArrayList<User>();
-        expectedlist.add(new User("Black"));
-        expectedlist.add(new User("Red"));
-        expectedlist.add(new User("Green"));
-        assertThat(tree.getChildren(new User("Bird")), is(expectedlist));
+        Tree<User> tree = new Tree<User>();
+        tree.add(new User("White"), new User("Black"));
+        tree.add(new User("Black"), new User("Red"));
+        tree.add(new User("Red"), new User("Green"));
+        tree.iterator().next();
+        tree.iterator().next();
+        assertThat(tree.iterator().next().getName(), is("Green"));
     }
 
-    @Test
-    public void whenAddThreeTimesTheSameRootthenTreeIsNotBinary() {
-        template<User> tree = new template<User>();
-        tree.add(new User("Bird"), new User("Black"));
-        tree.add(new User("Bird"), new User("Red"));
-        tree.add(new User("Bird"), new User("Green"));
-        List<User> expectedlist = new ArrayList<User>();
-        expectedlist.add(new User("Black"));
-        expectedlist.add(new User("Red"));
-        expectedlist.add(new User("Green"));
-        assertThat(tree.isBinary(), is(false));
-    }
 }

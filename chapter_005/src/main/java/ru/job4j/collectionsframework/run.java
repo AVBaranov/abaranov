@@ -237,7 +237,32 @@ class test<E> {
 }
 
 
+class User10 implements Comparable<User10> {
+    private String name;
+    public User10(String name) {
+        this.name = name;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User10 temp = (User10) o;
+        return this.name.equals(temp.name);
+    }
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() * 31 : 0;
+    }
+    @Override
+    public int compareTo(User10 o) {
+        return  this.name.compareTo(o.name);
+    }
+}
 
 
 public class run {
@@ -299,16 +324,56 @@ public class run {
 
         Tree<String> ob = new Tree<>();
         ob.add("a", "b");
-        ob.add("b", "c");// код валится скорее всего из за того что не инициализируется поле children
-        ob.add("b", "d");
-        ob.add("b", "e");
+        ob.add("b", "c");
+        ob.add("c", "d");
+        ob.add("d", "e");
+        ob.add("e", "f");
+        ob.add("f", "g");
+        ob.add("g", "h");
+        ob.add("h", "i");
+        ob.add("i", "j");
+        ob.add("j", "k");
+        ob.add("k", "l");
+        ob.add("l", "m");
+        ob.add("m", "n");
+        ob.add("m", "o");
+        ob.add("m", "o");
+        ob.add("m", "o");
+        ob.add("m", "o");
 
 
-        //System.out.println(ob.root.getChildren().get(0).getChildren().get(0).getChildren().get(0).getValue());
-        System.out.println(ob.root.getChildren().get(0).getChildren().size());
         System.out.println(ob.iterator().next());
         System.out.println(ob.iterator().next());
         System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+        System.out.println(ob.iterator().next());
+
+        /*while (ob.iterator().hasNext()) {
+            System.out.println(ob.iterator().next());
+        }*/
+
+        Tree<User10> treeuser = new Tree<>();
+        treeuser.add(new User10("a"), new User10("b"));
+        treeuser.add(new User10("a"), new User10("z"));
+        treeuser.add(new User10("b"), new User10("c"));
+
+
+        System.out.println();
+        System.out.println(treeuser.iterator().next().getName());
+        System.out.println(treeuser.iterator().next().getName());
+        System.out.println(treeuser.iterator().next().getName());
 
 
 /*

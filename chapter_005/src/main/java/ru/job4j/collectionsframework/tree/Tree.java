@@ -9,24 +9,25 @@ import java.util.List;
  */
 public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
-    /*private*/public Node<E> root;
+    private Node<E> root;
 
-    Node<E> iternext;
+    private int countAdd = 0;
+    private int countNext = 0;
 
     private int itercount = 0;
 
     int count = 0;
 
-    public Node<E> getRoot() {
-        return this.root;
-    }
+    Node<E> template;
+
+    Node<E> buff;
 
     public class Node<E> {
         List<Node<E>> children = new ArrayList<>();
         E value;
 
 
-        public Node(E value) {
+        private Node(E value) {
             this.value = value;
         }
 
@@ -91,9 +92,11 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
     public boolean add(E parent, E child) {
 
+        countAdd++;
+
         Node<E> temp = root;
         if (temp == null) {
-            root = temp = new Node<E>(parent);
+            buff = template = root = temp = new Node<E>(parent);
             root.children.add(new Node<E>(child));
             return false ;
         }
@@ -116,15 +119,22 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
         @Override
         public boolean hasNext() {
-            return false;
+            return countAdd > countNext;
         }
 
-        Node<E> template = root;
+        //Node<E> template = root;
+
         @Override
         public E next() {
+            countNext++;
+            if (count >= buff.children.size()) {
+                count = 0;
+                buff = buff.children.get(0);
+            }
             if (itercount >= template.children.size()) {
+
                 itercount = 0;
-                template = template.children.get(count);
+                template = buff.children.get(count++);
                 /*if (template.children.size() > count) {
                     count++;
                 }*/
