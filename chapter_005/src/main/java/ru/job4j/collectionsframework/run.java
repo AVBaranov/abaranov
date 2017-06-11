@@ -5,6 +5,7 @@ import java.util.*;
 import ru.job4j.collectionsframework.iterator.EvenNumbers;
 import ru.job4j.collectionsframework.map.Hashmap;
 import ru.job4j.collectionsframework.set.ArraySet;
+import ru.job4j.collectionsframework.tree.BinaryTree;
 import ru.job4j.collectionsframework.tree.Tree;
 
 /**
@@ -375,6 +376,13 @@ public class run {
         System.out.println(treeuser.iterator().next().getName());
         System.out.println(treeuser.iterator().next().getName());
 
+        BinaryTree<String> btree = new BinaryTree<>();
+        btree.add("d");
+        btree.add("b");
+        btree.add("v");
+        btree.add("c");
+        System.out.println(btree.root.value);
+        
 
 /*
         test test = new test();
