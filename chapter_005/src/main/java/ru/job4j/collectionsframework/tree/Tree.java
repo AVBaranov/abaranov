@@ -56,20 +56,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
         }
     }
 
-    /*private Node<E> findElement(E value) {
-        Node<E> temp = root;
-
-        if (temp.children != null) {
-            for (int i = 0; i < temp.children.size(); i++) {
-                findElement(temp.children.get(i).value);
-                if (value.compareTo(temp.children.get(i).value) == 0) {
-                    return temp.children.get(i);
-                }
-            }
-        }
-
-        return null;
-    }*/
 
     private Node<E> findElement(E value) {
         return this.find(this.root, value);
@@ -122,8 +108,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
             return countAdd > countNext;
         }
 
-        //Node<E> template = root;
-
         @Override
         public E next() {
             countNext++;
@@ -135,9 +119,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
                 itercount = 0;
                 template = buff.children.get(count++);
-                /*if (template.children.size() > count) {
-                    count++;
-                }*/
             }
             return template.children.get(itercount++).value;
         }
