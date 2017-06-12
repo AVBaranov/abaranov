@@ -80,9 +80,8 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
 
         countAdd++;
 
-        Node<E> temp = root;
-        if (temp == null) {
-            buff = template = root = temp = new Node<E>(parent);
+        if (root == null) {
+            buff = template = root = new Node<E>(parent);
             root.children.add(new Node<E>(child));
             return false ;
         }

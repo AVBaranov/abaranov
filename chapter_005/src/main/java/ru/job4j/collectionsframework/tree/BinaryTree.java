@@ -5,9 +5,17 @@ import java.util.Iterator;
 /**
  * Created by Andrey on 11.06.2017.
  */
-public class BinaryTree<E extends Comparable<E>> {
+public class BinaryTree<E extends Comparable<E>> implements Iterable<E>{
 
     public Node<E> root;
+
+    public Node<E> template;
+
+    private Node<E> iternext;
+
+    private int itercount = 0;
+
+    private int count = 0;
 
     public class Node<E> {
         public E value;
@@ -22,7 +30,10 @@ public class BinaryTree<E extends Comparable<E>> {
         Node<E> x = root, y = null;
         while (x != null) {
             int cmp = v.compareTo(x.value);
-            {
+            /*if (cmp == 0) {
+                x.value = v;
+                return;
+            } else*/{
                 y = x;
                 if (cmp <= 0) {
                     x = x.left;
@@ -33,7 +44,7 @@ public class BinaryTree<E extends Comparable<E>> {
         }
         Node<E> newNode = new Node<E>(v);
         if (y == null) {
-            root = newNode;
+            iternext = root = newNode;
         } else {
             if (v.compareTo(y.value) <= 0) {
                 y.left = newNode;
@@ -43,4 +54,36 @@ public class BinaryTree<E extends Comparable<E>> {
         }
     }
 
+    @Override
+    public Iterator<E> iterator()  {
+        return new myItr();
+    }
+    private class myItr implements Iterator<E> {
+
+        private Node<E> lastReturned;
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public E next() {
+
+
+
+            lastReturned = iternext;
+            if (count % 2 == 0) {
+                iternext = iternext.left;
+            } else {
+                iternext = iternext.right;
+            }
+
+            itercount++;
+            count++;
+            return lastReturned.value;
+        }
+
+
+    }
 }
