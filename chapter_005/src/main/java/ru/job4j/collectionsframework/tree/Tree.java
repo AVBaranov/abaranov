@@ -1,5 +1,6 @@
 package ru.job4j.collectionsframework.tree;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -91,9 +92,28 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
             findElement(parent).children.add(new Node<>(child));
             return true;
         }
-        root.children.add(new Node<>(parent));
+        if (findElement(parent) == null) {
+            throw new RuntimeException();
+        }
+//        root.children.add(new Node<>(parent));
         return  false;
     }
+
+    private boolean search(Node<E> node) {
+        if (node.children.size() > 2) {
+            return false;
+        }
+        for (Node<E> value : node.children) {
+            search(value);
+            if (!search(value)) return false;
+        }
+        return true;
+    }
+
+    public boolean isBinary() {
+        return search(root);
+    }
+
 
 
     @Override
@@ -121,7 +141,6 @@ public class Tree<E extends Comparable<E>> implements SimpleTree<E>{
             }
             return template.children.get(itercount++).value;
         }
-
 
     }
 }

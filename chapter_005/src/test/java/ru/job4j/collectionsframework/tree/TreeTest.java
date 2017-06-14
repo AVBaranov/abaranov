@@ -52,4 +52,14 @@ public class TreeTest {
         assertThat(tree.iterator().next().getName(), is("Green"));
     }
 
+    @Test
+    public void whenAddThreeEqualParentElementsThenGetFalse() {
+        Tree<User> tree = new Tree<User>();
+        tree.add(new User("White"), new User("Black"));
+        tree.add(new User("White"), new User("Yellow"));
+        assertThat(tree.isBinary(), is(true));
+        tree.add(new User("White"), new User("Blue"));
+        assertThat(tree.isBinary(), is(false));
+    }
+
 }

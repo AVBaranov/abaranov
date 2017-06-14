@@ -5,5 +5,5 @@ package ru.job4j.collectionsframework.tree;
  */
 public interface SimpleTree<E extends Comparable<E>> extends Iterable<E> {
     boolean add(E parent, E child);
-    //boolean isBinary();
+    boolean isBinary();
 }

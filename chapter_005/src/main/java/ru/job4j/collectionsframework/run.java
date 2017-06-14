@@ -333,15 +333,9 @@ public class run {
         ob.add("g", "h");
         ob.add("h", "i");
         ob.add("i", "j");
-        ob.add("j", "k");
-        ob.add("k", "l");
-        ob.add("l", "m");
-        ob.add("m", "n");
-        ob.add("m", "o");
-        ob.add("m", "o");
-        ob.add("m", "o");
-        ob.add("m", "o");
 
+
+        System.out.println(ob.isBinary());
 
         System.out.println(ob.iterator().next());
         System.out.println(ob.iterator().next());
@@ -349,17 +343,8 @@ public class run {
         System.out.println(ob.iterator().next());
         System.out.println(ob.iterator().next());
         System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
-        System.out.println(ob.iterator().next());
+
+
 
         /*while (ob.iterator().hasNext()) {
             System.out.println(ob.iterator().next());

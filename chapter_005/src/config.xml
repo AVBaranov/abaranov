@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<market>
+	<department id="1">
+		<product id="1">
+			<title>product 1</title>
+			<price>30</price>
+			<amount type="шт">15</amount>
+		</product>
+		<product id="2">
+			<title>product 2</title>
+			<price>40</price>
+			<amount type="шт">10</amount>
+		</product>
+	</department>
+</market>
