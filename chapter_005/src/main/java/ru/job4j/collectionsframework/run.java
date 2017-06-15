@@ -1,5 +1,6 @@
 package ru.job4j.collectionsframework;
 
+import java.io.*;
 import java.util.*;
 
 import ru.job4j.collectionsframework.iterator.EvenNumbers;
@@ -266,6 +267,11 @@ class User10 implements Comparable<User10> {
 }
 
 
+enum Color {
+    GREEN, BLUE, YELLOW, ORANGE, RED, WHITE, BLACK, GREY;
+}
+
+
 public class run {
     public static void main(String[] args) {
 
@@ -315,12 +321,12 @@ public class run {
         }
 
         int COUNT = 100000;
-            long start = System.currentTimeMillis();
-            Map map = new HashMap<>(COUNT);
-            for (int i = 0; i < COUNT; i++) {
-                map.put(i,i);
-            }
-            System.out.println(System.currentTimeMillis() - start);
+        long start = System.currentTimeMillis();
+        Map map = new HashMap<>(COUNT);
+        for (int i = 0; i < COUNT; i++) {
+            map.put(i,i);
+        }
+        System.out.println(System.currentTimeMillis() - start);
 
 
         Tree<String> ob = new Tree<>();
@@ -367,6 +373,31 @@ public class run {
         btree.add("v");
         btree.add("c");
         System.out.println(btree.root.value);
+
+        Color color;
+        color = Color.YELLOW;
+        int count = 0;
+        for (Color value : Color.values()) {
+            if (value == color) {
+                break;
+            }
+            count++;
+        }
+        System.out.println("\n" + count);
+        System.out.println(Color.valueOf("BLACK"));
+
+        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        char ch;
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            ch = (char) br.read();
+        }
+        catch (IOException e) {
+            e.getStackTrace();
+        }
+        System.out.println(run.isNumber(new BufferedInputStream(System.in)));
+
+
 
 
 /*
@@ -453,6 +484,24 @@ public class run {
 
     }
 
+    public static boolean isNumber(InputStream in) {
+        boolean b = false;
+        try {
+        b = in.read() % 2 == 0;
+        }
+        catch (IOException e) {
+            e.getStackTrace();
+        }
+        finally {
+            try {
+            in.close();
+            }
+            catch (IOException e) {
+                e.getStackTrace();
+            }
+        }
+        return b;
+    }
 
 
 
