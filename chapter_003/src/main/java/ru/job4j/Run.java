@@ -46,7 +46,35 @@ public class Run {
 //            e.getStackTrace();
 //        }
 
-        dropAbuses(System.in, System.out, new String[]{"asd", "sdaf", "sdtgh", "asd", "sdg"});
+//        dropAbuses(System.in, System.out, new String[]{"asd", "sdaf", "sdtgh", "asd", "sdg"});
+
+
+        boolean b = true;
+        String[] ar = new String[]{"str1", "str2", "str3"};
+        String str = "";
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            for (;;) {
+                b = true;
+                str = br.readLine();
+                if (str.equals("quit")) break;
+                for (String value : ar) {
+                    if (str.equals(value)) {
+                        b = false;
+                        break;
+                    }
+
+                }
+                if (b) {
+                    System.out.println(str);
+                }
+            }
+        }
+        catch (IOException e) {
+            e.getStackTrace();
+        }
+
+
+
 
     }
 
@@ -55,15 +83,6 @@ public class Run {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
 
             template = br.readLine();
-
-//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(out));
-//            bw.write(template);
-//            for (String value : abuse) {
-//                if (template.equals(value)) {
-//                    continue;
-//                }
-//
-//            }
 
         }
         catch (IOException e) {
