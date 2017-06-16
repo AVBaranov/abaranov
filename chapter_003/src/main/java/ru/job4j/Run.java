@@ -78,38 +78,32 @@ public class Run {
 //            e.getStackTrace();
 //        }
         Abuse ab = new Abuse();
-        ab.dropAbuses(System.in, System.out, new String[] {"str1", "str2", "str3"});
+//        ab.dropAbuses(System.in, System.out, new String[] {"str1", "str2", "str3"});
 
+//        try (FileInputStream fin = new FileInputStream("C:\\Users\\Андрей\\Desktop\\file.txt")) {
+//            FileOutputStream fout = new FileOutputStream("C:\\Users\\Андрей\\Desktop\\FILE1000000.txt");
+//
+//            int value;
+//            while ((value = fin.read()) != -1) {
+//                fout.write(value);
+//            }
+//        }
+//        catch (IOException e) {
+//            e.getMessage();
+//        }
 
-
-    }
-
-    public static void dropAbuses(InputStream in, OutputStream out, String[] abuse) {
-
-        boolean b;
-        String str;
-
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
-            do {
-                b = true;
-                str = br.readLine();
-                for (String value : abuse) {
-                    if (str.equals(value)) {
-                        b = false;
-                        break;
-                    }
-                }
-
-                if (b) {
-                    PrintWriter pr = new PrintWriter(out, true);
-                    pr.println(str);
-                }
-            } while (!str.equals("quit"));
+        try (FileWriter fout = new FileWriter("C:\\Users\\Андрей\\Desktop\\FILE1000000.txt")) {
+            fout.write("first line");
+            fout.append('\n');
+            fout.append("second line");
         }
         catch (IOException e) {
-            e.getStackTrace();
+            e.getMessage();
         }
+
     }
+
+
 
 
 }
