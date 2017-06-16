@@ -7,7 +7,7 @@ import java.io.*;
  * Created by Андрей on 15.06.2017.
  */
 public class Run {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
 
 //        String[] ar = new String[10];
@@ -49,53 +49,62 @@ public class Run {
 //        dropAbuses(System.in, System.out, new String[]{"asd", "sdaf", "sdtgh", "asd", "sdg"});
 
 
-        boolean b = true;
-        String[] ar = new String[]{"str1", "str2", "str3"};
-        String str = "";
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            for (;;) {
-                b = true;
-                str = br.readLine();
-                if (str.equals("quit")) break;
-                for (String value : ar) {
-                    if (str.equals(value)) {
-                        b = false;
-                        break;
-                    }
 
-                }
-                if (b) {
-                    System.out.println(str);
-                }
-            }
-        }
-        catch (IOException e) {
-            e.getStackTrace();
-        }
 
+
+//        boolean b;
+//        String[] ar = new String[]{"str1", "str2", "str3"};
+//        String str;
+//
+//        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+//            for (;;) {
+//                b = true;
+//                str = br.readLine();
+//                if (str.equals("quit")) break;
+//                for (String value : ar) {
+//                    if (str.equals(value)) {
+//                        b = false;
+//                        break;
+//                    }
+//
+//                }
+//                if (b) {
+//                    PrintWriter pr = new PrintWriter(System.out, true);
+//                    pr.println(str);
+//                }
+//            }
+//        }
+//        catch (IOException e) {
+//            e.getStackTrace();
+//        }
+        Abuse ab = new Abuse();
+        ab.dropAbuses(System.in, System.out, new String[] {"str1", "str2", "str3"});
 
 
 
     }
 
     public static void dropAbuses(InputStream in, OutputStream out, String[] abuse) {
-        String template = null;
+
+        boolean b;
+        String str;
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
-
-            template = br.readLine();
-
-        }
-        catch (IOException e) {
-            e.getStackTrace();
-        }
-
-        try (BufferedWriter temp = new BufferedWriter(new OutputStreamWriter(out))) {
-            for (String value : abuse) {
-                if (value.equals(template)) {
-                    continue;
+            do {
+                b = true;
+                str = br.readLine();
+                for (String value : abuse) {
+                    if (str.equals(value)) {
+                        b = false;
+                        break;
+                    }
                 }
-                temp.write(value + "\n");
-            }
+
+                if (b) {
+                    PrintWriter pr = new PrintWriter(out, true);
+                    pr.println(str);
+                }
+            } while (!str.equals("quit"));
         }
         catch (IOException e) {
             e.getStackTrace();
