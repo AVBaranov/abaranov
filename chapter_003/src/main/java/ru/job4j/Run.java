@@ -92,7 +92,7 @@ public class Run {
 //            e.getStackTrace();
 //        }
         Abuse ab = new Abuse();
-//        ab.dropAbuses(System.in, System.out, new String[] {"str1", "str2", "str3"});
+        ab.dropAbuses(System.in, System.out, new String[] {"str1", "str2", "str3"});
 
 //        try (FileInputStream fin = new FileInputStream("C:\\Users\\Андрей\\Desktop\\file.txt")) {
 //            FileOutputStream fout = new FileOutputStream("C:\\Users\\Андрей\\Desktop\\FILE1000000.txt");
@@ -265,6 +265,16 @@ public class Run {
                 System.out.print(value2);
             }
         }*/
+
+        String str = new String("st");
+        System.out.println(str.contains("s"));
+        String[] ar = new String[] {"asd", "aq", "str", "st"};
+        List<String> list = new ArrayList();
+        for (String value : ar) {
+            list.add(value);
+        }
+        System.out.println(list.contains(str));
+
 
 
 
