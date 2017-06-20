@@ -20,6 +20,20 @@ import java.util.*;
     }
 }
 
+class cl implements FilenameFilter {
+
+     final String str;
+
+     public cl(String str) {
+         this.str = str;
+     }
+
+    @Override
+    public boolean accept(File dir, String name) {
+        return name.endsWith(this.str);
+    }
+}
+
 public class Run {
     public static void main(String[] args){
 
@@ -187,7 +201,7 @@ public class Run {
         }*/
 
         SortFile sort = new SortFile();
-        sort.sort("C:\\Users\\Andrey\\Desktop\\SRC.txt", "C:\\Users\\Andrey\\Desktop\\DEST.txt");
+        sort.sort(new File("C:\\Users\\Andrey\\Desktop\\SRC.txt"), new File("C:\\Users\\Andrey\\Desktop\\DEST.txt"));
 
 
 
@@ -258,13 +272,59 @@ public class Run {
             }
         }
 
+        System.out.println();
+        File file = new File("C:\\Users\\Andrey\\Desktop");
+
+        System.out.println(file.isDirectory());
+
+        FilenameFilter f = new cl(".txt");
+        String[] arr = file.list(f);
+
+        for (String value : arr) {
+            System.out.println(value);
+        }
 
 
-        /*for (List<Character> value : store) {
-            for (Character value2 : value) {
-                System.out.print(value2);
+        String str = new String("dfghshghdf");
+        try (RandomAccessFile ra = new RandomAccessFile(new File("C:\\Users\\Andrey\\Desktop/test.txt"), new String("rw"))){
+
+            byte[] ar = new byte[(int) ra.length()];
+            ra.write(str.getBytes());
+            ra.seek(0);
+            ra.read(ar);
+            for (byte value : ar) {
+                System.out.print((char) value);
             }
-        }*/
+
+
+
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+
+        File file2 = new File("C:\\Users\\Andrey\\Desktop/test.txt");
+        System.out.println();
+        System.out.println(file2.length());
+        try (RandomAccessFile rf = new RandomAccessFile(file2, "rw");) {
+            int temp;
+            while ((temp = rf.read()) != -1) {
+                System.out.print((char) temp);
+            }
+
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+
+
+
+
+
+
+
+
+
 
 
 

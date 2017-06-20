@@ -16,14 +16,15 @@ class comparator implements Comparator<List<Character>> {
 }
 public class SortFile {
 
-    public void sort(String srcfile, String destfile) {
+    public void sort(File srcfile, File destfile) {
         Set<List<Character>> set = new TreeSet<>(new comparator());
 
         List<Character> buffer = new ArrayList<>();
 
-        try (FileReader fin = new FileReader(srcfile)) {
+        try (RandomAccessFile ra = new RandomAccessFile(srcfile, "r");) {
+
             int value;
-            while ((value = fin.read()) != -1) {
+            while ((value = ra.read()) != -1) {
                 buffer.add((char) value);
                 if (((Character)(char)value).equals('\n') ) {
                     set.add(buffer);
@@ -35,10 +36,10 @@ public class SortFile {
             e.getMessage();
         }
 
-        try (FileWriter fw = new FileWriter(destfile)) {
+        try (RandomAccessFile ra = new RandomAccessFile(destfile, "rw");) {
             for (List<Character> value : set) {
                 for (Character value2 : value) {
-                    fw.write(value2);
+                    ra.write(value2);
                 }
             }
         }
