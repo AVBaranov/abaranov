@@ -258,22 +258,21 @@ public class Run {
             }
         }
 
-
-
-        /*for (List<Character> value : store) {
-            for (Character value2 : value) {
-                System.out.print(value2);
-            }
-        }*/
-
-        String str = new String("st");
-        System.out.println(str.contains("s"));
-        String[] ar = new String[] {"asd", "aq", "str", "st"};
-        List<String> list = new ArrayList();
-        for (String value : ar) {
-            list.add(value);
+        System.out.println();
+        File file = new File("C:\\");
+        int dircount = 0;
+        int filecount = 0;
+        System.out.println(file.isDirectory());
+        for (int i = 0; i < file.list().length; i++) {
+            File f = new File(file + "/" + file.list()[i]);
+            if (f.isDirectory()) {
+                dircount++;
+            } else filecount++;
         }
-        System.out.println(list.contains(str));
+        System.out.println(dircount + "  " + filecount);
+
+
+
 
 
 

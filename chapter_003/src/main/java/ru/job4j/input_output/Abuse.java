@@ -12,7 +12,7 @@ public class Abuse {
         String str;
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
-            PrintWriter pr;
+            PrintWriter pr = new PrintWriter(out, true);
             List<String> list = new ArrayList<>();
             for (String value : abuse) {
                 list.add(value);
@@ -20,7 +20,6 @@ public class Abuse {
             do {
                 str = br.readLine();
                 if (!list.contains(str)) {
-                    pr = new PrintWriter(out, true);
                     pr.println(str);
                 }
             } while (!str.equals("quit"));
