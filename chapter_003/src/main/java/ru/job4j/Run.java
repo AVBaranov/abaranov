@@ -272,17 +272,54 @@ public class Run {
             }
         }
 
+
         System.out.println();
-        File file = new File("C:\\Users\\Andrey\\Desktop");
+        File file = new File("C:\\Users\\Andrey\\Desktop/TEMP/filik.txt");
+//        for (int i = 0; i < 5; i++) {
+//            try (RandomAccessFile r = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/failik" + (i + 1) + ".txt", "rw")) {
+//                r.write(new byte[] {'k','a', 'k', 'a'});
+//            }
+//            catch (IOException e) {
+//                e.getMessage();
+//            }
+//        }
 
-        System.out.println(file.isDirectory());
-
-        FilenameFilter f = new cl(".txt");
-        String[] arr = file.list(f);
-
-        for (String value : arr) {
-            System.out.println(value);
+        int count = 0;
+        List<Character> list = new ArrayList<>();
+        List<List<Character>> ll = new ArrayList<>();
+        try (RandomAccessFile rf = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/file.txt", "rw")) {
+            int value;
+            int i = 0;
+            while ((value = rf.read()) != -1) {
+//                System.out.print((char) value);
+                list.add((char) value);
+//                if (((Character)(char)value).equals('\n') ) {
+//                    ll.add(list);
+//                    list = new ArrayList<>();
+//                }
+                if (count >= 40) {
+                    count = 0;
+//                    System.out.println("11111");
+                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part" + (i + 1) + ".txt", "rw");
+                    Object[] temparr = list.toArray();
+                    byte[] arr = new byte[temparr.length];
+                    for (int j = 0; j < arr.length; j++) {
+                        arr[j] = (byte) (char) temparr[j];
+                    }
+                    r.write(arr);
+                    list.clear();
+                    i++;
+                }
+                count++;
+            }
+//            System.out.println();
         }
+        catch (IOException e) {
+            e.getMessage();
+        }
+
+
+
 
 
         String str = new String("dfghshghdf");
