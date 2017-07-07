@@ -20,6 +20,20 @@ import java.util.*;
     }
 }
 
+class comp implements Comparator<String> {
+    @Override
+    public int compare(String o1, String o2) {
+        return o1.length() > o2.length() ? 1 : -1;
+    }
+}
+
+class comp2 implements Comparator<Character[]> {
+    @Override
+    public int compare(Character[] o1, Character[] o2) {
+        return o1.length >= o2.length ? 1 : -1;
+    }
+}
+
 class cl implements FilenameFilter {
 
      final String str;
@@ -287,58 +301,131 @@ public class Run {
         int count = 0;
         List<Character> list = new ArrayList<>();
         List<List<Character>> ll = new ArrayList<>();
+
+        List<Character[]> listchar;
         try (RandomAccessFile rf = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/file.txt", "rw")) {
             int value;
             int i = 0;
             while ((value = rf.read()) != -1) {
-//                System.out.print((char) value);
                 list.add((char) value);
-//                if (((Character)(char)value).equals('\n') ) {
-//                    ll.add(list);
-//                    list = new ArrayList<>();
-//                }
-                if (count >= 40) {
+                if (((Character)(char)value).equals('\n') ) {
+                    ll.add(list);
+                    list = new ArrayList<>();
+                }
+                if ((char) value == '\n') {
+                    count++;
+                }
+                if (count >= 5) {
                     count = 0;
-//                    System.out.println("11111");
-                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part" + (i + 1) + ".txt", "rw");
-                    Object[] temparr = list.toArray();
-                    byte[] arr = new byte[temparr.length];
-                    for (int j = 0; j < arr.length; j++) {
-                        arr[j] = (byte) (char) temparr[j];
+                    listchar = new ArrayList<>();
+                    List<Object[]> listobj = new ArrayList<>();
+                    for (int j = 0; j < ll.size(); j++) {
+                        listobj.add(ll.get(j).toArray());
                     }
-                    r.write(arr);
-                    list.clear();
+                    for (int x = 0; x < listobj.size(); x++) {
+                        Character[] temp = new Character[listobj.get(x).length];
+                        for (int y = 0; y < listobj.get(x).length; y++) {
+                            temp[y] = (Character) listobj.get(x)[y];
+                        }
+                        listchar.add(temp);
+                    }
+                    listchar.sort(new comp2());
+
+                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part" + (i + 1) + ".txt", "rw");
+
+                    for (int j = 0; j < listchar.size(); j++) {
+                        byte[] ar = new byte[listchar.get(j).length];
+                        for (int k = 0; k < ar.length; k++) {
+                            ar[k] = (byte) (char) listchar.get(j)[k];
+                        }
+                        r.write(ar);
+
+                    }
+                    ll.clear();
                     i++;
                 }
-                count++;
+//                count++;
             }
-//            System.out.println();
+
         }
         catch (IOException e) {
             e.getMessage();
         }
 
+//        listchar.sort(new comp2());
+//        for (int i = 0; i < listchar.size(); i++) {
+//            for (Character value : listchar.get(i)) {
+//                System.out.print(value);
+//            }
+//        }
 
 
-
-
-        String str = new String("dfghshghdf");
-        try (RandomAccessFile ra = new RandomAccessFile(new File("C:\\Users\\Andrey\\Desktop/test.txt"), new String("rw"))){
-
-            byte[] ar = new byte[(int) ra.length()];
-            ra.write(str.getBytes());
-            ra.seek(0);
-            ra.read(ar);
-            for (byte value : ar) {
-                System.out.print((char) value);
+        System.out.println();
+        List<String> l = new ArrayList<>();
+        l.add("str");
+        l.add("string");
+        l.add("offstring");
+        l.add("onstr");
+        l.add("asdfsdsffsdfsdfsfdsf");
+        l.sort(new comp().reversed());
+        for (String value : l) {
+            System.out.println(value);
+        }
+        for (int i = 0; i < l.size(); i++) {
+            for (int j = i + 1; j < l.size(); j++) {
+                if (l.get(i).length() < l.get(j).length()) {
+//                    String buff = l.get(i);
+//                    l.add(i, l.get(j));
+//                    l.add(j, buff);
+                }
             }
 
+        }
+
+//        for (int i = 0; i < ll.size(); i++) {
+//            for (int j = 0; j < ll.get(i).size(); j++) {
+//                System.out.print(ll.get(i).get(j));
+//            }
+//
+//        }
 
 
+
+
+
+        String str = new String("str");
+        char[] mas = str.toCharArray();
+        byte[] ar = new byte[mas.length];
+        for (int i = 0; i < ar.length; i++) {
+            ar[i] = (byte) mas[i];
+        }
+        try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/FILE1000000.txt", "rw")) {
+            ra.write(ar);
         }
         catch (IOException e) {
-            e.getMessage();
+
         }
+
+
+
+
+//        String str = new String("dfghshghdf");
+//        try (RandomAccessFile ra = new RandomAccessFile(new File("C:\\Users\\Andrey\\Desktop/test.txt"), new String("rw"))){
+//
+//            byte[] ar = new byte[(int) ra.length()];
+//            ra.write(str.getBytes());
+//            ra.seek(0);
+//            ra.read(ar);
+//            for (byte value : ar) {
+//                System.out.print((char) value);
+//            }
+//
+//
+//
+//        }
+//        catch (IOException e) {
+//            e.getMessage();
+//        }
 
         File file2 = new File("C:\\Users\\Andrey\\Desktop/test.txt");
         System.out.println();
@@ -353,6 +440,8 @@ public class Run {
         catch (IOException e) {
             e.getMessage();
         }
+
+
 
 
 
