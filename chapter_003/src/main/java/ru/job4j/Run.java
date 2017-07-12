@@ -5,6 +5,9 @@ import javax.xml.stream.events.Characters;
 import java.io.*;
 import java.nio.charset.CharsetEncoder;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by Андрей on 15.06.2017.
@@ -215,9 +218,49 @@ public class Run {
             e.getMessage();
         }*/
 
-        SortFile sf = new SortFile();
 
-        sf.sortfile(new File("C:\\Users\\Андрей\\Desktop/file.txt"), new File("C:\\Users\\Андрей\\Desktop/FINAL.txt"));
+        new SortFile().sortfile(new File("C:\\Users\\Анна\\Desktop/file.txt"), new File("C:\\Users\\Анна\\Desktop/FINAL.txt"));
+
+        try (ZipInputStream zin = new ZipInputStream(new FileInputStream("C:\\Users\\Анна\\Desktop/file.zip"))) {
+            System.out.println(zin.getNextEntry() + " " + zin.getNextEntry());
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+
+        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Анна\\Desktop/file.zip"))) {
+            zout.putNextEntry(new ZipEntry("C:\\projects"));
+
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println((int) (Math.random() * 10));
+        String str = "";
+        while (!str.equals("end")) {
+            str = sc.next();
+            try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Анна\\Desktop/file.txt", "rw")) {
+                if (str.equals("stop")) {
+                    while (!str.equals("continue")) {
+                        if (str.equals("end")) {
+                            break;
+                        }
+                        str = sc.next();
+                    }
+                }
+                ra.seek((int) (Math.random() * 10));
+                for (int i = 0; i < 10; i++) {
+                    System.out.print((char) ra.read());
+                }
+
+            }
+            catch (IOException e) {
+                e.getMessage();
+            }
+        }
 
 
     }

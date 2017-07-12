@@ -105,7 +105,7 @@ public class SortFile {
                     strlist.sort(new comp());
 
 
-                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part" + (i++) + ".txt", "rw");
+                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Анна\\Desktop/TEMP/part" + (i++) + ".txt", "rw");
 
                     for (int j = 0; j < strlist.size(); j++) {
                         byte [] ar = new byte[strlist.get(j).length()];
@@ -121,7 +121,7 @@ public class SortFile {
                 //  ЭТОТ БЛОК IF НУЖЕН ЧТОБЫ УЧЕСТЬ ПОСЛЕДНИЕ БАЙТЫ В ИСХОДНОМ ФАЙЛЕ И ЗАПИСАТЬ ИХ В ОТДЕЛЬНЫЙ ФАЙЛ
                 if (endcount >= end) {
                     strlist.sort(new comp());
-                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part" + (counter + 1) + ".txt", "rw");
+                    RandomAccessFile r = new RandomAccessFile("C:\\Users\\Анна\\Desktop/TEMP/part" + (counter + 1) + ".txt", "rw");
                     for (int j = 0; j < strlist.size(); j++) {
                         byte [] ar = new byte[strlist.get(j).length()];
                         for (int k = 0; k < ar.length; k++) {
@@ -141,7 +141,7 @@ public class SortFile {
         // БЕРЕМ 1-Й ВРЕМЕННЫЙ ФАЙЛ И ПОМЕЩАЕМ ЕГО В СПИСОК
         List<String> endlist = new ArrayList<>();
         String endstr = new String("");
-        try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part1.txt", "rw")) {
+        try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Анна\\Desktop/TEMP/part1.txt", "rw")) {
             int value;
             while ((value = ra.read()) != -1) {
                 endstr += (char) value;
@@ -166,7 +166,7 @@ public class SortFile {
         String tempstr = new String("");
         // ПРОХОДИМ ПО ВСЕМ ВРЕМЕННЫМ ФАЙЛАМ И ПООЧЕРЕДНО СЛИВАЕМ ИХ С 1-М ВРЕМЕННЫМ ФАЙЛОМ, ЗАПИСАННЫМ В МАССИВ finalar
         for (int i = 0; i < counter; i++) {
-            try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/TEMP/part" + (i + 2) + ".txt", "rw")) {
+            try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Анна\\Desktop/TEMP/part" + (i + 2) + ".txt", "rw")) {
                 int value;
                 while ((value = ra.read()) != -1) {
                     tempstr += (char) value;
