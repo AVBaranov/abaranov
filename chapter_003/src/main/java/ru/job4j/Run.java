@@ -219,16 +219,16 @@ public class Run {
         }*/
 
 
-        new SortFile().sortfile(new File("C:\\Users\\Анна\\Desktop/file.txt"), new File("C:\\Users\\Анна\\Desktop/FINAL.txt"));
+//        new SortFile().sortfile(new File("C:\\Users\\Анна\\Desktop/file.txt"), new File("C:\\Users\\Анна\\Desktop/FINAL.txt"));
 
-        try (ZipInputStream zin = new ZipInputStream(new FileInputStream("C:\\Users\\Анна\\Desktop/file.zip"))) {
+        try (ZipInputStream zin = new ZipInputStream(new FileInputStream("C:\\Users\\Андрей\\Desktop/file.zip"))) {
             System.out.println(zin.getNextEntry() + " " + zin.getNextEntry());
         }
         catch (IOException e) {
             e.getMessage();
         }
 
-        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Анна\\Desktop/file.zip"))) {
+        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Андрей\\Desktop/file.zip"))) {
             zout.putNextEntry(new ZipEntry("C:\\projects"));
 
         }
@@ -236,32 +236,52 @@ public class Run {
             e.getMessage();
         }
 
-        Scanner sc = new Scanner(System.in);
+        //////////////////////////////////////
 
-        System.out.println((int) (Math.random() * 10));
-        String str = "";
+        /*Scanner sc = new Scanner(System.in);
+
+        String finalstr = new String("");
+        String str = new String("");
         while (!str.equals("end")) {
             str = sc.next();
-            try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Анна\\Desktop/file.txt", "rw")) {
+            finalstr = finalstr.concat(str + '\r' + '\n');
+            try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/file.txt", "rw")) {
                 if (str.equals("stop")) {
                     while (!str.equals("continue")) {
                         if (str.equals("end")) {
                             break;
                         }
                         str = sc.next();
+                        finalstr = finalstr.concat(str + '\r' + '\n');
                     }
                 }
                 ra.seek((int) (Math.random() * 10));
-                for (int i = 0; i < 10; i++) {
-                    System.out.print((char) ra.read());
-                }
 
+
+                for (int i = 0; i < 10; i++) {
+                    int value = ra.read();
+                    System.out.print((char) value);
+                }
+                System.out.println();
             }
             catch (IOException e) {
                 e.getMessage();
             }
         }
 
+        byte[] ar = new byte[finalstr.length()];
+        for (int i = 0; i < ar.length; i++) {
+            ar[i] = (byte) finalstr.toCharArray()[i];
+        }
+        try (RandomAccessFile ra = new RandomAccessFile("C:\\Users\\Андрей\\Desktop/log.txt", "rw")) {
+            ra.write(ar);
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }*/
+
+        Chat chat = new Chat();
+        chat.run(new File("C:\\Users\\Андрей\\Desktop/file.txt"), new File("C:\\Users\\Андрей\\Desktop/log.txt"));
 
     }
 
