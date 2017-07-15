@@ -281,7 +281,7 @@ public class Run {
         }*/
 
         Chat chat = new Chat();
-        chat.run(new File("C:\\Users\\Андрей\\Desktop/file.txt"), new File("C:\\Users\\Андрей\\Desktop/log.txt"));
+        chat.runChat(new File("C:\\Users\\Andrey\\Desktop/file.txt"), new File("C:\\Users\\Andrey\\Desktop/log.txt"));
 
     }
 
