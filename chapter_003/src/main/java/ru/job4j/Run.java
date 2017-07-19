@@ -221,7 +221,7 @@ public class Run {
 
 //        new SortFile().sortfile(new File("C:\\Users\\Анна\\Desktop/file.txt"), new File("C:\\Users\\Анна\\Desktop/FINAL.txt"));
 
-        try (ZipInputStream zin = new ZipInputStream(new FileInputStream("C:\\Users\\Андрей\\Desktop/file.zip"))) {
+        /*try (ZipInputStream zin = new ZipInputStream(new FileInputStream("C:\\Users\\Андрей\\Desktop/file.zip"))) {
             System.out.println(zin.getNextEntry() + " " + zin.getNextEntry());
         }
         catch (IOException e) {
@@ -234,7 +234,7 @@ public class Run {
         }
         catch (IOException e) {
             e.getMessage();
-        }
+        }*/
 
         //////////////////////////////////////
 
@@ -281,9 +281,81 @@ public class Run {
         }*/
 
         Chat chat = new Chat();
-        chat.runChat(new File("C:\\Users\\Andrey\\Desktop/file.txt"), new File("C:\\Users\\Andrey\\Desktop/log.txt"));
+//        chat.runChat(new File("C:\\Users\\Andrey\\Desktop/file.txt"), new File("C:\\Users\\Andrey\\Desktop/log.txt"));
+
+        try {
+            new Zip().zipData(new File("C:\\Users\\Андрей\\Desktop\\one.zip"), new File("C:\\Users\\Андрей\\Desktop\\projects\\project 2.05.2107"));
+
+        }
+        catch (IOException e) {
+        e.getStackTrace();
+        }
+
+       try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Андрей\\Desktop\\two.zip"))) {
+            byte[] ar = new byte[1024];
+            FileInputStream fin = new FileInputStream("C:\\Users\\Андрей\\Desktop\\images.jpg");
+            zout.putNextEntry(new ZipEntry("images.jpg"));
+            int value;
+            while ((value = fin.read(ar)) != -1) {
+//                zout.write(ar, 0, value);
+            }
+
+            zout.write(fin.read());
+            zout.close();
+       }
+       catch (IOException e) {
+            e.getStackTrace();
+       }
+
+        System.out.println(new String("C:/Users/Андрей/Desktop/web").replaceAll("C:/Users/Андрей/Desktop/we", ""));
+
+
+
+
+
+
 
     }
+
+
+
+    private void zipData(File zip_file, File source_dir) throws IOException
+    {
+        ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zip_file));
+
+        addDirectory(zout, source_dir);
+
+        zout.close();
+
+        System.out.println("Zip файл создан!");
+    }
+
+    public void addDirectory(ZipOutputStream zout, File fileSource) throws IOException {
+
+        File[] files = fileSource.listFiles();
+        System.out.println("Добавление директории <" + fileSource.getName() + ">");
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isDirectory()) {
+                addDirectory(zout, files[i]);
+                continue;
+            }
+            System.out.println("Добавление файла <" + files[i].getName() + ">");
+
+            FileInputStream fis = new FileInputStream(files[i]);
+
+            zout.putNextEntry(new ZipEntry(files[i].getPath()));
+
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = fis.read(buffer)) > 0)
+                zout.write(buffer, 0, length);
+            // Закрываем ZipOutputStream и InputStream
+            zout.closeEntry();
+            fis.close();
+        }
+    }
+
+
 
     public static void sortfile(File srcfile, File destfile) {
         int count = 0;
