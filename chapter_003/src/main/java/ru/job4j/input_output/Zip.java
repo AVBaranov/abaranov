@@ -16,13 +16,10 @@ public class Zip {
      * @param zip_file  - archived file
      * @param source_dir - directory for archive
      */
-    public void zipData(File zip_file, File source_dir) throws IOException
-    {
-        ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zip_file));
-
-        addDirectory(zout, source_dir);
-
-        zout.close();
+    public void zipData(File zip_file, File source_dir) throws IOException {
+        try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zip_file))) {
+            addDirectory(zout, source_dir);
+        }
     }
     /**
      * method archives data.

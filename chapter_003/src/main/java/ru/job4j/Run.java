@@ -43,15 +43,15 @@ public class Run {
     public static void main(String[] args){
 
 
-        /*try {
-            new Zip().zipData(new File("C:\\Users\\Андрей\\Desktop\\one.zip"), new File("C:\\Users\\Андрей\\Desktop\\projects\\project 2.05.2107"));
+        try {
+            new Zip().zipData(new File("C:\\Users\\Andrey\\Desktop\\one.zip"), new File("C:\\Users\\Andrey\\Desktop\\8.06.2017"));
 
         }
         catch (IOException e) {
         e.getStackTrace();
         }
 
-       try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Андрей\\Desktop\\two.zip"))) {
+       /*try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Андрей\\Desktop\\two.zip"))) {
             byte[] ar = new byte[1024];
             FileInputStream fin = new FileInputStream("C:\\Users\\Андрей\\Desktop\\images.jpg");
             zout.putNextEntry(new ZipEntry("images.jpg"));
