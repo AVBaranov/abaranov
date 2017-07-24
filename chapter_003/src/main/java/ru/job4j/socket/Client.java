@@ -8,12 +8,18 @@ import java.util.Scanner;
  * Created by Андрей on 20.07.2017.
  */
 public class Client {
-    public static void main(String[] args) {
-        final int SERVERPORT = 5001;
+    final int port;
+    Socket socket;
+
+    public Client(int port) {
+        this.port = port;
+    }
+
+    public void start() throws IOException {
+
         String ip = "127.0.0.2";
-        try {
-            Socket socket = new Socket(InetAddress.getByName(ip), SERVERPORT);
-            System.out.println("you were successfully connected to server on port " + SERVERPORT);
+            Socket socket = new Socket(InetAddress.getByName(ip), this.port);
+            System.out.println("you were successfully connected to server on port " + this.port);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -39,9 +45,15 @@ public class Client {
                 if ("exit".equals(line)) break;
 
             } while (!line.equals("exit"));
+    }
+
+
+    public static void main(String[] args) {
+        try (Socket socket = new Socket()) {
+            new Client(5001).start();
         }
-        catch (Exception e) {
-            e.getStackTrace();
+        catch (IOException e) {
+
         }
     }
 }
