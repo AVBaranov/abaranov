@@ -8,51 +8,48 @@ package ru.job4j.socket;
  * Created by Андрей on 20.07.2017.
  */
 public class Server {
-    //    final int port;
-    Socket socket;
+
+    private final Socket socket;
     public Server(Socket socket) {
         this.socket= socket;
     }
     public void start() throws IOException {
-//        System.out.println("waiting for client...");
-//        this.socket = new ServerSocket(this.port).accept();
-//        System.out.println("client was connected");
+
 
         BufferedReader in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 
         PrintWriter out = new PrintWriter(this.socket.getOutputStream(), true);
-        String line = null;
+        String ask = null;
         int count = 0;
 
-//        out.println("Hello, I'm oracle ");
+
         do {
             System.out.println("waiting for command . . .");
             count++;
-            line = in.readLine();
-            System.out.println(line);
-            if ("Hello Oracle".equals(line)) {
+            ask = in.readLine();
+            System.out.println(ask);
+            if ("Hello oracle".equals(ask)) {
                 out.println("Hello, I'm oracle");
-                out.println();
-            } else if (!"exit".equals(line)) {
+//                out.println();
+            } else if (!("exit".equals(ask))) {
                 out.println("you're wrong");
-                out.println();
+//                out.println();
+            } else if ("exit".equals(ask)) {
+                out.println("exit");
             }
 
-//            System.out.println("client wrote: " + line);
-//            if (count >= 3) {
-//                System.out.println("sending " + line + " to client");
-//                out.println("");
-//                count = 0;
-//            }
-//            out.println(line);
-//
-//            System.out.println("waiting...");
-        } while (!"exit".equals(line));
+            System.out.println("client wrote: " + ask);
+            if (count >= 3) {
+                out.println("");
+                count = 0;
+            }
+
+        } while (!("exit".equals(ask)));
 
     }
     public static void main (String[] args) {
 
-        try (Socket socket = new Socket()) {
+        try (Socket socket = new ServerSocket(5001).accept()) {
             new Server(socket).start();
         }
         catch (IOException e) {
