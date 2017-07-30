@@ -1,8 +1,7 @@
 package ru.job4j.socket;
 
-        import java.io.*;
-        import java.net.*;
-        import java.util.Scanner;
+import java.io.*;
+import java.net.*;
 
 /**
  * Created by Андрей on 20.07.2017.
