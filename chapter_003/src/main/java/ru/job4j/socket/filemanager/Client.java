@@ -19,11 +19,12 @@ public class Client {
 
                 out.println(s = sc.nextLine());
                 if (s.equals("download")) {
-                    char[] ar = new char[10];
+                    char[] ar = new char[100];
                     in.read(ar);
-                    for (char value : ar) {
-                        System.out.println(value);
-                    }
+                    System.out.println(in.read());
+//                    for (char value : ar) {
+//                        System.out.println(value);
+//                    }
                     break;
                 }
 //                File file = new File("C:\\Users\\Andrey\\Desktop");
@@ -52,6 +53,22 @@ public class Client {
         catch (IOException e) {
             e.getStackTrace();
         }*/
+        /*try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream("C:\\Users\\Анна\\Desktop/test.txt"))) {
+            byte[] bytear = new byte[bin.available()];
+
+            while ((bin.read(bytear)) != -1);
+            char[] charar = new char[bytear.length];
+            for (int i = 0; i < charar.length; i++) {
+                charar[i] = (char) bytear[i];
+            }
+            for (char value : charar) {
+                System.out.print(value);
+            }
+        }
+        catch (IOException e) {
+            e.getStackTrace();
+        }*/
+
 
     }
 
