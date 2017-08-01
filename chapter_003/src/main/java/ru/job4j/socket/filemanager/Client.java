@@ -8,67 +8,74 @@ import java.util.Scanner;
  * Created by Andrey on 26.07.2017.
  */
 public class Client {
-    public static void main (String[] args) {
-        try (Socket socket = new Socket("127.0.0.1", 5001)) {
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            Scanner sc = new Scanner(System.in);
-            String temp = "";
-            String s = "";
-            do {
 
-                out.println(s = sc.nextLine());
-                if (s.equals("download")) {
-                    char[] ar = new char[100];
-                    in.read(ar);
-                    System.out.println(in.read());
-//                    for (char value : ar) {
-//                        System.out.println(value);
-//                    }
-                    break;
+    /**
+     * client socket.
+     */
+    private final Socket socket;
+
+    /**
+     * constructor.
+     * @param socket sets socket
+     */
+    public Client(Socket socket) {
+        this.socket = socket;
+    }
+
+    /**
+     * method run server.
+     * @param dest - dest directory
+     */
+    public void run(String dest) throws IOException{
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+
+        Scanner scanner = new Scanner(System.in);
+
+        String temp = "";
+
+        String s;
+
+        do {
+            out.writeUTF(s = scanner.nextLine());
+            if (s.equals("download")) {
+                System.out.println(in.readUTF());
+                String filename;
+                out.writeUTF(filename = scanner.nextLine());
+
+                String instr = in.readUTF();
+                if ("no".equals(instr)) {
+                    System.out.println("no such file");
+                } else {
+                    System.out.println("file was successfully download");
                 }
-//                File file = new File("C:\\Users\\Andrey\\Desktop");
-//                out.println(file);
-                temp = in.readLine();
-                System.out.println(temp);
-            } while (!temp.equals("exit"));
+                char[] charar = instr.toCharArray();
+                byte[] bytear = new byte[charar.length];
+                for (int i = 0; i < charar.length; i++) {
+                    bytear[i] = (byte) charar[i];
+                }
+                try(BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(String.format("%s/%s", dest, filename)))) {
+                    bout.write(bytear);
+                }
+                catch (IOException e) {
+                    e.getStackTrace();
+                }
+                continue;
+            }
+            temp = in.readUTF();
+            System.out.println(temp);
+        } while (!"exit".equals(temp));
+    }
 
+    public static void main (String[] args) {
 
-
-
+        try (Socket socket = new Socket("127.0.0.1", 5001)) {
+            new Client(socket).run("C:\\Users\\Андрей\\Desktop/dir");
         }
         catch (IOException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
-
-
-        /*try (BufferedInputStream in = new BufferedInputStream(new FileInputStream("C:\\Users\\Andrey\\Desktop/directory/music2.txt")); BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\Users\\Andrey\\Desktop/directory/music3.mp3"))) {
-            int length;
-            byte[] array = new byte[4096];
-            while ((length = in.read(array)) != -1) {
-                out.write(array, 0, length);
-            }
-
-        }
-        catch (IOException e) {
-            e.getStackTrace();
-        }*/
-        /*try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream("C:\\Users\\Анна\\Desktop/test.txt"))) {
-            byte[] bytear = new byte[bin.available()];
-
-            while ((bin.read(bytear)) != -1);
-            char[] charar = new char[bytear.length];
-            for (int i = 0; i < charar.length; i++) {
-                charar[i] = (char) bytear[i];
-            }
-            for (char value : charar) {
-                System.out.print(value);
-            }
-        }
-        catch (IOException e) {
-            e.getStackTrace();
-        }*/
-
 
     }
 
