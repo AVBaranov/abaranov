@@ -70,13 +70,35 @@ public class Client {
 
     public static void main (String[] args) {
 
-        try (Socket socket = new Socket("127.0.0.1", 5001)) {
+        /*try (Socket socket = new Socket("127.0.0.1", 5001)) {
             new Client(socket).run("C:\\Users\\Андрей\\Desktop/dir");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        try  {
+            findFile(new File("C:\\Users\\Andrey\\Desktop/Factorial"), "file.txt", new File("C:\\Users\\Andrey\\Desktop/log.txt"));
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+    public static void findFile(File src, String target, File log) throws IOException {
+        File[] array = src.listFiles();
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].isDirectory()) {
+                findFile(array[i], target, log);
+            }
+            if (target.equals(array[i].getName()) && !(array[i].isDirectory())) {
+                FileOutputStream out = new FileOutputStream(log);
+                out.write(array[i].getPath().getBytes());
+                System.out.println(String.format("found %s", array[i].getName()));
+                return;
+            }
+        }
     }
 
 }

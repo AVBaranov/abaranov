@@ -43,13 +43,12 @@ public class Run {
     public static void main(String[] args){
 
 
-        try {
-            new Zip().zipData(new File("C:\\Users\\Andrey\\Desktop\\one.zip"), new File("C:\\Users\\Andrey\\Desktop\\8.06.2017"));
-
-        }
-        catch (IOException e) {
-        e.getStackTrace();
-        }
+       try {
+           new SearchFile().findFile(new File("C:\\Users\\Andrey\\Desktop/Factorial"), "file.txt", new File("C:\\Users\\Andrey\\Desktop/log.txt"));
+       }
+       catch (IOException e) {
+           e.printStackTrace();
+       }
 
        /*try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("C:\\Users\\Андрей\\Desktop\\two.zip"))) {
             byte[] ar = new byte[1024];
