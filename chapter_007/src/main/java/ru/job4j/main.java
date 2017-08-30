@@ -6,28 +6,33 @@ package ru.job4j;
 
 class cl implements Runnable {
 
+    private final String str;
+    public cl(String str) {
+        this.str = str;
+    }
+
     @Override
     public void run () {
 
         for (int i = 1; i <= 5; i++) {
-            System.out.println("subThread" + i);
+            System.out.println(String.format("%sThread%s", str, i));
             try {
-                Thread.sleep(5000);
+                Thread.sleep(500);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("end of subThread");
+        System.out.println(String.format("end of %sThread", str));
 
     }
 }
 
-class Run {
+class Delay {
     public void start () {
         try {
             System.out.println("start program");
-            Thread.sleep(1000);
+            Thread.sleep(4000);
         }
         catch (InterruptedException e) {
             e.printStackTrace();
@@ -36,7 +41,7 @@ class Run {
 
     public void end () {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(4000);
             System.out.println("end program");
         }
         catch (InterruptedException e) {
@@ -45,71 +50,68 @@ class Run {
     }
 }
 
-public class main {
-    static class test implements Runnable {
 
-        private final String value;
+ class ReadText implements Runnable {
 
-        private final int number;
-        public test(String value, int number) {
-            this.value = value;
-            this.number = number;
-        }
+    private final String value;
 
-        @Override
-        public void run() {
-
-
-
-            char[] ar = value.toCharArray();
-            int count = 0;
-            for (int i = 0; i < ar.length; i++) {
-                if (ar[i] == ' ') {
-                    count++;
-                }
-            }
-            if (number == 1) System.out.println(value.split(" +").length);
-            if (number == 2) System.out.println(count);
-
-
-        }
+    private final int number;
+    public ReadText(String value, int number) {
+        this.value = value;
+        this.number = number;
     }
 
+    @Override
+    public void run() {
+
+        char[] ar = value.toCharArray();
+        int count = 0;
+        for (int i = 0; i < ar.length; i++) {
+            if (ar[i] == ' ') {
+                count++;
+            }
+        }
+        if (number == 1) System.out.println(value.split(" +").length);
+        if (number == 2) System.out.println(count);
+
+    }
+}
+
+class RunThreads {
+    final long EXECUTION_TIME = 1000;
+    private final String text;
+    public RunThreads(String text) {
+        this.text = text;
+    }
+    public void run() {
+        new Delay().start();
+
+        long begin = System.currentTimeMillis();
+
+        Thread thread1 = new Thread(new ReadText(text, 1));
+        thread1.start();
+
+        Thread thread2 = new Thread(new ReadText(text, 2));
+        thread2.start();
+
+        new Delay().end();
+
+        long end = System.currentTimeMillis();
+
+        if (EXECUTION_TIME <= (end - begin)) {
+            thread1.interrupt();
+            thread2.interrupt();
+            System.out.println("zdfsdf");
+        }
+    }
+}
+
+public class main {
 
 
     public static void main(String[] args) {
 
+        new RunThreads("sfgdfgh   sdsdg   wfgedgdfg  qwrwerwertwet   sdfgdfg   ghmghjg   ").run();
 
-
-//        System.out.println("start program");
-
-        new Run().start();
-
-        String str = new String("sfgdfgh   sdsdg   wfgedgdfg  qwrwerwertwet   sdfgdfg   ghmghjg   ");
-
-        new Thread(new test(str, 1)).start();
-
-        new Thread(new test(str, 2)).start();
-
-        new Run().end();
-
-        Thread t = new Thread(new cl());
-        t.start();
-        if (!t.isInterrupted()) {
-//            t.interrupt();
-            System.out.println("sfgvdfgdfg");
-        }
-
-        /*new Thread(new cl()).start();
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("mainThread" + i);
-            try {
-                Thread.sleep(1000);
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("end of mainThread");*/
 }
 }
