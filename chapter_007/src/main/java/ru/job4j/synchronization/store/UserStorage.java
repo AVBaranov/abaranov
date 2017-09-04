@@ -1,5 +1,7 @@
 package ru.job4j.synchronization.store;
 
+
+import net.jcip.annotations.GuardedBy;
 import net.jcip.annotations.ThreadSafe;
 import ru.job4j.synchronization.store.NoSuchUserIdException;
 import ru.job4j.synchronization.store.NotEnoughAmountException;
@@ -13,84 +15,93 @@ import java.util.*;
  */
 @ThreadSafe public class UserStorage {
 
-    private List<User> UserList = new ArrayList<>();
+    private Object lock = new Object();
+
+    @GuardedBy("lock") private List<User> UserList = new ArrayList<>();
 
     public User add(User user) {
-        if (user == null) {
-            System.out.println("no such user");
-            return null;
+        synchronized (this) {
+            if (user == null) {
+                System.out.println("no such user");
+                return null;
+            }
+            UserList.add(user);
+            return user;
         }
-        UserList.add(user);
-        return user;
     }
 
     public boolean delete(User user) {
-        boolean b = false;
-        if (user != null) {
-            for (int i = 0; i < UserList.size(); i++) {
-                if (UserList.get(i).getId() == user.getId()) {
-                    UserList.remove(i);
-                    b = true;
-                    break;
+        synchronized (this) {
+            boolean b = false;
+            if (user != null) {
+                for (int i = 0; i < UserList.size(); i++) {
+                    if (UserList.get(i).getId() == user.getId()) {
+                        UserList.remove(i);
+                        b = true;
+                        break;
+                    }
                 }
             }
+            return b;
         }
-        return b;
     }
 
     public User get(int index) {
-        return UserList.get(index);
+        synchronized (this) {
+            return UserList.get(index);
+        }
     }
 
-    public void transfer(int srcId, int destId, int amount) {
+    private int srcindex = 0;
+    private int dstindex = 0;
 
-        boolean b = true;
-
-        int srcindex = 0;
-        int dstindex = 0;
-
-        for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getId() == srcId) {
-                b = false;
-                srcindex = i + 1;
-                break;
+    private void checkForException(int srcId, int destId, int amount) {
+        synchronized (this) {
+            boolean b = true;
+            for (int i = 0; i < UserList.size(); i++) {
+                if (UserList.get(i).getId() == srcId) {
+                    b = false;
+                    this.srcindex = i;
+                    break;
+                }
             }
-        }
-        if (b) {
-            throw new NoSuchUserIdException("no such source id");
-
-        }
-
-        b = true;
-
-        for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getId() == destId) {
-                b = false;
-                dstindex = i + 1;
-                break;
+            if (b) {
+                throw new NoSuchUserIdException("no such source id");
             }
-        }
-        if (b) {
-            throw new NoSuchUserIdException("no such destinetion id");
 
-        }
+            b = true;
 
-        b = true;
+            for (int i = 0; i < UserList.size(); i++) {
+                if (UserList.get(i).getId() == destId) {
+                    b = false;
+                    this.dstindex = i;
+                    break;
+                }
+            }
+            if (b) {
+                throw new NoSuchUserIdException("no such destinetion id");
+            }
 
-        for (int i = 0; i < UserList.size(); i++) {
-            if (UserList.get(i).getId() == srcId) {
-                if (UserList.get(i).getAmount() < amount)
-                {
-                    throw new NotEnoughAmountException("not enough amount");
+            for (int i = 0; i < UserList.size(); i++) {
+                if (UserList.get(i).getId() == srcId) {
+                    if (UserList.get(i).getAmount() < amount)
+                    {
+                        throw new NotEnoughAmountException("not enough amount");
+                    }
+                    if (amount < 0) {
+                        throw new IllegalAmountException("amount can't be negative");
+                    }
                 }
             }
         }
+    }
 
-        System.out.println(srcindex + " " + dstindex);
-        UserList.set(srcindex, new User(srcId, (UserList.get(srcId).getAmount() - amount)));
-        UserList.set(dstindex, new User(destId, (UserList.get(destId).getAmount() + amount)));
-
-
+    public void transfer(int srcId, int destId, int amount) {
+        synchronized(this) {
+            this.checkForException(srcId, destId, amount);
+            UserList.set(this.srcindex, new User(srcId, (UserList.get(this.srcindex).getAmount() - amount)));
+            UserList.set(this.dstindex, new User(destId, (UserList.get(this.dstindex).getAmount() + amount)));
+        }
     }
 
 }

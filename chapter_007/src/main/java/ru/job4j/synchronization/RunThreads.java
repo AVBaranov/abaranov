@@ -33,11 +33,11 @@ public class RunThreads {
         UserStorage store = new UserStorage();
         store.add(new User(1, 100));
         store.add(new User(2, 150));
-        store.add(new User(3, 350));
-        store.add(new User(4, 350));
-
-
-
+        System.out.println(String.format("%s %s\n%s %s", store.get(0).getId(), store.get(0).getAmount(), store.get(1).getId(), store.get(1).getAmount()));
+        store.transfer(1,2,90);
+        System.out.println(String.format("%s %s\n%s %s", store.get(0).getId(), store.get(0).getAmount(), store.get(1).getId(), store.get(1).getAmount()));
+        store.transfer(1,2,10);
+        System.out.println(String.format("%s %s\n%s %s", store.get(0).getId(), store.get(0).getAmount(), store.get(1).getId(), store.get(1).getAmount()));
 
     }
 }
