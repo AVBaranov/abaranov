@@ -12,7 +12,9 @@ import net.jcip.annotations.ThreadSafe;
     @GuardedBy("lock") private int count = 0;
 
     public int getCount() {
-        return count;
+        synchronized (lock) {
+            return count;
+        }
     }
 
     public void increment() {
