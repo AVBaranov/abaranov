@@ -1,5 +1,7 @@
 package ru.job4j.synchronization;
 
+import ru.job4j.synchronization.store.IllegalAmountException;
+import ru.job4j.synchronization.store.NoSuchExpansionException;
 import ru.job4j.synchronization.store.User;
 import ru.job4j.synchronization.store.UserStorage;
 
@@ -14,6 +16,7 @@ import java.util.List;
  */
 public class RunThreads {
 
+    List<String> LIST = new ArrayList<>();
     public static void main(String[] args) {
         /*Counter counter = new Counter();
         Thread t1 = new IndirectThreaed(counter);
@@ -89,41 +92,98 @@ public class RunThreads {
                 }
             }
         }*/
-        List<String> ls = new RunThreads().parallelStream(new File("C:\\Users\\Andrey\\Desktop/2"), "check");
-        for (String value : ls) {
-            System.out.println(value);
+        List<String> list = new ArrayList<>();
+        list.add("doc");
+        list.add("txte");
+
+        Thread t1 = new IncidentalThread(new File("C:\\Users\\Андрей\\Desktop/1"), "check", list);
+        Thread t2 = new IncidentalThread(new File("C:\\Users\\Андрей\\Desktop/1"), "check", list);
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
+//        List<String> ls = new RunThreads().parallelStream(new File("C:\\Users\\Андрей\\Desktop/1"), "check", list);
+        new RunThreads().show();
+
+
+    }
+    public void show() {
+        for (String value : LIST) {
+            System.out.println(value);
+        }
     }
 
 
+    public List<String> parallelStream(File root, String text, List<String> exp) {
 
-    public List<String> parallelStream(File root, String text) {
-        List<String> result = new ArrayList<>();
-        File[] array = root.listFiles();
-        for (int i = 0; i < array.length; i++) {
-            if (!array[i].isDirectory()) {
-                try (FileInputStream fin = new FileInputStream(array[i])) {
-                    char[] ar = new char[fin.available()];
-                    for (int j = 0; j < ar.length; j++) {
-                        ar[j] = (char) fin.read();
-                    }
-                    String str = new String(ar);
-                    String[] strArr = str.split(" ");
-                    for (int j = 0; j < strArr.length; j++) {
-                        if (strArr[j].equalsIgnoreCase(text)) {
-                            result.add(array[i].getPath());
+        synchronized (this) {
+            List<String> result = new ArrayList<>();
+            File[] array = root.listFiles();
+            boolean b = true;
+            for (int i = 0; i < array.length; i++) {
+                if (!array[i].isDirectory()) {
+                    //проверяем есть ли файлы с таким с расширением
+                    String expansion = array[i].getName().replace(".", "AAA");
+                    String[] expArr = expansion.split("AAA");
+                    for (int x = 0; x < exp.size(); x++) {
+                        if (exp.get(x).equalsIgnoreCase(expArr[expArr.length - 1])) {
+                            b = false;
                             break;
                         }
                     }
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
+                    //если файлов с таким расширением нет, то выбрасываем исключение
+                    if (b) {
+                        throw new NoSuchExpansionException("no such expansion");
+                    }
+                    //если файлы с таким расширением есть, то приступаем к поиску искомого слова в файлах директории
+                    try (FileInputStream fin = new FileInputStream(array[i])) {
+                        char[] ar = new char[fin.available()];
+                        for (int j = 0; j < ar.length; j++) {
+                            ar[j] = (char) fin.read();
+                        }
+                        String str = new String(ar);
+                        String[] strArr = str.split(" ");
+                        for (int j = 0; j < strArr.length; j++) {
+                            if (strArr[j].equalsIgnoreCase(text)) {
+                                result.add(array[i].getPath());
+                                LIST.add(array[i].getPath());
+                                break;
+                            }
+                        }
+                    }
+                    catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+            return result;
         }
-        return result;
     }
 
+}
 
+class IncidentalThread extends Thread {
+    File root;
+    String text;
+    List<String> exp;
+
+    public IncidentalThread(File root, String text, List<String> exp) {
+        this.root = root;
+        this.text = text;
+        this.exp = exp;
+    }
+
+    private void searchFiles(File root, String text, List<String> exp) {
+        new RunThreads().parallelStream(root, text, exp);
+    }
+    @Override
+    public void run() {
+        searchFiles(this.root, this.text, this.exp);
+
+    }
 }
