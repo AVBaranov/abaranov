@@ -1,5 +1,8 @@
 package ru.job4j.collectionsframework.list;
 
+import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
+
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
@@ -7,103 +10,124 @@ import java.util.NoSuchElementException;
 /**
  * Created by Андрей on 19.05.2017.
  */
-public class Linkedlist<E> implements Iterable<E>{
+@ThreadSafe public class Linkedlist<E> implements Iterable<E>{
 
-    private Node<E> last;
+    private Object lock = new Object();
 
-    private Node<E> first;
+    @GuardedBy("lock") private Node<E> last;
 
-    private Node<E> iternext;
+    @GuardedBy("lock") private Node<E> first;
 
-    private int size = 0;
+    @GuardedBy("lock") private Node<E> iternext;
 
-    private int itercount = 0;
+    @GuardedBy("lock") private int size = 0;
+
+    @GuardedBy("lock") private int itercount = 0;
 
     public Linkedlist() {
     }
 
-    private class Node<E> {
-        Node<E> prev;
-        Node<E> next;
-        E item;
+    @ThreadSafe private class Node<E> {
+
+        @GuardedBy("lock") Node<E> prev;
+        @GuardedBy("lock") Node<E> next;
+        @GuardedBy("lock") E item;
         Node(Node<E> prev, E item, Node<E> next) {
-            this.item = item;
-            this.next = next;
-            this.prev = prev;
+            synchronized (lock) {
+                this.item = item;
+                this.next = next;
+                this.prev = prev;
+            }
         }
     }
 
     public void add(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;
-        if (l == null) {
-            first = newNode;
-            iternext = newNode;
-        }
+        synchronized (lock) {
+            final Node<E> l = last;
+            final Node<E> newNode = new Node<>(l, e, null);
+            last = newNode;
+            if (l == null) {
+                first = newNode;
+                iternext = newNode;
+            }
 
-        else
-            l.next = newNode;
-        size++;
+            else
+                l.next = newNode;
+            size++;
+        }
     }
 
     public E get(int index) {
-        if (!(index >= 0 && index < size)) {
-            throw new IndexOutOfBoundsException("out of linkedlist bounds");
+        synchronized (lock) {
+            if (!(index >= 0 && index < size)) {
+                throw new IndexOutOfBoundsException("out of linkedlist bounds");
+            }
+            return node(index).item;
         }
-        return node(index).item;
     }
 
     Node<E> node(int index) {
-        if (index < (size >> 1)) {
-            Node<E> x = first;
-            for (int i = 0; i < index; i++)
-                x = x.next;
-            return x;
-        } else {
-            Node<E> x = last;
-            for (int i = size - 1; i > index; i--)
-                x = x.prev;
-            return x;
+        synchronized (lock) {
+            if (index < (size >> 1)) {
+                Node<E> x = first;
+                for (int i = 0; i < index; i++)
+                    x = x.next;
+                return x;
+            } else {
+                Node<E> x = last;
+                for (int i = size - 1; i > index; i--)
+                    x = x.prev;
+                return x;
+            }
         }
     }
 
     private boolean hasCycle(Node first) {
-        boolean b = false;
-        Node<E> temp = first.next;
-        while (!temp.item.equals(last.item)) {
-            if (/*first.item.equals(Tree.item*/first.equals(temp.next)) {
-                return true;
+        synchronized (lock) {
+            boolean b = false;
+            Node<E> temp = first.next;
+            while (!temp.item.equals(last.item)) {
+                if (/*first.item.equals(Tree.item*/first.equals(temp.next)) {
+                    return true;
+                }
+                temp = temp.next;
             }
-            temp = temp.next;
+            return b;
         }
-        return b;
     }
     public boolean runhasCycle() {
-        return hasCycle(first);
+        synchronized (lock) {
+            return hasCycle(first);
+        }
     }
 
     @Override
     public Iterator iterator() {
-        return new Itr();
+        synchronized (lock) {
+            return new Itr();
+        }
     }
 
-    private class Itr implements Iterator<E> {
+    @ThreadSafe private class Itr implements Iterator<E> {
 
-        private Node<E> lastReturned;
+        @GuardedBy("lock") private Node<E> lastReturned;
 
         public boolean hasNext() {
-            return itercount < size;
+            synchronized (lock) {
+                return itercount < size;
+            }
         }
 
         public E next() {
-            if (!hasNext()) {
-                throw new IndexOutOfBoundsException("out of iterator() bounds");
+            synchronized (lock) {
+                if (!hasNext()) {
+                    throw new IndexOutOfBoundsException("out of iterator() bounds");
+                }
+                lastReturned = iternext;
+                iternext = iternext.next;
+                itercount++;
+                return lastReturned.item;
             }
-            lastReturned = iternext;
-            iternext = iternext.next;
-            itercount++;
-            return lastReturned.item;
         }
     }
 
