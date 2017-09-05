@@ -1,9 +1,8 @@
 package ru.job4j.synchronization;
 
-import ru.job4j.synchronization.store.IllegalAmountException;
-import ru.job4j.synchronization.store.NoSuchExpansionException;
-import ru.job4j.synchronization.store.User;
-import ru.job4j.synchronization.store.UserStorage;
+import ru.job4j.synchronization.searchText.IncThread;
+import ru.job4j.synchronization.searchText.NoSuchExpansionException;
+import ru.job4j.synchronization.searchText.ParallelStream;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +15,8 @@ import java.util.List;
  */
 public class RunThreads {
 
-    List<String> LIST = new ArrayList<>();
+    static List<String> LIST = new ArrayList<>();
+
     public static void main(String[] args) {
         /*Counter counter = new Counter();
         Thread t1 = new IndirectThreaed(counter);
@@ -92,12 +92,12 @@ public class RunThreads {
                 }
             }
         }*/
-        List<String> list = new ArrayList<>();
+        /*List<String> list = new ArrayList<>();
         list.add("doc");
-        list.add("txte");
+        list.add("txt");
 
-        Thread t1 = new IncidentalThread(new File("C:\\Users\\Андрей\\Desktop/1"), "check", list);
-        Thread t2 = new IncidentalThread(new File("C:\\Users\\Андрей\\Desktop/1"), "check", list);
+        Thread t1 = new IncThread(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
+        Thread t2 = new IncThread(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
         t1.start();
         t2.start();
         try {
@@ -108,18 +108,23 @@ public class RunThreads {
         }
 
 //        List<String> ls = new RunThreads().parallelStream(new File("C:\\Users\\Андрей\\Desktop/1"), "check", list);
-        new RunThreads().show();
 
+
+        new ParallelStream().show();*/
 
     }
-    public void show() {
+
+
+
+
+
+    /*public void show() {
         for (String value : LIST) {
             System.out.println(value);
         }
-    }
+    }*/
 
-
-    public List<String> parallelStream(File root, String text, List<String> exp) {
+    /*public List<String> parallelStream(File root, String text, List<String> exp) {
 
         synchronized (this) {
             List<String> result = new ArrayList<>();
@@ -163,11 +168,11 @@ public class RunThreads {
             }
             return result;
         }
-    }
+    }*/
 
 }
+/*class IncidentalThread extends Thread {
 
-class IncidentalThread extends Thread {
     File root;
     String text;
     List<String> exp;
@@ -178,12 +183,9 @@ class IncidentalThread extends Thread {
         this.exp = exp;
     }
 
-    private void searchFiles(File root, String text, List<String> exp) {
-        new RunThreads().parallelStream(root, text, exp);
-    }
     @Override
     public void run() {
-        searchFiles(this.root, this.text, this.exp);
-
+        new RunThreads().parallelStream(this.root, this.text, this.exp);
     }
-}
+}*/
+

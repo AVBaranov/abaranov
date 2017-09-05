@@ -1,4 +1,4 @@
-package ru.job4j.synchronization.store;
+package ru.job4j.synchronization.searchText;
 
 /**
  * Created by Андрей on 05.09.2017.
