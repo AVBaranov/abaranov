@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class RunSearch {
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
+        /*List<String> list = new ArrayList<>();
         list.add("doc");
         list.add("txt");
 
@@ -24,11 +24,19 @@ public class RunSearch {
             e.printStackTrace();
         }
 
-        /*List<String> ls = new ParallelStream().search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
-        for (String value : ls) {
-            System.out.println(value);
-        }*/
+//        List<String> ls = new ParallelStream().search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
+//        for (String value : ls) {
+//            System.out.println(value);
+//        }
 
-        new ParallelStream().show();
+        new ParallelStream().show();*/
+        Object lock = new Object();
+        synchronized (lock) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
