@@ -14,19 +14,43 @@ public class RunThreads {
 
         long begin = System.currentTimeMillis();
 
-        Thread thread1 = new Thread(new ReadText(this.text, 1));
-        thread1.start();
 
-        Thread thread2 = new Thread(new ReadText(this.text, 2));
-        thread2.start();
+        Thread t1 = new Thread() {
+            @Override
+            public void run() {
+                char[] ar = text.toCharArray();
+                int count = 0;
+                for (int i = 0; i < ar.length; i++) {
+                    if (ar[i] == ' ') {
+                        count++;
+                    }
+                }
+                System.out.println(count);
+            }
+        };
+
+        Thread t2 = new Thread() {
+            @Override
+            public void run() {
+                System.out.println(text.split(" +").length);
+            }
+        };
+        t1.start();
+        t2.start();
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         new Delay().end();
 
         long end = System.currentTimeMillis();
 
         if (EXECUTION_TIME <= (end - begin)) {
-            thread1.interrupt();
-            thread2.interrupt();
+            t1.interrupt();
+            t2.interrupt();
             System.out.println("Threads have been interrupted");
         }
     }

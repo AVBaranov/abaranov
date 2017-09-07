@@ -11,7 +11,7 @@ import net.jcip.annotations.ThreadSafe;
 public class Main {
 
     public static void main(String[] args) {
-//        new RunThreads("sfgdfgh   sdsdg   wfgedgdfg  qwrwerwertwet   sdfgdfg     ghmghjg   ").run();
+        new RunThreads("sfgdfgh   sdsdg   wfgedgdfg  qwrwerwertwet   sdfgdfg     ghmghjg ghjghj ghjgh hjk ").run();
 
     }
 }
