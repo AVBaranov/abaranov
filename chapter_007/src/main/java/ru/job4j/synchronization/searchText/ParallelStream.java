@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class ParallelStream {
 
-    static List<String> LIST = new ArrayList<>();
+    private List<String> textStore = new ArrayList<>();
 
     public List<String> search(File root, String text, List<String> exp) {
         synchronized (this) {
@@ -44,7 +44,7 @@ public class ParallelStream {
                         for (int j = 0; j < strArr.length; j++) {
                             if (strArr[j].equalsIgnoreCase(text)) {
                                 result.add(array[i].getPath());
-                                LIST.add(array[i].getPath());
+                                textStore.add(array[i].getPath());
                                 break;
                             }
                         }
@@ -59,7 +59,7 @@ public class ParallelStream {
     }
 
     public void show() {
-        for (String value : LIST) {
+        for (String value : textStore) {
             System.out.println(value);
         }
     }

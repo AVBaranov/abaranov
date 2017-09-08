@@ -13,11 +13,19 @@ import java.util.concurrent.Executors;
  */
 public class RunSearch {
     public static void main(String[] args) {
-        /*List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add("doc");
         list.add("txt");
 
-        Thread t1 = new IncThread(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
+        List<String> ls = new ParallelStream().search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
+        for (String value : ls) {
+            System.out.println(value);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        /*Thread t1 = new IncThread(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
         Thread t2 = new IncThread(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
         t1.start();
         t2.start();
@@ -26,40 +34,10 @@ public class RunSearch {
             t2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
-//        List<String> ls = new ParallelStream().search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
-//        for (String value : ls) {
-//            System.out.println(value);
-//        }
 
-        new ParallelStream().show();*/
-
-//        ExecutorService exs = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-//        System.out.println(Runtime.getRuntime().availableProcessors());
-
-        String str = new String("sdhdfghdfg");
-
-        Thread t1 = new Thread() {
-            @Override
-            public void run() {
-                System.out.println(str.length());
-            }
-        };
-        Thread t2 = new Thread() {
-            @Override
-            public void run() {
-                System.out.println(str.length() + 10);
-            }
-        };
-        t1.start();
-        t2.start();
-        try {
-            t1.join();
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        new ParallelStream().show();
 
 
     }
