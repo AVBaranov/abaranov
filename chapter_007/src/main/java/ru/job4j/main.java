@@ -1,5 +1,12 @@
 package ru.job4j;
 
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
+
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
+
 /**
  * Created by Andrey on 27.08.2017.
  */
@@ -106,12 +113,98 @@ class RunThreads {
     }
 }
 
-public class main {
+class Threadpool implements Executor {
+    private Queue<Runnable> workQueue = new ConcurrentLinkedQueue<>();
 
+    private final int SIZE;
+    private int count = 1;
+
+    public Threadpool(int nThreads) {
+        /*for (int i = 0; i < nThreads; i++) {
+            new Thread(new TaskWorker()).start();
+        }*/
+
+        this.SIZE = nThreads;
+
+    }/*for (int i = 0; i < nThreads; i++) {
+            workQueue.add(new Thread() {
+                @Override
+                public void run() {
+                    System.out.println(Thread.currentThread().getId());
+                }
+            });
+        }*/
+
+    @Override
+    public void execute(Runnable command) {
+
+        for (Runnable value : workQueue) {
+            ((Thread) value).start();
+        }
+    }
+
+    public void add(MakeWork work) {
+        if (this.count > this.SIZE) {
+            System.out.println("queue is overload");
+            return;
+        }
+        this.workQueue.add(new Thread() {
+            @Override
+            public void run() {
+                work.doWork();
+            }
+        });
+        this.count++;
+    }
+
+
+}
+
+class MakeWork {
+
+    private final int height;
+
+    private final String name;
+
+    public MakeWork(int height, String name) {
+        this.height = height;
+        this.name = name;
+    }
+
+    public void doWork() {
+        System.out.println(String.format("%s = %s", this.height, this.name));
+    }
+
+}
+
+public class main {
 
     public static void main(String[] args) {
 
-        new RunThreads("sfgdfgh   sdsdg   wfgedgdfg  qwrwerwertwet   sdfgdfg   ghmghjg   ").run();
+//        new RunThreads("sfgdfgh   sdsdg   wfgedgdfg  qwrwerwertwet   sdfgdfg   ghmghjg   ").run();
+
+       /* new Threadpool(Runtime.getRuntime().availableProcessors()).execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getId());
+            }
+        });*/
+
+       /*Threadpool t = new Threadpool(Runtime.getRuntime().availableProcessors());
+       t.add(new MakeWork(10, "string"));
+        t.add(new MakeWork(120, "strsdfsdfing"));
+        t.add(new MakeWork(120, "strsdfsdfing"));
+        t.add(new MakeWork(120, "strsdfsdfing"));
+
+       t.execute(new Runnable() {
+           @Override
+           public void run() {
+               System.out.println(Thread.currentThread().getId());
+           }
+       });*/
+
+
+
 
 
         //        ExecutorService exs = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
