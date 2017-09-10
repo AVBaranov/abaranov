@@ -1,11 +1,19 @@
 package ru.job4j.wait_notify;
 
 import java.util.Queue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 
 /**
  * Created by Андрей on 06.09.2017.
  */
+
+
+
+
 public class ProducerCustomer {
+
+    SimpleLock sl = new SimpleLock();
 
     private SimpleQueue<String> queue = new SimpleQueue<>();
 
@@ -15,7 +23,8 @@ public class ProducerCustomer {
         synchronized (this.lock) {
             if (this.queue.isEmpty()) {
                 System.out.println("no items available");
-                lock.wait();
+//                lock.wait();
+                sl.lock(this.lock);
             }
             System.out.println(String.format("geting element: %s", this.queue.get()));
         }
@@ -26,7 +35,8 @@ public class ProducerCustomer {
         synchronized (this.lock) {
             this.queue.add(element);
             if (!this.queue.isEmpty()) {
-                this.lock.notify();
+//                this.lock.notify();
+                sl.unlock(this.lock);
             }
         }
     }
