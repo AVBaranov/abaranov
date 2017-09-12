@@ -13,12 +13,21 @@ public class ParallelStream {
 
     private List<String> textStore = new ArrayList<>();
 
-    public List<String> search(File root, String text, List<String> exp) {
+    public boolean search(File root, String text, List<String> exp) {
         synchronized (this) {
-            List<String> result = new ArrayList<>();
+//            List<String> result = new ArrayList<>();
+            /**
+             *  boolean folder for checking if searching word was found.
+             */
+            boolean ADDELEMENT = false;
             File[] array = root.listFiles();
             boolean b = true;
             for (int i = 0; i < array.length; i++) {
+               // если элемент корневой директории является директорией, то рекурсивно вызываем метод для этого элемента
+                if (array[i].isDirectory()) {
+                    search(array[i], text, exp);
+                }
+                // если элемент не является директорией, то начинаем поиск
                 if (!array[i].isDirectory()) {
                     //проверяем есть ли файлы с таким с расширением
                     String expansion = array[i].getName().replace(".", "AAA");
@@ -43,8 +52,9 @@ public class ParallelStream {
                         String[] strArr = str.split(" ");
                         for (int j = 0; j < strArr.length; j++) {
                             if (strArr[j].equalsIgnoreCase(text)) {
-                                result.add(array[i].getPath());
+//                                result.add(array[i].getPath());
                                 textStore.add(array[i].getPath());
+                                ADDELEMENT = true;
                                 break;
                             }
                         }
@@ -54,7 +64,7 @@ public class ParallelStream {
                     }
                 }
             }
-            return result;
+            return ADDELEMENT;
         }
     }
 

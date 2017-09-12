@@ -17,10 +17,11 @@ public class RunSearch {
         list.add("doc");
         list.add("txt");
 
-        List<String> ls = new ParallelStream().search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
-        for (String value : ls) {
-            System.out.println(value);
-        }
+        boolean b = new ParallelStream().search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
+        System.out.println(b);
+        ParallelStream ps = new ParallelStream();
+        ps.search(new File("C:\\Users\\Andrey\\Desktop/2"), "check", list);
+        ps.show();
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
