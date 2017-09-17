@@ -10,17 +10,21 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class SimpleThread extends Thread {
 
-    private Bomberman object;
-    private Lock lock;
+    private Bomberman bomberman;
+//    private Lock lock;
 
-    public SimpleThread(Bomberman object) {
-        this.object = object;
-        this.lock = new ReentrantLock();
+    public SimpleThread(Bomberman bomberman) {
+        this.bomberman = bomberman;
+//        this.lock = new ReentrantLock();
     }
 
     @Override
     public void run() {
-
+        try {
+            bomberman.move();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
