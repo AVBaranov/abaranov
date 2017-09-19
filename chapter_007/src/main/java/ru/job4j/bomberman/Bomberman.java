@@ -30,24 +30,44 @@ class SimpleThread extends Thread {
 
 public class Bomberman {
 
-        final private ReentrantLock[][] board;
+    final private ReentrantLock[][] board;
 
-        public Bomberman(ReentrantLock[][] board) {
-            this.board = board;
+    private int countX = 0;
+    private int countY = 0;
+
+    public Bomberman(int x, int y) {
+        this.board = new ReentrantLock[x][y];
+    }
+
+    public void createPlayer() {
+        if (countX >= board.length) {
+            countY++;
         }
+        this.board[countX++][countY].lock();
+    }
 
-        public void occupyCell(Lock lock) {
-            lock.lock();
-        }
 
-        public void move() throws Exception {
-            for (int i = 0; i < board[i].length; i++) {
-                for (int j = 0; j < board[j].length; j++) {
-                    if (board[i][j].tryLock(500, TimeUnit.SECONDS)) {
-                        occupyCell(board[i][j]);
-                    }
+
+
+    public void move() throws Exception {
+        this.board[countX][countY].unlock();
+        this.board[countX++][countY++].lock();
+    }
+
+
+
+    /*public void wrongmove() throws Exception {
+        for (int i = 0; i < board[i].length; i++) {
+            for (int j = 0; j < board[j].length; j++) {
+                if (board[i][j].tryLock(500, TimeUnit.SECONDS)) {
+                    occupyCell(board[i][j]);
                 }
             }
         }
+    }
 
+    public void occupyCell(Lock lock) {
+        lock.lock();
+    }*/
+    
 }
