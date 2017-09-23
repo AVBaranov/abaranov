@@ -1,7 +1,12 @@
 package ru.job4j.nonBlockingAlgorithm;
 
+import ru.job4j.additional_test.Check;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -80,12 +85,24 @@ public class NonBlockAlgorithm {
         }
     }
 
+    class comp implements Comparable<Character> {
+
+        @Override
+        public int compareTo(Character o) {
+            return this.compareTo(o);
+        }
+    }
+
     public static void main(String[] args) {
 
         NonBlockAlgorithm map = new NonBlockAlgorithm();
         map.add(10, new User("sdrf"));
         map.update(10, new User("sdfgdfhh"));
         System.out.println(map.get(10).getName());
+
+        System.out.println(new Check().isReversal("fuck you", "uoy kcuf"));
+
     }
+
 
 }

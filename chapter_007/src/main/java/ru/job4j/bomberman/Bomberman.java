@@ -69,5 +69,5 @@ public class Bomberman {
     public void occupyCell(Lock lock) {
         lock.lock();
     }*/
-    
+
 }
