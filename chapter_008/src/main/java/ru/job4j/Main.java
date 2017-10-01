@@ -1,6 +1,7 @@
 package ru.job4j;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jsoup.nodes.Attributes;
@@ -75,7 +76,7 @@ public class Main {
             PreparedStatement st = conn.prepareStatement("CREATE TABLE if not exists vacancy (id SERIAL PRIMARY KEY, name TEXT, link TEXT, date TEXT )");
             st.executeUpdate();
 
-            Document html = Jsoup.connect("http://www.sql.ru/forum/job-offers/55").get();
+            Document html = Jsoup.connect("http://www.sql.ru/forum/job-offers/35").get();
 
 //            System.out.println(html.body().getElementsByAttribute("href"));
             Elements e = html.select("td[class$=postslisttopic]");
@@ -105,21 +106,33 @@ public class Main {
 //            System.out.println(String.format("%s %s", e.get(0).text(), e2.get(0).text()));
 
 
-            for (int i = 0; i < e.size(); i++) {
+            st = conn.prepareStatement("SELECT name FROM vacancy");
+            ResultSet rs = st.executeQuery();
+            List<String> names = new ArrayList<>();
+            while (rs.next()) {
+                names.add(rs.getString("name"));
+            }
+            begin : for (int i = 0; i < e.size(); i++) {
                 if (e.get(i).text().contains("JavaScript") || e.get(i).text().contains("Java Script")) {
-                    System.out.println("FUCK YOU");
+                    System.out.println("JAVASCRIPT IS NOT CORRECT");
                     continue;
                 }
                 if (e.get(i).text().contains("Java") || e.get(i).text().contains("java")) {
                     System.out.println(String.format("%s  -  %s \n%s", e.get(i).getElementsByTag("a").text(), e2.get(i).text(), e.get(i).getElementsByTag("a").attr("href")));
-                    PreparedStatement st2 = conn.prepareStatement("INSERT INTO vacancy(name, link, date) VALUES (?, ?, ?)");
+                    st = conn.prepareStatement("INSERT INTO vacancy(name, link, date) VALUES (?, ?, ?)");
 
-                    st2.setString(1, e.get(i).text());
-                    st2.setString(2, e.get(i).getElementsByTag("a").attr("href"));
-                    st2.setString(3, e2.get(i).text());
-                    st2.executeUpdate();
+                    for (int j = 0; j < names.size(); j++) {
+                        if ((e.get(i).text()).equals(names.get(j))) {
+                            continue begin;
+                        }
+                    }
+                    st.setString(1, e.get(i).text());
+                    st.setString(2, e.get(i).getElementsByTag("a").attr("href"));
+                    st.setString(3, e2.get(i).text());
+                    st.executeUpdate();
                 }
             }
+            names.clear();
 //            st.executeUpdate();
             long time = 3000;
             /*for (;;) {
