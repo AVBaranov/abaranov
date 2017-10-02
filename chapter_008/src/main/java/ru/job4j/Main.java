@@ -32,7 +32,7 @@ import java.io.File;
 
 public class Main {
 
-//    private static final Logger Log = LoggerFactory.getLogger(SQLStorage.class);
+    private static final Logger logger = LoggerFactory.getLogger(SQLStorage.class);
 
     public static void main (String[] args) {
 
@@ -64,7 +64,7 @@ public class Main {
         System.out.println(end - start);*/
 
 
-        Connection conn = null;
+        /*Connection conn = null;
 
 
         try {
@@ -88,21 +88,10 @@ public class Main {
 
 //            Attributes attr = e.get(10).attributes();
 
-            /*for (int i = 0; i < e.size(); i++) {
-                if (e.get(i).text().contains("JavaScript") || e.get(i).text().contains("Java Script")) {
-                    System.out.println("FUCK YOU");
-                    continue;
-                }
-                if (e.get(i).text().contains("Java") || e.get(i).text().contains("java")) {
-                    System.out.println(e.get(i).text());
-                }
-//                System.out.println(e.get(i).text());
-            }*/
+
 
             Elements e2 = html.select("td[style][class]");
-            /*for (int i = 0; i < e2.size(); i++) {
-                System.out.println(e2.get(i).text());
-            }*/
+
 //            System.out.println(String.format("%s %s", e.get(0).text(), e2.get(0).text()));
 
 
@@ -135,23 +124,26 @@ public class Main {
             names.clear();
 //            st.executeUpdate();
             long time = 3000;
-            /*for (;;) {
-                try {
-                    Thread.sleep(time);
-                    System.out.println("fuck you");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }*/
+//            for (;;) {
+//                try {
+//                    Thread.sleep(time);
+//                    System.out.println("fuck you");
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        new Assembly_Module().execute(new File("C:\\Users\\Андрей\\Desktop/readme.txt"), 10000);
+
 
 
     }
+
 
 
 
