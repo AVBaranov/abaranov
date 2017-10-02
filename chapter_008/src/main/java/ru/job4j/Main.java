@@ -32,7 +32,7 @@ import java.io.File;
 
 public class Main {
 
-    private static final Logger logger = LoggerFactory.getLogger(SQLStorage.class);
+//    private static final Logger logger = LoggerFactory.getLogger(SQLStorage.class);
 
     public static void main (String[] args) {
 
@@ -138,8 +138,31 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-        new Assembly_Module().execute(new File("C:\\Users\\Андрей\\Desktop/readme.txt"), 10000);
+//        new Assembly_Module().execute(new File("C:\\Users\\Андрей\\Desktop/readme.txt"), 10000);
 
+        String str1 = new String("string");
+        String str2 = new String("tring");
+        /*char[] ar1 = str1.toCharArray();
+        char[] ar2 = str2.toCharArray();
+        boolean b = false;
+        begin : for(int i = 0; i < ar1.length; i++) {
+            if (ar1[i] == ar2[0]) {
+                int k = i;
+                for (int j = 0; j < ar2.length; j++, k++) {
+                    if (k > ar1.length - 1) {
+                        break begin;
+                    }
+                if (ar2[j] != ar1[k]) {
+                    continue begin;
+                }
+                }
+                b = true;
+                break begin;
+            }
+
+        }
+
+        System.out.println(b);*/
 
 
     }

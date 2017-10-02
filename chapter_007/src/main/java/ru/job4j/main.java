@@ -1,6 +1,7 @@
 package ru.job4j;
 
 import com.sun.corba.se.spi.orbutil.threadpool.Work;
+import ru.job4j.additional_test.Check;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -181,6 +182,9 @@ public class main {
 
     public static void main(String[] args) {
 
+        String str1 = new String("string");
+        String str2 = new String("tring");
+        System.out.println(new Check().contains(str1, str2));
 
 
 
