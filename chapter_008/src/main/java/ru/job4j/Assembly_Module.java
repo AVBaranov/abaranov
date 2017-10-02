@@ -18,8 +18,8 @@ import java.util.Scanner;
 public class Assembly_Module {
     private Connection conn = null;
 
-    private void initConnection(File file) throws FileNotFoundException, SQLException {
-        Scanner sc = new Scanner(file);
+    private void initConnection(File connectSettings) throws FileNotFoundException, SQLException {
+        Scanner sc = new Scanner(connectSettings);
         String url = sc.nextLine();
         String username = sc.nextLine();
         String password = sc.nextLine();
@@ -28,10 +28,10 @@ public class Assembly_Module {
         st.executeUpdate();
     }
 
-    private void parseHtml(File file) {
+    private void parseHtml(File connectSettings) {
         PreparedStatement st = null;
         try {
-            this.initConnection(file);
+            this.initConnection(connectSettings);
             Document html = Jsoup.connect("http://www.sql.ru/forum/job-offers/100").get();
             Elements e = html.select("td[class$=postslisttopic]");
             Elements e2 = html.select("td[style][class]");
@@ -72,9 +72,9 @@ public class Assembly_Module {
         }
     }
 
-    public void execute(File file, long runFrequencySeconds) {
+    public void execute(File connectSettings, long runFrequencySeconds) {
         while(true) {
-            this.parseHtml(file);
+            this.parseHtml(connectSettings);
             try {
                 Thread.sleep(runFrequencySeconds);
             } catch (InterruptedException e) {
