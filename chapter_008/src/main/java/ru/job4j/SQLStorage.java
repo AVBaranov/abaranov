@@ -7,29 +7,33 @@ import java.io.*;
 import java.sql.*;
 
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.*;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 import sun.rmi.runtime.Log;
 
 /**
  * Created by Андрей on 29.09.2017.
  */
-public class SQLStorage {
+public class SQLStorage extends DefaultHandler {
 
     Connection conn = null;
 
+    int count = 0;
+
     private void processDatabase(int fillAmount, String username, String password, String database, String srcXml) throws SQLException, TransformerException, ParserConfigurationException {
-        String url = String.format("jdbc:postgresql://127.0.0.1:5432/%s", database);
+//        String url = String.format("jdbc:postgresql://127.0.0.1:5432/%s", database);
+        String url = "jdbc:sqlite:sample.db";
         // соединяемся с бд
         conn = DriverManager.getConnection(url, username, password);
+        conn.setAutoCommit(false);
 
         // проверяем создана ли таблица TEST в бд, если нет - создаем таблицу TEST
         PreparedStatement st = conn.prepareStatement("CREATE TABLE if not exists TEST (field INT )");
@@ -38,6 +42,7 @@ public class SQLStorage {
         // очищаем бд TEST
         st = conn.prepareStatement("DELETE FROM TEST");
         st.executeUpdate();
+
 
         // вставляем данные в таблицу TEST
         for (int i = 1; i <= fillAmount; i++) {
@@ -106,16 +111,34 @@ public class SQLStorage {
     }
 
     private int parseFile(String destXml) throws ParserConfigurationException, IOException, SAXException {
-        File inputFile = new File(destXml);
+//        int count = 0;
+        /*File inputFile = new File(destXml);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         Document docs = dBuilder.parse(inputFile);
         docs.getDocumentElement().normalize();
         NodeList list = docs.getElementsByTagName("entry");
-        int count = 0;
         for (int i = 0; i < list.getLength(); i++) {
             count += Integer.parseInt(list.item(i).getAttributes().item(0).getNodeValue());
-        }
+        }*/
+
+
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+
+            DefaultHandler handler = new DefaultHandler() {
+
+                public void startElement(String namespaceURI, String localName, String qName, Attributes atts)
+                {
+                    if ("entry".equals(qName)) {
+                        for (int i = 0; i < atts.getLength(); i++) {
+                            count += Integer.parseInt(atts.getValue(i));
+                        }
+                    }
+                }
+            };
+
+            saxParser.parse(destXml, handler);
         return count;
     }
 
