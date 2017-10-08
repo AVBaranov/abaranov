@@ -28,13 +28,21 @@ public class Assembly_Module {
         st.executeUpdate();
     }
 
-    private void parseHtml(File connectSettings) {
+    Document html = null;
+    Elements e = null;
+    Elements e2 = null;
+
+    private void parseHTML() throws IOException {
+        html = Jsoup.connect("http://www.sql.ru/forum/job-offers/100").get();
+        e = html.select("td[class$=postslisttopic]");
+        e2 = html.select("td[style][class]");
+    }
+
+    private void workDB(File connectSettings) {
         PreparedStatement st = null;
         try {
             this.initConnection(connectSettings);
-            Document html = Jsoup.connect("http://www.sql.ru/forum/job-offers/100").get();
-            Elements e = html.select("td[class$=postslisttopic]");
-            Elements e2 = html.select("td[style][class]");
+            this.parseHTML();
             st = conn.prepareStatement("SELECT name FROM vacancy");
             ResultSet rs = st.executeQuery();
             List<String> names = new ArrayList<>();
@@ -74,7 +82,7 @@ public class Assembly_Module {
 
     public void execute(File connectSettings, long runFrequencySeconds) {
         while(true) {
-            this.parseHtml(connectSettings);
+            this.workDB(connectSettings);
             try {
                 Thread.sleep(runFrequencySeconds);
             } catch (InterruptedException e) {
