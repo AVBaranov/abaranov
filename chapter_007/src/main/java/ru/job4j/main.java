@@ -183,7 +183,7 @@ public class main {
     public static void main(String[] args) {
 
         String str1 = new String("string");
-        String str2 = new String("tring");
+        String str2 = new String("igrnts");
         System.out.println(new Check().contains(str1, str2));
 
 

@@ -87,7 +87,8 @@ public class Test extends DefaultHandler {
 
 
         Map<Character, Integer> map = new HashMap<>();
-        char[] array = new String("sdfsdgs").toCharArray();
+        char[] array = new String("meagatest").toCharArray();
+        char[] array2 = new String("testagemq").toCharArray();
         int count = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
@@ -98,6 +99,36 @@ public class Test extends DefaultHandler {
             map.put(array[i], count);
             count = 0;
         }
+
+        boolean b = true;
+
+        for (int i = 0; i < array2.length; i++) {
+            for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                if (array2[i] == entry.getKey()) {
+                    map.put(entry.getKey(), entry.getValue() - 1);
+                    break;
+                }
+            }
+        }
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() != 0) {
+                b = false;
+                break;
+            }
+        }
+        if (array.length != array2.length) {
+            b = false;
+        }
+        if (!b) {
+            System.out.println("suck my nuts ! ! !");
+        }
+
+
+
+        /*for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            System.out.println(String.format("%s %d", entry.getKey(), entry.getValue()));
+        }*/
 
 
         /*for (Map.Entry<Character, Integer> entry : map.entrySet()) {
