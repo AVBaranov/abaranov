@@ -20,8 +20,16 @@
         <module>chapter_005</module>
 		<module>chapter_007</module>
 		<module>chapter_008</module>
+	<module>chapter_009</module>
     </modules>
     <dependencies>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.xerial</groupId>

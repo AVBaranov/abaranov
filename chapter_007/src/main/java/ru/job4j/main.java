@@ -4,6 +4,7 @@ import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import ru.job4j.additional_test.Check;
 
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -182,9 +183,11 @@ public class main {
 
     public static void main(String[] args) {
 
-        String str1 = new String("string");
+        /*String str1 = new String("string");
         String str2 = new String("igrnts");
-        System.out.println(new Check().contains(str1, str2));
+        System.out.println(new Check().contains(str1, str2));*/
+
+        System.out.println(String.format("%s %s", args[0], args[1]));
 
 
 
