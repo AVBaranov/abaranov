@@ -1,0 +1,26 @@
+package servlets;
+
+import java.sql.Timestamp;
+
+/**
+ * Created by Андрей on 20.10.2017.
+ */
+public class User {
+
+    private String name;
+
+    private String login;
+
+    private String email;
+
+    private Timestamp createDate;
+
+    public User(String name, String login, String email, Timestamp createDate) {
+        this.name = name;
+        this.login = login;
+        this.email = email;
+        this.createDate = createDate;
+    }
+
+
+}
