@@ -24,11 +24,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class EchoServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(EchoServlet.class);
 
-    private List<String> users = new CopyOnWriteArrayList<>();
-
     Connection conn = null;
+
     PreparedStatement st = null;
-    List<User> ls = new ArrayList<>();
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,8 +50,6 @@ public class EchoServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//        this.ls.add(new User("hulk", "java", "hulk_coder@mail.ru", new Timestamp(System.currentTimeMillis())));
-//        this.ls.add(new User("nehulk", "nejava", "nehulk_necoder@mail.ru", new Timestamp(System.currentTimeMillis())));
     }
 
     @Override
@@ -86,11 +82,7 @@ public class EchoServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        /*String login = req.getParameter("login");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        writer.append(String.format("hello world %s", this.users));*/
-        PrintWriter writer = new PrintWriter(resp.getOutputStream());
-//        writer.append(String.format("hello world %s", list));
         for (User values : list) {
             writer.append(String.format("%s %s %s \n", values.getName(), values.getLogin(), values.getEmail()));
         }
@@ -100,8 +92,6 @@ public class EchoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        /*this.users.add(req.getParameter("login"));
-        doGet(req, resp);*/
         try {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/admin";
@@ -128,7 +118,6 @@ public class EchoServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/admin";
             String username = "postgres";
@@ -136,17 +125,9 @@ public class EchoServlet extends HttpServlet {
             this.conn = DriverManager.getConnection(url, username, password);
             PreparedStatement st = this.conn.prepareStatement("CREATE TABLE if not exists newservlet (id SERIAL PRIMARY KEY, name TEXT, login TEXT, email TEXT, date TIMESTAMP )");
             st.executeUpdate();
-            st = this.conn.prepareStatement("DELETE FROM newservlet where name = ?");
-            PrintWriter writer = new PrintWriter(resp.getOutputStream());
-//            writer.append(req.getParameter("name"));
-            System.out.println(req.getParameter("name"));
-//            st.setInt(1, Integer.parseInt(req.getParameter("id")));
-            /*String str = req.getParameter("name");
-            System.out.println(str);
-            st.setString(1, str);
-            st.executeUpdate();*/
-//            System.out.println(req.getParameter("name"));
-//            System.out.println(str);
+            st = this.conn.prepareStatement("DELETE FROM newservlet where id = ?");
+            st.setInt(1, 1);
+            st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
