@@ -22,29 +22,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * Created by Андрей on 16.10.2017.
  */
 public class EchoServlet extends HttpServlet {
+
     private static final Logger log = LoggerFactory.getLogger(EchoServlet.class);
 
-    Connection conn = null;
-
-    PreparedStatement st = null;
+    UserDao ud = new UserDaoJdbcImpl();
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/admin";
-            String username = "postgres";
-            String password = "password";
-            this.conn = DriverManager.getConnection(url, username, password);
-            PreparedStatement st = this.conn.prepareStatement("CREATE TABLE if not exists newservlet (id SERIAL PRIMARY KEY, name TEXT, login TEXT, email TEXT, date TIMESTAMP )");
-            st.executeUpdate();
-            st = this.conn.prepareStatement("INSERT INTO newservlet (name, login, email, date) VALUES (?, ?, ?, ?)");
-            st.setString(1, "Walt");
-            st.setString(2, "Walter");
-            st.setString(3, "WW@mail.ru");
-            st.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-            st.executeUpdate();
+            ud.put(new User("walt", "walter", "ww@mail.ru", new Timestamp(System.currentTimeMillis())));
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -55,36 +42,15 @@ public class EchoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        List<User> list = new ArrayList<>();
+        PrintWriter writer = new PrintWriter(resp.getOutputStream());
         try {
-            Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/admin";
-            String username = "postgres";
-            String password = "password";
-            this.conn = DriverManager.getConnection(url, username, password);
-            this.st = this.conn.prepareStatement("CREATE TABLE if not exists newservlet (id SERIAL PRIMARY KEY, name TEXT, login TEXT, email TEXT, date TIMESTAMP )");
-            this.st.executeUpdate();
-            this.st = conn.prepareStatement("SELECT * FROM newservlet");
-            ResultSet rs = this.st.executeQuery();
-            while (rs.next())
-            {
-                list.add(new User(rs.getString("name"),rs.getString("login"),rs.getString("email"), rs.getTimestamp("date")));
+            for (User values : ud.getAll()) {
+                writer.append(String.format("%s %s %s \n", values.getName(), values.getLogin(), values.getEmail()));
             }
-            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                st.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        PrintWriter writer = new PrintWriter(resp.getOutputStream());
-        for (User values : list) {
-            writer.append(String.format("%s %s %s \n", values.getName(), values.getLogin(), values.getEmail()));
         }
         writer.flush();
     }
@@ -93,20 +59,7 @@ public class EchoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/admin";
-            String username = "postgres";
-            String password = "password";
-            this.conn = DriverManager.getConnection(url, username, password);
-            PreparedStatement st = this.conn.prepareStatement("CREATE TABLE if not exists newservlet (id SERIAL PRIMARY KEY, name TEXT, login TEXT, email TEXT, date TIMESTAMP )");
-            st.executeUpdate();
-            st = this.conn.prepareStatement("UPDATE newservlet SET name = ?, login = ?, email = ?, date = ? WHERE id = ?");
-            st.setString(1, "Rick");
-            st.setString(2, "walking_Rick");
-            st.setString(3, "WR@mail.ru");
-            st.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-            st.setInt(5, 2);
-            st.executeUpdate();
+            ud.update();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -118,16 +71,7 @@ public class EchoServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/admin";
-            String username = "postgres";
-            String password = "password";
-            this.conn = DriverManager.getConnection(url, username, password);
-            PreparedStatement st = this.conn.prepareStatement("CREATE TABLE if not exists newservlet (id SERIAL PRIMARY KEY, name TEXT, login TEXT, email TEXT, date TIMESTAMP )");
-            st.executeUpdate();
-            st = this.conn.prepareStatement("DELETE FROM newservlet where id = ?");
-            st.setInt(1, 1);
-            st.executeUpdate();
+            ud.delete();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
