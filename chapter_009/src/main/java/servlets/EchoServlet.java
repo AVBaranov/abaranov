@@ -25,6 +25,8 @@ public class EchoServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(EchoServlet.class);
 
+    private List<String> list = new CopyOnWriteArrayList<>();
+
     UserDao ud = new UserDaoJdbcImpl();
 
     @Override
@@ -53,6 +55,32 @@ public class EchoServlet extends HttpServlet {
             e.printStackTrace();
         }
         writer.flush();
+
+        /*resp.setContentType("text/html");
+        PrintWriter writer = new PrintWriter(resp.getOutputStream());
+        StringBuilder sb =new StringBuilder("<table>");
+        for (String value : list) {
+            sb.append("<tr><td>"+ value +"</td></tr>");
+
+        }
+        sb.append("<\table>");
+
+        writer.append("<!DOCTYPE html>" +
+                "<html lang=\"en\">" +
+                "<head>" +
+                "    <meta charset=\"UTF-8\">" +
+                "    <title></title>" +
+                "</head>" +
+                "<body>" +
+                "<form action='"+req.getContextPath()+"/echo' method='post'>" +
+                "Name : <input type='text' name='login'/>" +
+                "<input type ='submit'>" +
+                "</form>" +
+                "<br/>" +
+                sb.toString() +
+                "</body>" +
+                "</html>");
+        writer.flush();*/
     }
 
     @Override
@@ -65,6 +93,9 @@ public class EchoServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+        /*this.list.add(req.getParameter("login"));
+        doGet(req, resp);*/
     }
 
     @Override

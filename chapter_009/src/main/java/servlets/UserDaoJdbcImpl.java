@@ -9,11 +9,14 @@ import java.util.List;
  */
 public class UserDaoJdbcImpl implements UserDao {
 
+
+
     Connection conn = null;
 
     PreparedStatement st = null;
 
-    private void initConnection() throws SQLException, ClassNotFoundException{
+    public UserDaoJdbcImpl() {
+        try {
             Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/admin";
             String username = "postgres";
@@ -22,11 +25,16 @@ public class UserDaoJdbcImpl implements UserDao {
             st = this.conn.prepareStatement("CREATE TABLE if not exists newservlet (id SERIAL PRIMARY KEY, name TEXT, login TEXT, email TEXT, date TIMESTAMP )");
             st.executeUpdate();
             st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void put(User user) throws SQLException, ClassNotFoundException {
-            this.initConnection();
             st = this.conn.prepareStatement("INSERT INTO newservlet (name, login, email, date) VALUES (?, ?, ?, ?)");
             st.setString(1, "Walt");
             st.setString(2, "Walter");
@@ -39,7 +47,6 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public List<User> getAll() throws SQLException, ClassNotFoundException {
         List<User> list = new ArrayList<>();
-            this.initConnection();
             this.st = conn.prepareStatement("SELECT * FROM newservlet");
             ResultSet rs = this.st.executeQuery();
             while (rs.next())
@@ -53,7 +60,6 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public void update() throws SQLException, ClassNotFoundException {
-            this.initConnection();
             st = this.conn.prepareStatement("UPDATE newservlet SET name = ?, login = ?, email = ?, date = ? WHERE id = ?");
             st.setString(1, "Rick");
             st.setString(2, "walking_Rick");
@@ -66,7 +72,6 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public void delete() throws SQLException, ClassNotFoundException {
-            this.initConnection();
             st = this.conn.prepareStatement("DELETE FROM newservlet where id = ?");
             st.setInt(1, 3);
             st.executeUpdate();
