@@ -45,6 +45,7 @@ public class EchoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
+
         try {
             for (User values : ud.getAll()) {
                 writer.append(String.format("%s %s %s \n", values.getName(), values.getLogin(), values.getEmail()));

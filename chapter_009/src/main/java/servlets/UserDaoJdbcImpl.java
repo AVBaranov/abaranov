@@ -73,7 +73,7 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public void delete() throws SQLException, ClassNotFoundException {
             st = this.conn.prepareStatement("DELETE FROM newservlet where id = ?");
-            st.setInt(1, 3);
+            st.setInt(1, 2);
             st.executeUpdate();
             st.close();
     }
