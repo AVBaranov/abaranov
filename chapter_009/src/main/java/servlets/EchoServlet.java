@@ -7,14 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -27,13 +23,13 @@ public class EchoServlet extends HttpServlet {
 
     private List<String> list = new CopyOnWriteArrayList<>();
 
-    UserDao ud = new UserDaoJdbcImpl();
+//    UserDao ud = new UserDaoJdbcImpl();
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            ud.put(new User("walt", "walter", "ww@mail.ru", new Timestamp(System.currentTimeMillis())));
+            UserDaoJdbcImpl.getInstance().put(new User("walt", "walter", "ww@mail.ru", new Timestamp(System.currentTimeMillis())));
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -43,11 +39,11 @@ public class EchoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+        /*resp.setContentType("text/html");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
 
         try {
-            for (User values : ud.getAll()) {
+            for (Jsp_User values : ud.getAll()) {
                 writer.append(String.format("%s %s %s \n", values.getName(), values.getLogin(), values.getEmail()));
             }
         } catch (SQLException e) {
@@ -55,9 +51,9 @@ public class EchoServlet extends HttpServlet {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        writer.flush();
+        writer.flush();*/
 
-        /*resp.setContentType("text/html");
+        resp.setContentType("text/html");
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
         StringBuilder sb =new StringBuilder("<table>");
         for (String value : list) {
@@ -81,29 +77,31 @@ public class EchoServlet extends HttpServlet {
                 sb.toString() +
                 "</body>" +
                 "</html>");
-        writer.flush();*/
+        writer.flush();
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-        try {
+        /*try {
             ud.update();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        /*this.list.add(req.getParameter("login"));
-        doGet(req, resp);*/
-    }
+        UserStorage.getInstance().add(new TestUser(req.getParameter("login"), req.getParameter("email")));
+//        this.list.add(req.getParameter("login"));
+//        doGet(req, resp);
+        resp.sendRedirect(String.format("%s/index.jsp", req.getContextPath()));
+}
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            ud.delete();
+            UserDaoJdbcImpl.getInstance().delete();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

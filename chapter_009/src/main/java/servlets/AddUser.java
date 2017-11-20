@@ -16,18 +16,44 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class AddUser extends HttpServlet {
 
-    UserDao ud = new UserDaoJdbcImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.setContentType("text/html");
+        PrintWriter writer = new PrintWriter(resp.getOutputStream());
+
+        writer.append("<!DOCTYPE html>" +
+                "<html lang=\"en\">" +
+                "<head>" +
+                "    <meta charset=\"UTF-8\">" +
+                "    <title></title>" +
+                "</head>" +
+                "<body>" +
+                "<form action='"+req.getContextPath()+"/add' method='post'>" +
+                "Name : <input type='text' name='name'/>" +
+                "Login : <input type='text' name='login'/>" +
+                "Email : <input type='text' name='email'/>" +
+                "<input type ='submit'>" +
+                "</form>" +
+                "<br/>" +
+                "</body>" +
+                "</html>");
+        writer.flush();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            ud.put(new User("walt", "walter", "ww@mail.ru", new Timestamp(System.currentTimeMillis())));
+            UserDaoJdbcImpl.getInstance().put(new User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), new Timestamp(System.currentTimeMillis())));
+            resp.sendRedirect(String.format("%s/add", req.getContextPath()));
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 
 }

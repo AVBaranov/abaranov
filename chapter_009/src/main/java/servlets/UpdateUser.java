@@ -11,13 +11,13 @@ import java.sql.SQLException;
  * Created by Andrey on 12.11.2017.
  */
 public class UpdateUser extends HttpServlet {
-    UserDao ud = new UserDaoJdbcImpl();
+//    UserDao ud = new UserDaoJdbcImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            ud.update();
+            UserDaoJdbcImpl.getInstance().update();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

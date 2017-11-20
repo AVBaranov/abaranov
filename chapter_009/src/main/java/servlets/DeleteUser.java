@@ -12,13 +12,13 @@ import java.sql.Timestamp;
  * Created by Andrey on 12.11.2017.
  */
 public class DeleteUser extends HttpServlet {
-    UserDao ud = new UserDaoJdbcImpl();
+//    UserDao ud = new UserDaoJdbcImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         try {
-            ud.delete();
+            UserDaoJdbcImpl.getInstance().delete();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

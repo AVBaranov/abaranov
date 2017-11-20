@@ -1,6 +1,21 @@
 <web-app>
 
     <servlet>
+        <servlet-name>JspAddUser</servlet-name>
+        <servlet-class>servlets.jsp.AddUser</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>JspDeleteUser</servlet-name>
+        <servlet-class>servlets.jsp.DeleteUser</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>JspUpdateUser</servlet-name>
+        <servlet-class>servlets.jsp.UpdateUser</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>EchoServlet</servlet-name>
         <servlet-class>servlets.EchoServlet</servlet-class>
     </servlet>
@@ -24,6 +39,21 @@
         <servlet-name>GetUsers</servlet-name>
         <servlet-class>servlets.GetUsers</servlet-class>
     </servlet>
+
+    <servlet-mapping>
+        <servlet-name>JspAddUser</servlet-name>
+        <url-pattern>/jspadd</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>JspDeleteUser</servlet-name>
+        <url-pattern>/jspdelete</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>JspUpdateUser</servlet-name>
+        <url-pattern>/jspupdate</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>EchoServlet</servlet-name>

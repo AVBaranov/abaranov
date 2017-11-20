@@ -21,6 +21,53 @@ public class GetUsers extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        resp.setContentType("text/html");
+        PrintWriter writer = new PrintWriter(resp.getOutputStream());
+
+        list.add("sdgsg");
+        list.add("sdgdsfghdf");
+        StringBuilder sb =new StringBuilder("<table style = \"border: 1px solid black\"; border : 1;>");
+//        sb.append("<tr><th>"+ "name" +"</th></tr>");
+        sb.append(
+                "<tr>" +
+                        "<th>" +
+                        "name" +
+                        "</th>" +
+                        "<th>" +
+                        "login" +
+                        "</th>" +
+                        "</tr>"
+        );
+        for (String value : list) {
+            sb.append(
+                    "<tr>" +
+                            "<td>" +
+                            value +
+                            "</td>" +
+                            "<td>" +
+                            String.format("%s hulk", value) +
+                            "</td>" +
+                            "</tr>"
+            );
+        }
+
+        writer.append("<!DOCTYPE html>" +
+                "<html lang=\"en\">" +
+                "<head>" +
+                "    <meta charset=\"UTF-8\">" +
+                "    <title></title>" +
+                "</head>" +
+                "<body>" +
+                sb.toString() +
+                "<br/>" +
+                "</body>" +
+                "</html>");
+        writer.flush();
+    }
+
+    /*@Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         Connection conn = null;
         List<User> list = new ArrayList<>();
         PreparedStatement st = null;
@@ -62,5 +109,5 @@ public class GetUsers extends HttpServlet {
         }
         writer.append(sb);
         writer.flush();
-    }
+    }*/
 }
