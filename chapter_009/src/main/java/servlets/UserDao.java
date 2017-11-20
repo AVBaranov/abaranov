@@ -12,8 +12,8 @@ public interface UserDao {
 
     List<User> getAll() throws SQLException, ClassNotFoundException;
 
-    void update() throws SQLException, ClassNotFoundException;
+    void update(int id, User user) throws SQLException, ClassNotFoundException;
 
-    void delete() throws SQLException, ClassNotFoundException;
+    void delete(int id) throws SQLException, ClassNotFoundException;
 
 }

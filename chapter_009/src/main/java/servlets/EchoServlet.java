@@ -25,17 +25,7 @@ public class EchoServlet extends HttpServlet {
 
 //    UserDao ud = new UserDaoJdbcImpl();
 
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        try {
-            UserDaoJdbcImpl.getInstance().put(new User("walt", "walter", "ww@mail.ru", new Timestamp(System.currentTimeMillis())));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -91,21 +81,11 @@ public class EchoServlet extends HttpServlet {
             e.printStackTrace();
         }*/
 
-        UserStorage.getInstance().add(new TestUser(req.getParameter("login"), req.getParameter("email")));
+
 //        this.list.add(req.getParameter("login"));
 //        doGet(req, resp);
-        resp.sendRedirect(String.format("%s/index.jsp", req.getContextPath()));
+
 }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        try {
-            UserDaoJdbcImpl.getInstance().delete();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
