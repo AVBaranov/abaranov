@@ -14,6 +14,6 @@ public class DeleteUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JspUserStorage.getInstance().delete(Integer.parseInt(req.getParameter("id")));
-        resp.sendRedirect(String.format("%s/index.jsp", req.getContextPath()));
+        resp.sendRedirect(String.format("%s/jspadd.jsp", req.getContextPath()));
     }
 }

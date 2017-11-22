@@ -14,6 +14,6 @@ public class UpdateUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JspUserStorage.getInstance().update(Integer.parseInt(req.getParameter("id")), new Jsp_User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), new Timestamp(System.currentTimeMillis())));
-        resp.sendRedirect(String.format("%s/index.jsp", req.getContextPath()));
+        resp.sendRedirect(String.format("%s/jspadd.jsp", req.getContextPath()));
     }
 }

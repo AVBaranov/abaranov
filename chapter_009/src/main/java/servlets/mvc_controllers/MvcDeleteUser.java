@@ -1,25 +1,25 @@
-package servlets.jsp;
+package servlets.mvc_controllers;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Timestamp;
 
 /**
  * Created by Андрей on 20.11.2017.
  */
-public class AddUser extends HttpServlet {
+public class MvcDeleteUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        req.getRequestDispatcher("/WEB-INF/mvc_views/DeleteView.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JspUserStorage.getInstance().add(new Jsp_User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), new Timestamp(System.currentTimeMillis())));
-        resp.sendRedirect(String.format("%s/jspadd.jsp", req.getContextPath()));
+        new MvcUserStorage().delete(Integer.parseInt(req.getParameter("id")));
+        resp.sendRedirect(String.format("%s/mvcdelete", req.getContextPath()));
     }
-
 }
