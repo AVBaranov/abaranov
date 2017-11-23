@@ -3,7 +3,7 @@
 <%@ page import="servlets.User" %>
 <%@ page import="servlets.jsp.Jsp_User" %><%--
   Created by IntelliJ IDEA.
-  Jsp_User: Андрей
+  Filter_User: Андрей
   Date: 15.11.2017
   Time: 4:12
   To change this template use File | Settings | File Templates.

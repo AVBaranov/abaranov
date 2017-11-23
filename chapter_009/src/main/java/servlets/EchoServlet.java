@@ -33,7 +33,7 @@ public class EchoServlet extends HttpServlet {
         PrintWriter writer = new PrintWriter(resp.getOutputStream());
 
         try {
-            for (Jsp_User values : ud.getAll()) {
+            for (Filter_User values : ud.getAll()) {
                 writer.append(String.format("%s %s %s \n", values.getName(), values.getLogin(), values.getEmail()));
             }
         } catch (SQLException e) {

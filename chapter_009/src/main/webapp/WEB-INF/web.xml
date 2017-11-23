@@ -55,6 +55,21 @@
         <servlet-class>servlets.mvc_controllers.MvcUpdateUser</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>Signin</servlet-name>
+        <servlet-class>servlets.filters.SigninController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UsersController</servlet-name>
+        <servlet-class>servlets.filters.UsersController</servlet-class>
+    </servlet>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>servlets.filters.AuthFilter</filter-class>
+    </filter>
+
     <servlet-mapping>
         <servlet-name>JspAddUser</servlet-name>
         <url-pattern>/jspadd</url-pattern>
@@ -109,5 +124,20 @@
         <servlet-name>MvcUpdateUser</servlet-name>
         <url-pattern>/mvcupdate</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Signin</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UsersController</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
 
 </web-app>
