@@ -24,6 +24,8 @@ public class SigninController extends HttpServlet {
             HttpSession session = req.getSession();
             synchronized (session) {
                 session.setAttribute("login", login);
+                FilterUserStorage.getInstance().value = login;
+
             }
             resp.sendRedirect(String.format("%s/admin", req.getContextPath()));
         } else if (FilterUserStorage.getInstance().isCredentional(login, password)) {
@@ -36,7 +38,7 @@ public class SigninController extends HttpServlet {
 
 //            resp.sendRedirect(String.format("%s/", req.getContextPath()));
 
-            resp.sendRedirect(String.format("%s/user", req.getContextPath()));
+            resp.sendRedirect(String.format("%s/userrole", req.getContextPath()));
         } else {
             req.setAttribute("error", "access denied ! ! !");
             doGet(req, resp);

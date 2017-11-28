@@ -75,6 +75,11 @@
         <servlet-class>servlets.filters.AdminRole</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>UserRole</servlet-name>
+        <servlet-class>servlets.filters.UserRole</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>JspAddUser</servlet-name>
         <url-pattern>/jspadd</url-pattern>
@@ -150,5 +155,9 @@
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>UserRole</servlet-name>
+        <url-pattern>/userrole</url-pattern>
+    </servlet-mapping>
 
 </web-app>
