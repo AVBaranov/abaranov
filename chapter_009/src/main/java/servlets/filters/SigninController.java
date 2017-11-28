@@ -20,15 +20,25 @@ public class SigninController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if (FilterUserStorage.getInstance().isCredentional(login, password)) {
+        if (login.equals("admin") && password.equals("admin")) {
             HttpSession session = req.getSession();
             synchronized (session) {
                 session.setAttribute("login", login);
             }
+            resp.sendRedirect(String.format("%s/admin", req.getContextPath()));
+        } else if (FilterUserStorage.getInstance().isCredentional(login, password)) {
+            HttpSession session = req.getSession();
+            synchronized (session) {
+                session.setAttribute("login", login);
+                FilterUserStorage.getInstance().value = login;
+            }
 //            FilterUserStorage.getInstance().check = "check";
-            resp.sendRedirect(String.format("%s/controller", req.getContextPath()));
+
+//            resp.sendRedirect(String.format("%s/", req.getContextPath()));
+
+            resp.sendRedirect(String.format("%s/user", req.getContextPath()));
         } else {
-            req.setAttribute("error", "fuck you ! ! !");
+            req.setAttribute("error", "access denied ! ! !");
             doGet(req, resp);
         }
     }
