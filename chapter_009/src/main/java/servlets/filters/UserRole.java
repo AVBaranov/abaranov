@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class UserRole extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("key", FilterUserStorage.getInstance().value);
+//        req.setAttribute("key", FilterUserStorage.getInstance().value);
         req.setAttribute("users", FilterUserStorage.getInstance().getUsers());
         req.getRequestDispatcher("/WEB-INF/role_views/UserView.jsp").forward(req, resp);
     }

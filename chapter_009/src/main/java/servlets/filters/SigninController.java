@@ -13,7 +13,7 @@ import java.io.IOException;
 public class SigninController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/filter_views/LoginView.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/role_views/LoginView.jsp").forward(req, resp);
     }
 
     @Override
@@ -34,9 +34,6 @@ public class SigninController extends HttpServlet {
                 session.setAttribute("login", login);
                 FilterUserStorage.getInstance().value = login;
             }
-//            FilterUserStorage.getInstance().check = "check";
-
-//            resp.sendRedirect(String.format("%s/", req.getContextPath()));
 
             resp.sendRedirect(String.format("%s/userrole", req.getContextPath()));
         } else {
