@@ -10,10 +10,10 @@ import java.sql.Timestamp;
 /**
  * Created by Андрей on 20.11.2017.
  */
-public class UpdateUser extends HttpServlet {
+public class JspDeleteUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JspUserStorage.getInstance().update(Integer.parseInt(req.getParameter("id")), new Jsp_User(req.getParameter("name"), req.getParameter("login"), req.getParameter("email"), new Timestamp(System.currentTimeMillis())));
+        JspUserStorage.getInstance().delete(Integer.parseInt(req.getParameter("id")));
         resp.sendRedirect(String.format("%s/jspadd.jsp", req.getContextPath()));
     }
 }

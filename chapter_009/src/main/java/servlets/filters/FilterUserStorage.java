@@ -10,6 +10,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class FilterUserStorage {
 
+//    public String check;
+
     Connection conn = null;
 
     PreparedStatement st = null;

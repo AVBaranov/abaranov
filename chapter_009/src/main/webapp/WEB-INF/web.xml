@@ -2,17 +2,17 @@
 
     <servlet>
         <servlet-name>JspAddUser</servlet-name>
-        <servlet-class>servlets.jsp.AddUser</servlet-class>
+        <servlet-class>servlets.jsp.JspAddUser</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>JspDeleteUser</servlet-name>
-        <servlet-class>servlets.jsp.DeleteUser</servlet-class>
+        <servlet-class>servlets.jsp.JspDeleteUser</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>JspUpdateUser</servlet-name>
-        <servlet-class>servlets.jsp.UpdateUser</servlet-class>
+        <servlet-class>servlets.jsp.JspUpdateUser</servlet-class>
     </servlet>
 
     <servlet>
@@ -58,11 +58,6 @@
     <servlet>
         <servlet-name>Signin</servlet-name>
         <servlet-class>servlets.filters.SigninController</servlet-class>
-    </servlet>
-
-    <servlet>
-        <servlet-name>UsersController</servlet-name>
-        <servlet-class>servlets.filters.UsersController</servlet-class>
     </servlet>
 
     <filter>
@@ -138,11 +133,6 @@
     <servlet-mapping>
         <servlet-name>Signin</servlet-name>
         <url-pattern>/signin</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>UsersController</servlet-name>
-        <url-pattern>/controller</url-pattern>
     </servlet-mapping>
 
     <filter-mapping>

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 /**
  * Created by Андрей on 20.11.2017.
  */
-public class AddUser extends HttpServlet {
+public class JspAddUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
