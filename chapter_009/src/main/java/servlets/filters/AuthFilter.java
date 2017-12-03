@@ -22,13 +22,13 @@ public class AuthFilter implements Filter {
             chain.doFilter(req, resp);
         } else {
             HttpSession session = request.getSession();
-            synchronized (session) {
+
                 if (session.getAttribute("login") == null) {
                     ((HttpServletResponse) resp).sendRedirect(String.format("%s/signin", request.getContextPath()));
                     return;
                 }
                 chain.doFilter(req, resp);
-            }
+
         }
     }
 

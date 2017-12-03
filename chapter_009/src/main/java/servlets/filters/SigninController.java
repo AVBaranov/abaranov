@@ -22,18 +22,18 @@ public class SigninController extends HttpServlet {
         String password = req.getParameter("password");
         if (login.equals("admin") && password.equals("admin")) {
             HttpSession session = req.getSession();
-            synchronized (session) {
+//            synchronized (session) {
                 session.setAttribute("login", login);
                 FilterUserStorage.getInstance().value = login;
 
-            }
+//            }
             resp.sendRedirect(String.format("%s/admin", req.getContextPath()));
         } else if (FilterUserStorage.getInstance().isCredentional(login, password)) {
             HttpSession session = req.getSession();
-            synchronized (session) {
+//            synchronized (session) {
                 session.setAttribute("login", login);
                 FilterUserStorage.getInstance().value = login;
-            }
+//            }
 
             resp.sendRedirect(String.format("%s/userrole", req.getContextPath()));
         } else {

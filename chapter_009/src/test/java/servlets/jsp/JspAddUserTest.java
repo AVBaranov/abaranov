@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
  */
 public class JspAddUserTest {
     @Test
-    public void AddUser() throws ServletException, IOException {
+    public void addUser() throws ServletException, IOException {
         JspAddUser adduser = new JspAddUser();
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
