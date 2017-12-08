@@ -53,13 +53,12 @@
                 }
             });
         }
-        $(loadUsers());
+
 
         function update() {
             $.ajax('./update_json', {
                 method: 'post',
                 data: {login_to_update: document.getElementsByName("login_to_update")[0].value, city: document.getElementsByName("city")[0].value, country: document.getElementsByName("country")[0].value},
-//                complete: loadUsers()
             })
             return true;
         }
@@ -111,14 +110,6 @@
     </form>
 </div>
 <br/>
-<div>
-    <table id = "users" style="border : 1px solid black";  cellpadding="1"; border="1" cellspacing="0">
-        <tr>
-            <td>Login</td>
-            <td>Email</td>
-        </tr>
-    </table>
-</div>
 
 </body>
 </html>
