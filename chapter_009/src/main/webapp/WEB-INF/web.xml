@@ -163,7 +163,7 @@
 
     <servlet>
         <servlet-name>JsonUpdateController</servlet-name>
-        <servlet-class>servlets.filters.JsonUpdateController</servlet-class>
+        <servlet-class>servlets.json.JsonUpdateController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>JsonUpdateController</servlet-name>
@@ -172,7 +172,7 @@
 
     <servlet>
         <servlet-name>JsonAddController</servlet-name>
-        <servlet-class>servlets.filters.JsonAddController</servlet-class>
+        <servlet-class>servlets.json.JsonAddController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>JsonAddController</servlet-name>

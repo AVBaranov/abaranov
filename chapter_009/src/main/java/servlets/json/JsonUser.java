@@ -1,4 +1,4 @@
-package servlets.filters;
+package servlets.json;
 
 /**
  * Created by Андрей on 07.12.2017.

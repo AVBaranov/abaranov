@@ -1,4 +1,4 @@
-package servlets.filters;
+package servlets.json;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
