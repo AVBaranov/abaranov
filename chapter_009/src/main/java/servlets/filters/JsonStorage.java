@@ -1,4 +1,4 @@
-package servlets.json;
+package servlets.filters;
 
 import java.sql.*;
 import java.util.ArrayList;
