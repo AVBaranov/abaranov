@@ -257,4 +257,82 @@ public class UserDaoStorage implements DaoStorage<User> {
         return user;
     }
 
+    class Essence {
+        String role;
+        String address;
+        public Essence(String role, String address) {
+            this.role = role;
+            this.address = address;
+        }
+        public String getRole() {
+            return this.role;
+        }
+        public String getAddress() {
+            return this.address;
+        }
+
+    }
+
+    public List<Essence> getEssences(String userLogin) throws SQLException {
+        List<Essence> list = new CopyOnWriteArrayList<>();
+        this.st = conn.prepareStatement("SELECT r.role, a.address FROM newuser u INNER JOIN role r ON u.role_id = r.id INNER JOIN address a ON u.address_id = a.id WHERE u.login = ?");
+        st.setString(1, userLogin);
+        ResultSet rs = this.st.executeQuery();
+
+        while (rs.next())
+        {
+            list.add(new Essence(rs.getString("role"), rs.getString("address")));
+        }
+        st.close();
+        rs.close();
+        return list;
+    }
+
+    private void addRole(Role role) {
+        try {
+            st = this.conn.prepareStatement("CREATE TABLE if not exists role (id SERIAL PRIMARY KEY, role VARCHAR)");
+            st.executeUpdate();
+            st.close();
+            st = this.conn.prepareStatement("INSERT INTO role VALUES (?, ?)");
+            st.setInt(1, role.getId());
+            st.setString(2, role.getRole());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addAddress(Address address) {
+        try {
+            st = this.conn.prepareStatement("CREATE TABLE if not exists address (id SERIAL PRIMARY KEY, address VARCHAR)");
+            st.executeUpdate();
+            st.close();
+            st = this.conn.prepareStatement("INSERT INTO address VALUES (?, ?)");
+            st.setInt(1, address.getId());
+            st.setString(2, address.getAddress());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addEssence(User user, Role role, Address address) {
+        this.addRole(role);
+        this.addAddress(address);
+        try {
+            st = this.conn.prepareStatement("INSERT INTO newuser (login, password, email, role_id, address_id) VALUES (?, ?, ?, ?, ?)");
+            st.setString(1, user.getLogin());
+            st.setString(2, user.getPassword());
+            st.setString(3, user.getEmail());
+            st.setInt(4, role.getId());
+            st.setInt(5, address.getId());
+            st.executeUpdate();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

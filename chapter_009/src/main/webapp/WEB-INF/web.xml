@@ -234,6 +234,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>GetAssence</servlet-name>
+        <servlet-class>servlets.test_task.test_servlets.user.GetAssence</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAssence</servlet-name>
+        <url-pattern>/getAssence</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ChooseRoleAction</servlet-name>
         <servlet-class>servlets.test_task.test_servlets.role.ChooseRoleAction</servlet-class>
     </servlet>

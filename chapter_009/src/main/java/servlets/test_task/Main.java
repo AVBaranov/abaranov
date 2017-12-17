@@ -22,6 +22,13 @@ public class Main {
 //        DaoStorage<User> store = new UserDaoStorage();
 //        System.out.println(String.format("%s %s", store.findById(2).getRole(), store.findById(2).getEmail()));
 
+        /*try {
+            System.out.println(String.format("%s %s", new UserDaoStorage().getEssences("admin").get(0).getRole(), new UserDaoStorage().getEssences("admin").get(0).getAddress()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }*/
+
+        new UserDaoStorage().addEssence(new User("1", "1", "1", "hulk", "hulk_address"), new Role(10, "hulk"), new Address(10, "hulk_address"));
 
 
     }
