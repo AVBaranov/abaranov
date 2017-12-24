@@ -181,7 +181,7 @@
 
     <servlet>
         <servlet-name>ChooseEssence</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.ChooseEssence</servlet-class>
+        <servlet-class>servlets.test_task.controllers.ChooseEssence</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChooseEssence</servlet-name>
@@ -190,7 +190,7 @@
 
     <servlet>
         <servlet-name>ChooseUserAction</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.user.ChooseUserAction</servlet-class>
+        <servlet-class>servlets.test_task.controllers.user.ChooseUserAction</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChooseUserAction</servlet-name>
@@ -199,7 +199,7 @@
 
     <servlet>
         <servlet-name>AddUser</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.user.AddUser</servlet-class>
+        <servlet-class>servlets.test_task.controllers.user.AddUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddUser</servlet-name>
@@ -208,7 +208,7 @@
 
     <servlet>
         <servlet-name>UpdateUser</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.user.UpdateUser</servlet-class>
+        <servlet-class>servlets.test_task.controllers.user.UpdateUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
@@ -217,7 +217,7 @@
 
     <servlet>
         <servlet-name>GetUsers</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.user.GetUsers</servlet-class>
+        <servlet-class>servlets.test_task.controllers.user.GetUsers</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetUsers</servlet-name>
@@ -226,7 +226,7 @@
 
     <servlet>
         <servlet-name>DeleteUser</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.user.DeleteUser</servlet-class>
+        <servlet-class>servlets.test_task.controllers.user.DeleteUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteUser</servlet-name>
@@ -235,7 +235,7 @@
 
     <servlet>
         <servlet-name>GetAssence</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.user.GetAssence</servlet-class>
+        <servlet-class>servlets.test_task.controllers.user.GetAssence</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetAssence</servlet-name>
@@ -244,7 +244,7 @@
 
     <servlet>
         <servlet-name>ChooseRoleAction</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.role.ChooseRoleAction</servlet-class>
+        <servlet-class>servlets.test_task.controllers.role.ChooseRoleAction</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChooseRoleAction</servlet-name>
@@ -253,7 +253,7 @@
 
     <servlet>
         <servlet-name>AddRole</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.role.AddRole</servlet-class>
+        <servlet-class>servlets.test_task.controllers.role.AddRole</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddRole</servlet-name>
@@ -262,7 +262,7 @@
 
     <servlet>
         <servlet-name>UpdateRole</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.role.UpdateRole</servlet-class>
+        <servlet-class>servlets.test_task.controllers.role.UpdateRole</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateRole</servlet-name>
@@ -271,7 +271,7 @@
 
     <servlet>
         <servlet-name>GetRoles</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.role.GetRoles</servlet-class>
+        <servlet-class>servlets.test_task.controllers.role.GetRoles</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetRoles</servlet-name>
@@ -280,7 +280,7 @@
 
     <servlet>
         <servlet-name>DeleteRole</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.role.DeleteRole</servlet-class>
+        <servlet-class>servlets.test_task.controllers.role.DeleteRole</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteRole</servlet-name>
@@ -289,7 +289,7 @@
 
     <servlet>
         <servlet-name>ChooseAddressAction</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.address.ChooseAddressAction</servlet-class>
+        <servlet-class>servlets.test_task.controllers.address.ChooseAddressAction</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChooseAddressAction</servlet-name>
@@ -298,7 +298,7 @@
 
     <servlet>
         <servlet-name>AddAddress</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.address.AddAddress</servlet-class>
+        <servlet-class>servlets.test_task.controllers.address.AddAddress</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AddAddress</servlet-name>
@@ -307,7 +307,7 @@
 
     <servlet>
         <servlet-name>UpdateAddress</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.address.UpdateAddress</servlet-class>
+        <servlet-class>servlets.test_task.controllers.address.UpdateAddress</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UpdateAddress</servlet-name>
@@ -316,7 +316,7 @@
 
     <servlet>
         <servlet-name>GetAddresses</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.address.GetAddresses</servlet-class>
+        <servlet-class>servlets.test_task.controllers.address.GetAddresses</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GetAddresses</servlet-name>
@@ -325,7 +325,7 @@
 
     <servlet>
         <servlet-name>DeleteAddress</servlet-name>
-        <servlet-class>servlets.test_task.test_servlets.address.DeleteAddress</servlet-class>
+        <servlet-class>servlets.test_task.controllers.address.DeleteAddress</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteAddress</servlet-name>

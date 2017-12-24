@@ -1,0 +1,30 @@
+<web-app>
+
+    <servlet>
+        <servlet-name>JsonUpdateController</servlet-name>
+        <servlet-class>hibernate.JsonUpdateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonUpdateController</servlet-name>
+        <url-pattern>/update_json</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>JsonAddController</servlet-name>
+        <servlet-class>hibernate.JsonAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JsonAddController</servlet-name>
+        <url-pattern>/add_json</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Add Controller</servlet-name>
+        <servlet-class>hibernate.todolist.AddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Add Controller</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,7 +1,9 @@
 package servlets.test_task;
 
-import java.sql.SQLException;
-import java.util.List;
+import servlets.test_task.dao.addressDao.Address;
+import servlets.test_task.dao.roleDao.Role;
+import servlets.test_task.dao.userDao.User;
+import servlets.test_task.dao.userDao.UserDaoStorage;
 
 /**
  * Created by Andrey on 12.12.2017.

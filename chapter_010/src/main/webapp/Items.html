@@ -57,9 +57,9 @@
 
         function update() {
             $.ajax('./update_json', {
-                /*method: 'post',
+                method: 'post',
                 data: {login_to_update: document.getElementsByName("login_to_update")[0].value, city: document.getElementsByName("city")[0].value, country: document.getElementsByName("country")[0].value},
-//                complete: loadUsers()*/
+//                complete: loadUsers()
             })
             return true;
         }
@@ -83,7 +83,7 @@
 </head>
 <body>
 <div class="block1" >
-    <form action="/items/add_json" method="post" onsubmit="return validate();">
+    <form action="/hiber/add_json" method="post" onsubmit="return validate();">
         <input type="hidden" name="user_id"><br/>
         Login : <input type="text" name="login" placeholder="login"><br/>
         Email : <input type="text" name="email" placeholder="email"><br/>
@@ -103,7 +103,7 @@
 </div>
 <br/>
 <div class="block2">
-    <form action="/items/update_json" method="post">
+    <form action="/hiber/update_json" method="post">
         LoginToUpdate : <input type="text" name="login_to_update" placeholder="login to update"><br/>
         City : <input type="text" name="city" placeholder="city"><br/>
         Country : <input type="text" name="country" placeholder="country"><br/>

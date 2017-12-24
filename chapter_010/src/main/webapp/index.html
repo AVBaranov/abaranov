@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style type="text/css">
+        body {
+            background-color: #CCEEFF;
+        }
+
+        .block1 {
+            width: 300px;
+            background: #ccc;
+            padding: 5px;
+            padding-right: 20px;
+            border: solid 1px black;
+            /*float: left;*/
+        }
+
+        .block2 {
+            width: 300px;
+            background: #fc0;
+            padding: 5px;
+            border: solid 1px black;
+            float: left;
+            position: relative;: 40 px;
+            padding-right: 20px;
+            left: -5px;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script>
+
+        function loadUsers() {
+            $.ajax('./add', {
+                method : 'get',
+                complete : function(data) {
+                    var result = "<tr>"+
+                        "<td>Id</td>"+
+                        "<td>Descr</td>"+
+                        "<td>Created</td>"+
+                        "<td>Done</td>"+
+                        "</tr>";
+                    var users = JSON.parse(data.responseText);
+                    for (var i = 0; i != users.length; ++i) {
+
+                        result += "<tr>"+
+                            "<td>" + users[i].id + "</td>"+
+                            "<td>" + users[i].descr + "</td>"+
+                            "<td>" + users[i].created + "</td>"+
+                            "<td>" + users[i].done + "</td>"+
+                            "</tr>";
+                    }
+                    var table = document.getElementById("users")
+                    table.innerHTML = result;
+                }
+            });
+        }
+
+        function loadTrueUsers() {
+            $.ajax('./add', {
+                method : 'get',
+                complete : function(data) {
+                    var result = "<tr>"+
+                        "<td>Id</td>"+
+                        "<td>Descr</td>"+
+                        "<td>Created</td>"+
+                        "<td>Done</td>"+
+                        "</tr>";
+                    var users = JSON.parse(data.responseText);
+                    for (var i = 0; i != users.length; ++i) {
+
+                        if (users[i].done == false) {
+                            result += "<tr>"+
+                                "<td>" + users[i].id + "</td>"+
+                                "<td>" + users[i].descr + "</td>"+
+                                "<td>" + users[i].created + "</td>"+
+                                "<td>" + users[i].done + "</td>"+
+                                "</tr>";
+                        }
+                    }
+
+                    var table = document.getElementById("users")
+                    table.innerHTML = result;
+                }
+            });
+        }
+
+
+        function update() {
+            $.ajax('./update_json', {
+                method: 'post',
+                data: {login_to_update: document.getElementsByName("login_to_update")[0].value, city: document.getElementsByName("city")[0].value, country: document.getElementsByName("country")[0].value},
+//                complete: loadUsers()
+            })
+            return true;
+        }
+
+
+        function validate() {
+            var result = true;
+            var id = document.getElementsByName("id")[0].value;
+            var descr = document.getElementsByName("descr")[0].value;
+
+            if (id == '' || descr == '') {
+                result = false;
+            }
+            if (!result) {
+                alert("enter id and descr");
+            }
+            return result;
+        }
+
+        // проверяем установлена ли галка, если установлена оказываем все задания, если нет - только те которые не выполнены
+        $(document).ready(function () {
+            /* Get the checkboxes values based on the class attached to each check box */
+            $("#buttonClass").click(function() {
+                getValueUsingClass();
+            });
+        });
+
+        function getValueUsingClass(){
+
+            var value = "";
+            /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
+            $(".chk:checked").each(function() {
+                value = $(this).val();
+            });
+
+            if(value == 'check'){
+                $(loadUsers());
+             }else{
+                loadTrueUsers()
+             }
+        }
+
+    </script>
+    <title></title>
+</head>
+<body>
+<div class="block1" id="checkboxlist">
+    <form action="/hiber/add" method="post" onsubmit="return validate();">
+        <input type="hidden" name="user_id"><br/>
+        id : <input type="text" name="id" placeholder="..."><br/>
+        descr : <input type="text" name="descr" placeholder="..."><br/>
+        created : <input type="text" name="created" placeholder="..."><br/>
+        done : <input type="text" name="done" placeholder="..."><br/>
+
+        <input type="checkbox" value="check" class="chk"> show all </br>
+        <input type="submit" value="submit">
+
+        <input type="button" value="show" id="buttonClass">
+
+    </form>
+</div>
+
+
+<br/>
+
+<!--<div id="checkboxlist">
+    Agreement : <div><input type="checkbox" value="check" class="chk"> Value 1</div>
+    <div>
+        <input type="button" value="Get Value Using Class" id="buttonClass">
+        <input type="button" value="Get Value Using Parent Tag" id="buttonParent">
+    </div>
+</div>-->
+
+<br/>
+<div>
+    <table id = "users" style="border : 1px solid black";  cellpadding="1"; border="1" cellspacing="0">
+
+    </table>
+</div>
+
+</body>
+</html>

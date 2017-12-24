@@ -20,9 +20,22 @@
         <module>chapter_005</module>
 		<module>chapter_007</module>
 		<module>chapter_008</module>
-	<module>chapter_009</module>
+		<module>chapter_009</module>
+		<module>chapter_010</module>
     </modules>
     <dependencies>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.12.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
 
         <dependency>
             <groupId>taglibs</groupId>
