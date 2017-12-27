@@ -6,10 +6,14 @@
         <property name = "hibernate.connection.username">postgres</property>
         <property name = "hibernate.connection.password">password</property>
         <property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQL94Dialect</property>
+        <property name = "show_sql">true</property>
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping resource = "hibernate/todolist/Item.hbm.xml"/>
-
+        <mapping resource = "hibernate/carStore/Transmission.hbm.xml"/>
+        <mapping resource = "hibernate/carStore/Engine.hbm.xml"/>
+        <mapping resource = "hibernate/carStore/Carbody.hbm.xml"/>
+        <mapping resource = "hibernate/carStore/Car.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
