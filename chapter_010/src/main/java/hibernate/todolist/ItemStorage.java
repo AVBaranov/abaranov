@@ -2,6 +2,7 @@ package hibernate.todolist;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -11,34 +12,36 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class ItemStorage {
 
+    private SessionFactory factory = null;
+
     public ItemStorage() {
+        this.factory = new Configuration().configure().buildSessionFactory();
     }
 
     public List<Item> getAll() {
-        SessionFactory factory = null;
         Session session = null;
+        Transaction tx = null;
         List<Item> items = new CopyOnWriteArrayList<>();
         try {
-            factory = new Configuration().configure().buildSessionFactory();
-            session = factory.openSession();
-            session.beginTransaction();
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
             items = session.createQuery("from Item").list();
             session.getTransaction().commit();
         } catch (Exception e) {
+            tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
-            factory.close();
+            this.factory.close();
         }
         return items;
     }
 
     public void add(Item item) {
-        SessionFactory factory = null;
+        Transaction tx = null;
         Session session = null;
         try {
-            factory = new Configuration().configure().buildSessionFactory();
-            session = factory.openSession();
+            session = this.factory.openSession();
             session.beginTransaction();
             Item it = new Item();
             it.setId(item.getId());
@@ -48,10 +51,11 @@ public class ItemStorage {
             session.saveOrUpdate(it);
             session.getTransaction().commit();
         } catch (Exception e){
+            tx.rollback();
             e.printStackTrace();
         } finally {
             session.close();
-            factory.close();
+            this.factory.close();
         }
     }
 
