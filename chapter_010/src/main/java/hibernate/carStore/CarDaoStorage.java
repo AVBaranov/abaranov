@@ -68,6 +68,9 @@ public class CarDaoStorage implements DaoStorage<Car> {
         try {
             transaction = session.beginTransaction();
             newCar.setId(id);
+            session.save(newCar.getTransmission());
+            session.save(newCar.getEngine());
+            session.save(newCar.getCarbody());
             session.saveOrUpdate(newCar);
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -80,10 +83,21 @@ public class CarDaoStorage implements DaoStorage<Car> {
     }
 
     @Override
-    public void delete(Car car) {
-
-
-
+    public void delete(int id) {
+        Session session = this.factory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Car car = session.get(Car.class, id);
+            session.delete(car);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            this.factory.close();
+        }
     }
 
     public Car getById(int id) {

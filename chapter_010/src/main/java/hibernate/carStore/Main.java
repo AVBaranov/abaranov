@@ -2,6 +2,7 @@ package hibernate.carStore;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -39,8 +40,10 @@ public class Main {
 
         session.saveOrUpdate(car2);*/
 
-//        Car car = session.get(Car.class, 3);
+//        Car car = session.get(Car.class, 6);
 //        session.delete(car);
+
+//        new CarDaoStorage().delete(5);
 
 //        Query q = session.createQuery("delete Car where id = 2");
 //        q.executeUpdate();
@@ -56,13 +59,13 @@ public class Main {
             System.out.println(car);
         }*/
 
-        Transmission transmission = new Transmission();
+        /*Transmission transmission = new Transmission();
         transmission.setType("mersTransmission");
         Engine engine = new Engine();
         engine.setModel("mersEngine");
         Carbody carbody = new Carbody();
         carbody.setType("mersCarbody");
-        new CarDaoStorage().update(4, new Car("newmers", transmission, carbody, engine));
+        new CarDaoStorage().update(4, new Car("newmers", transmission, carbody, engine));*/
 
         /*Transmission transmission = new Transmission();
         transmission.setType("7");
@@ -89,5 +92,8 @@ public class Main {
         session.close();
         factory.close();
 
+        System.out.println(new CarDaoStorage().read());
+
     }
+
 }

@@ -9,5 +9,5 @@ public interface DaoStorage<T> {
     void create(T car);
     List<T> read();
     void update(int id, T newCar);
-    void delete(T car);
+    void delete(int id);
 }
