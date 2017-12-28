@@ -8,16 +8,25 @@ import java.util.List;
 public class Car {
     private int id;
     private String name;
-    private List<Engine> engines;
-    private List<Carbody> carbodies;
+//    private List<Engine> engines;
+//    private List<Carbody> carbodies;
 //    private List<Transmission> transmissions;
-    Transmission transmission;
+    private Transmission transmission;
+    private Carbody carbody;
+    private Engine engine;
 
     public Car() {
     }
 
     public Car(int id) {
         this.id = id;
+    }
+
+    public Car(String name, Transmission transmission, Carbody carbody, Engine engine) {
+        this.name = name;
+        this.transmission = transmission;
+        this.carbody = carbody;
+        this.engine = engine;
     }
 
     public int getId() {
@@ -36,7 +45,7 @@ public class Car {
         this.name = name;
     }
 
-    public List<Engine> getEngines() {
+   /* public List<Engine> getEngines() {
         return engines;
     }
 
@@ -52,7 +61,7 @@ public class Car {
         this.carbodies = carbodies;
     }
 
-    /*public List<Transmission> getTransmissions() {
+    public List<Transmission> getTransmissions() {
         return transmissions;
     }
 
@@ -66,5 +75,32 @@ public class Car {
 
     public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
+    }
+
+    public Carbody getCarbody() {
+        return carbody;
+    }
+
+    public void setCarbody(Carbody carbody) {
+        this.carbody = carbody;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", transmission=" + transmission +
+                ", carbody=" + carbody +
+                ", engine=" + engine +
+                '}';
     }
 }

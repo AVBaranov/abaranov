@@ -40,4 +40,12 @@ public class Transmission {
     public void setCars(List<Car> cars) {
         this.cars = cars;
     }
+
+    @Override
+    public String toString() {
+        return "Transmission{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

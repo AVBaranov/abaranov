@@ -1,11 +1,14 @@
 package hibernate.carStore;
 
+import java.util.List;
+
 /**
  * Created by Andrey on 27.12.2017.
  */
 public class Engine {
     private int id;
     private String model;
+    List<Car> cars;
 
     public Engine() {
     }
@@ -28,5 +31,21 @@ public class Engine {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    @Override
+    public String toString() {
+        return "Engine{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                '}';
     }
 }

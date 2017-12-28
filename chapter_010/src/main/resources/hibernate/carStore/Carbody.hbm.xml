@@ -6,5 +6,10 @@
 
         <property name = "type" column = "type"/>
 
+        <bag name = "cars" inverse = "true">
+            <key column = "carbody_id" not-null = "false"/>
+            <one-to-many class = "hibernate.carStore.Car"/>
+        </bag>
+
     </class>
 </hibernate-mapping>

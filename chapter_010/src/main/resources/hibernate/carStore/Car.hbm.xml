@@ -11,5 +11,17 @@
             <one-to-many class = "hibernate.carStore.Transmission"/>
         </bag>-->
 
+        <many-to-one name = "transmission" class = "hibernate.carStore.Transmission">
+            <column name = "transmission_id" not-null = "true"/>
+        </many-to-one>
+
+        <many-to-one name = "carbody" class = "hibernate.carStore.Carbody">
+            <column name = "carbody_id" not-null = "true"/>
+        </many-to-one>
+
+        <many-to-one name = "engine" class = "hibernate.carStore.Engine">
+            <column name = "engine_id" not-null = "true"/>
+        </many-to-one>
+
     </class>
 </hibernate-mapping>
