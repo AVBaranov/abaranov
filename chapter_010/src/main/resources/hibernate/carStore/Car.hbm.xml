@@ -11,15 +11,16 @@
             <one-to-many class = "hibernate.carStore.Transmission"/>
         </bag>-->
 
-        <many-to-one name = "transmission" class = "hibernate.carStore.Transmission">
+        <many-to-one name = "transmission" class = "hibernate.carStore.Transmission" lazy="false" >
             <column name = "transmission_id" not-null = "true"/>
+
         </many-to-one>
 
-        <many-to-one name = "carbody" class = "hibernate.carStore.Carbody">
+        <many-to-one name = "carbody" class = "hibernate.carStore.Carbody" lazy="false" >
             <column name = "carbody_id" not-null = "true"/>
         </many-to-one>
 
-        <many-to-one name = "engine" class = "hibernate.carStore.Engine">
+        <many-to-one name = "engine" class = "hibernate.carStore.Engine" lazy="false" >
             <column name = "engine_id" not-null = "true"/>
         </many-to-one>
 

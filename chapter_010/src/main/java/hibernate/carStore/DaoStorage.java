@@ -10,4 +10,6 @@ public interface DaoStorage<T> {
     List<T> read();
     void update(int id, T newCar);
     void delete(int id);
+    void cleanDatabase();
+    T getById(int id);
 }

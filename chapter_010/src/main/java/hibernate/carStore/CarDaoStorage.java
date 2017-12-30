@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -100,6 +101,27 @@ public class CarDaoStorage implements DaoStorage<Car> {
         }
     }
 
+    @Override
+    public void cleanDatabase() {
+        Session session = this.factory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            String hql = "delete from Car";
+            Query query = session.createQuery(hql);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+            this.factory.close();
+        }
+
+    }
+
+    @Override
     public Car getById(int id) {
         Session session = this.factory.openSession();
         Car car = session.get(Car.class, id);
