@@ -1,7 +1,5 @@
 package hibernate.todolist;
 
-import hibernate.JsonStorage;
-import hibernate.JsonUser;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.servlet.ServletException;

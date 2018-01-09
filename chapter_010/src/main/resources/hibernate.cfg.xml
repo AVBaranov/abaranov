@@ -15,5 +15,9 @@
         <mapping resource = "hibernate/carStore/Engine.hbm.xml"/>
         <mapping resource = "hibernate/carStore/Carbody.hbm.xml"/>
         <mapping resource = "hibernate/carStore/Car.hbm.xml"/>
+        <mapping class="hibernate.carStoreAnnotation.Car"/>
+        <mapping class="hibernate.carStoreAnnotation.Engine"/>
+        <mapping class="hibernate.carStoreAnnotation.Carbody"/>
+        <mapping class="hibernate.carStoreAnnotation.Transmission"/>
     </session-factory>
 </hibernate-configuration>
