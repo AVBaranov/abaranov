@@ -1,5 +1,7 @@
 package hibernate.carStoreAnnotation;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,7 @@ public class Transmission {
     }
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "transmission")
+    @JsonManagedReference
     public List<Car> getCars() {
         return cars;
     }

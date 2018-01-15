@@ -26,6 +26,7 @@
     <input type="submit">
 </form>
 <br/>
+
 <table style = "border: 1px solid black"; border : 1;>
     <tr>
         <th>name</th>

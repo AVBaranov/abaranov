@@ -1,6 +1,5 @@
 package hibernate.carStoreAnnotation;
 
-import hibernate.carStoreAnnotation.Car;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -7,6 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.*;
 import org.hibernate.cfg.*;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Андрей on 29.12.2017.
  */
@@ -14,13 +19,22 @@ public class Main {
     public static void main (String[] args) {
 
         Engine engineTest = new Engine();
-        engineTest.setModel("bmw_model");
+        engineTest.setModel("x6");
         Carbody carbodyTest = new Carbody();
-        carbodyTest.setType("bmw");
+        carbodyTest.setType("crossover");
         Transmission transmission = new Transmission();
-        transmission.setType("bmw");
-        Car car = new Car("bmw", engineTest, carbodyTest, transmission);
+        transmission.setType("auto");
+        Car car = new Car("bmw", engineTest, carbodyTest, transmission, false);
         new CarDaoStorageAnnotate().create(car);
+
+        /*File file = new File("C:\\Users\\Андрей\\Desktop/target");
+        File[] arrayfiles = file.listFiles();
+        List<File> listfiles = new ArrayList<>();
+        for (File value : arrayfiles) {
+            listfiles.add(value);
+        }
+        System.out.println(listfiles);*/
+
 
     }
 }

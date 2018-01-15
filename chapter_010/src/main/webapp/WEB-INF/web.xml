@@ -9,4 +9,31 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Get All Cars Controller</servlet-name>
+        <servlet-class>hibernate.carStoreAnnotation.GetAllCarsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Get All Cars Controller</servlet-name>
+        <url-pattern>/getcars</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Add Car Controller</servlet-name>
+        <servlet-class>hibernate.carStoreAnnotation.AddCarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Add Car Controller</servlet-name>
+        <url-pattern>/addcar</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Load File Controller</servlet-name>
+        <servlet-class>hibernate.carStoreAnnotation.LoadFileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Load File Controller</servlet-name>
+        <url-pattern>/loadfile</url-pattern>
+    </servlet-mapping>
+
 </web-app>

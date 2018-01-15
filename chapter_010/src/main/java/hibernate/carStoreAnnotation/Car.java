@@ -1,5 +1,7 @@
 package hibernate.carStoreAnnotation;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 import javax.persistence.*;
 
 /**
@@ -13,15 +15,17 @@ public class Car {
     private Engine engine;
     private Carbody carbody;
     private Transmission transmission;
+    private boolean sold;
 
     public Car() {
     }
 
-    public Car(String name, Engine engine, Carbody carbody, Transmission transmission) {
+    public Car(String name, Engine engine, Carbody carbody, Transmission transmission, boolean sold) {
         this.name = name;
         this.engine = engine;
         this.carbody = carbody;
         this.transmission = transmission;
+        this.sold = sold;
     }
 
     @Id @GeneratedValue
@@ -43,8 +47,18 @@ public class Car {
         this.name = name;
     }
 
+    @Column(name="sold")
+    public boolean isSold() {
+        return sold;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "engine_id", nullable = false)
+    @JsonBackReference
     public Engine getEngine() {
         return engine;
     }
@@ -56,6 +70,7 @@ public class Car {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "carbody_id", nullable = false)
+    @JsonBackReference
     public Carbody getCarbody() {
         return carbody;
     }
@@ -66,6 +81,7 @@ public class Car {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "transmission_id", nullable = false)
+    @JsonBackReference
     public Transmission getTransmission() {
         return transmission;
     }
