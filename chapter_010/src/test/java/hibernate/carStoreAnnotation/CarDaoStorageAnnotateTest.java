@@ -43,6 +43,7 @@ public class CarDaoStorageAnnotateTest {
     @Test
     public void whenDeleteAllFromTableThenNoMoreRowsInTheTable() {
         CarDaoStorageAnnotate carDaoStorageAnnotate = new CarDaoStorageAnnotate();
+        carDaoStorageAnnotate.deleteAll();
         Engine engineTest = new Engine();
         engineTest.setModel("x6");
         Carbody carbodyTest = new Carbody();
