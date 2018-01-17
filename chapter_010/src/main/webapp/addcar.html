@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <style type="text/css">
+        body {
+            background-color: gainsboro;
+        }
+
+        .block1 {
+            width: 300px;
+            background: lavender;
+            padding: 10px;
+            padding-right: 20px;
+        }
+
+        .block2 {
+            width: 70px;
+            background: bisque;
+            padding: 10px;
+            padding-right: 20px;
+        }
+
+        .block3 {
+            width: 60px;
+            background: crimson;
+            padding: 4px;
+        }
+
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js" type="text/javascript"></script>
+
+    <script>
+
+    </script>
+    <title></title>
+</head>
+<body>
+
+
+<div style="font-size: 20px; font-style: italic; color: beige">
+    Add new car
+</div>
+
+<div>
+    <form action="/hiber/addcar" method="post" enctype="multipart/form-data">
+        <div class="block1">
+            <b style="font-style: oblique; font-size: 20px; color: azure">model</b>
+            <br/>
+            <select name="model" style="width:200px">
+                <option value="toyota">toyota</option>
+                <option value="hyundai">hyundai</option>
+                <option value="bmw">bmw</option>
+                <option value="mercedes">mercedes</option>
+            </select>
+            <br/>
+
+            <b style="font-style: oblique; font-size: 20px; color: azure">bodytype</b>
+            <br/>
+            <select name="bodytype" style="width:200px">
+                <option value="sedan">sedan</option>
+                <option value="hatchback">hatchback</option>
+                <option value="crossover">crossover</option>
+                <option value="cabriolet">cabriolet</option>
+            </select>
+
+            <br/>
+            <b style="font-style: oblique; font-size: 20px; color: azure">transmission</b>
+            <select name="transmission" style="width:200px">
+                <option value="AT">AT</option>
+                <option value="MT">MT</option>
+            </select>
+
+            <br/>
+            <b style="font-style: oblique; font-size: 20px; color: azure">engine</b>
+            <br/>
+            <select name="engine" style="width:200px">
+                <option value="1.4 Optima">1.4 Optima</option>
+                <option value="1.6 Optima">1.6 Optima</option>
+            </select>
+
+            <br/>
+            <br/>
+            <input type="checkbox" name="soldcar" value="true" class="chk">sold
+            <br/>
+            <b style="font-style: oblique; color: antiquewhite; font-family: 'Angsana New'; font-size: 30px">Add car photo:</b>
+            <input type="file" name="uploadFile" />
+            <br/><br/>
+
+            <div class="block3">
+                <input type="submit" value="add car">
+            </div>
+            <br/>
+        </div>
+    </form>
+</div>
+
+<div class="block2">
+    <form action="/hiber/getcars" method="post">
+        <input type="submit" value="show cars">
+    </form>
+</div>
+
+
+</body>
+</html>
