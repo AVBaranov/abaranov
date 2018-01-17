@@ -11,7 +11,7 @@
 
     <servlet>
         <servlet-name>Get All Cars Controller</servlet-name>
-        <servlet-class>hibernate.carStoreAnnotation.GetAllCarsController</servlet-class>
+        <servlet-class>hibernate.carStoreAnnotation.controllers.GetAllCarsController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Get All Cars Controller</servlet-name>
@@ -20,7 +20,7 @@
 
     <servlet>
         <servlet-name>Add Car Controller</servlet-name>
-        <servlet-class>hibernate.carStoreAnnotation.AddCarController</servlet-class>
+        <servlet-class>hibernate.carStoreAnnotation.controllers.AddCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Add Car Controller</servlet-name>
@@ -28,12 +28,14 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Load File Controller</servlet-name>
-        <servlet-class>hibernate.carStoreAnnotation.LoadFileController</servlet-class>
+        <servlet-name>Find Car Controller</servlet-name>
+        <servlet-class>hibernate.carStoreAnnotation.controllers.FindCarController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Load File Controller</servlet-name>
-        <url-pattern>/loadfile</url-pattern>
+        <servlet-name>Find Car Controller</servlet-name>
+        <url-pattern>/findcar</url-pattern>
     </servlet-mapping>
+
+
 
 </web-app>

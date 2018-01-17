@@ -10,4 +10,7 @@ public interface DaoStorageAnnotate<T> {
     List<T> read();
     void update(int id, T newCar);
     void delete(int id);
+    T getById(int id);
+    List<T> findByCredential(String carbody, String transmission, String engine);
+    void deleteAll();
 }
