@@ -23,6 +23,7 @@ public class CarDaoStorageAnnotateTest {
         carDaoStorageAnnotate.create(car);
         List<Car> cars = carDaoStorageAnnotate.findByCredential("crossover", "auto", "x6");
         assertThat("x6", is(cars.get(0).getEngine().getModel()));
+
     }
 
     @Test
