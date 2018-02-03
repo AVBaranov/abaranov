@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--<bean id="HelperClass" class="spring.HelperClass">
+        <property name="season">
+            <ref bean="spring"/>
+        </property>
+    </bean>-->
+    <!--<bean id="HelperClass" class="spring.HelperClass">
+        <constructor-arg>
+            <ref bean="spring"/>
+        </constructor-arg>
+    </bean>
+    <bean id="winter" class="spring.Winter"/>
+    <bean id="spring" class="spring.Spring"/>-->
+
+    <bean id="importuser" class="spring.store.ImportUser">
+        <property name="storage">
+            <ref bean="memory"/>
+        </property>
+    </bean>
+    <bean id="memory" class="spring.store.MemoryStorage"/>
+    <bean id="jdbc" class="spring.store.JsbcStorage"/>
+
+</beans>
