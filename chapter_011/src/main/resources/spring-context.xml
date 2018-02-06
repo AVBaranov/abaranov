@@ -24,4 +24,6 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     <bean id="memory" class="spring.store.MemoryStorage"/>
     <bean id="jdbc" class="spring.store.JsbcStorage"/>
 
+    <bean id="someImpl" class="spring.bean_creation.SomeInterfaceImpl"/>
+
 </beans>
