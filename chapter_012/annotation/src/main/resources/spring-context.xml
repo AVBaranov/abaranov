@@ -16,7 +16,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     <bean id="winter" class="spring.Winter"/>
     <bean id="spring" class="spring.Spring"/>-->
 
-    <bean id="importuser" class="spring.store.ImportUser">
+    <!--<bean id="importuser" class="spring.store.ImportUser">
         <property name="storage">
             <ref bean="memory"/>
         </property>
@@ -24,6 +24,6 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     <bean id="memory" class="spring.store.MemoryStorage"/>
     <bean id="jdbc" class="spring.store.JsbcStorage"/>
 
-    <bean id="someImpl" class="spring.bean_creation.SomeInterfaceImpl"/>
+    <bean id="someImpl" class="spring.bean_creation.SomeInterfaceImpl"/>-->
 
 </beans>

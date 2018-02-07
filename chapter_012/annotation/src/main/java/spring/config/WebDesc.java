@@ -1,9 +1,11 @@
 package spring.config;
 
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
 /**
  * Created by Андрей on 07.02.2018.
  */
-/*public class WebDesc extends AbstractAnnotationConfigDispatcherServletInitializer  {
+public class WebDesc extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -19,4 +21,4 @@ package spring.config;
     protected String[] getServletMappings() {
         return new String[]{"*.do"};
     }
-}*/
+}
