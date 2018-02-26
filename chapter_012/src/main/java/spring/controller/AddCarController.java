@@ -35,10 +35,14 @@ public class AddCarController {
                 File filepath = new File("C:/UploadFiles", file.getOriginalFilename());
                 filepath.getParentFile().mkdirs();
                 //store file into created folder
-                BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(filepath));
-                outputStream.write(file.getBytes());
-                outputStream.flush();
-                outputStream.close();
+                try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(filepath));) {
+                    outputStream.write(file.getBytes());
+                    outputStream.flush();
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             } else {
                 model.addAttribute("msg", "Please select at least one file..");
                 return "addcar";

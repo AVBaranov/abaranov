@@ -16,15 +16,20 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
 
     private SessionFactory factory = null;
 
+    private void checkSession() {
+        if (this.factory.isClosed()) {
+            this.factory = new Configuration().configure().buildSessionFactory();
+        }
+    }
+
     public CarDaoStorageAnnotate() {
         this.factory = new Configuration().configure().buildSessionFactory();
     }
 
     @Override
     public void create(Car car) {
-        if (this.factory.isClosed()) {
-            this.factory = new Configuration().configure().buildSessionFactory();
-        }
+        // check if session is closed
+        this.checkSession();
         Session session = this.factory.openSession();
         Transaction transaction = null;
         try {
@@ -45,9 +50,8 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
 
     @Override
     public List<Car> read() {
-        if (this.factory.isClosed()) {
-            this.factory = new Configuration().configure().buildSessionFactory();
-        }
+        // check if session is closed
+        this.checkSession();
         Session session = this.factory.openSession();
         Transaction transaction = null;
         List<Car> cars = new ArrayList<>();
@@ -67,9 +71,8 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
 
     @Override
     public void update(int id, Car newCar) {
-        if (this.factory.isClosed()) {
-            this.factory = new Configuration().configure().buildSessionFactory();
-        }
+        // check if session is closed
+        this.checkSession();
         Session session = this.factory.openSession();
         Transaction transaction = null;
         try {
@@ -91,9 +94,8 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
 
     @Override
     public void delete(int id) {
-        if (this.factory.isClosed()) {
-            this.factory = new Configuration().configure().buildSessionFactory();
-        }
+        // check if session is closed
+        this.checkSession();
         Session session = this.factory.openSession();
         Transaction transaction = null;
         try {
@@ -112,9 +114,8 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
 
     @Override
     public Car getById(int id) {
-        if (this.factory.isClosed()) {
-            this.factory = new Configuration().configure().buildSessionFactory();
-        }
+        // check if session is closed
+        this.checkSession();
         Session session = this.factory.openSession();
         Car car = session.get(Car.class, id);
         session.close();
@@ -127,9 +128,8 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
         List<Car> cars = new ArrayList<>();
         Session session = null;
         try {
-            if (this.factory.isClosed()) {
-                this.factory = new Configuration().configure().buildSessionFactory();
-            }
+            // check if session is closed
+            this.checkSession();
             session = this.factory.openSession();
             Query query = session.createQuery(
                     "from Car as c join fetch c.transmission where c.transmission.type =:transmission and c.carbody.type=:carbody and c.engine.model=:engine"
@@ -149,9 +149,8 @@ public class CarDaoStorageAnnotate implements DaoStorageAnnotate<Car> {
 
     @Override
     public void deleteAll() {
-        if (this.factory.isClosed()) {
-            this.factory = new Configuration().configure().buildSessionFactory();
-        }
+        // check if session is closed
+        this.checkSession();
         Session session = this.factory.openSession();
         Transaction transaction = null;
         try {
