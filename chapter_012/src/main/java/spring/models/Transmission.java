@@ -19,7 +19,11 @@ public class Transmission {
     public Transmission() {
     }
 
-    @Id @GeneratedValue
+    public Transmission(String type) {
+        this.type = type;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="transmission_id")
     public int getId() {
         return id;

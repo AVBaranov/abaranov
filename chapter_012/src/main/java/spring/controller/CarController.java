@@ -8,12 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import spring.models.*;
+import spring.service.CarServiceImpl;
 
 /**
  * Created by Андрей on 20.02.2018.
  */
 @Controller
-public class AddCarController {
+public class CarController {
     @RequestMapping(value = "/addcar", method = RequestMethod.GET)
     public String fileUploadForm(Model model) {
         return "addcar";
@@ -57,13 +58,15 @@ public class AddCarController {
         Transmission transmis = new Transmission();
         transmis.setType(transmission);
         Car car = new Car(carmodel, engineTest, carbodyTest, transmis, true);
-        new CarDaoStorageAnnotate().create(car);
+//        new CarDaoStorageAnnotate().create(car);
+        new CarServiceImpl().create(car);
         return "redirect:addcar.do";
     }
 
     @RequestMapping(value = "/getcars", method = RequestMethod.GET)
     public String getCarInJson(Model model) {
-        List<Car> cars = new CarDaoStorageAnnotate().read();
+//        List<Car> cars = new CarDaoStorageAnnotate().read();
+        List<Car> cars = new CarServiceImpl().read();
         model.addAttribute("cars", cars);
         return "showcars";
     }

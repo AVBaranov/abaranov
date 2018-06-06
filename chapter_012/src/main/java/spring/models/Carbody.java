@@ -19,7 +19,11 @@ public class Carbody {
     public Carbody() {
     }
 
-    @Id @GeneratedValue
+    public Carbody(String type) {
+        this.type = type;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="carbody_id")
     public int getId() {
         return id;

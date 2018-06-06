@@ -14,12 +14,17 @@ import java.util.List;
 public class Engine {
     private int id;
     private String model;
+
     private List<Car> cars = new ArrayList<>();
 
     public Engine() {
     }
 
-    @Id @GeneratedValue
+    public Engine(String model) {
+        this.model = model;
+    }
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="engine_id")
     public int getId() {
         return id;

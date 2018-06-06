@@ -28,7 +28,7 @@ public class Car {
         this.sold = sold;
     }
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="car_id", nullable=false)
     public int getId() {
         return id;
