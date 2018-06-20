@@ -25,14 +25,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".jsp");
         return resolver;
-        /*WEB-INF/views/*/
     }
 
     @Bean
     public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(10485760); // 10MB
-        multipartResolver.setMaxUploadSizePerFile(1048576); // 1MB
+        multipartResolver.setMaxUploadSize(104857600); // 100MB
+        multipartResolver.setMaxUploadSizePerFile(10485760); // 10MB
         return multipartResolver;
     }
 
