@@ -331,5 +331,22 @@
         <servlet-name>DeleteAddress</servlet-name>
         <url-pattern>/deleteAddress</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BootstrapFindAllController</servlet-name>
+        <servlet-class>servlets.bootstrap.controllers.BootstrapFindAllController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BootstrapFindAllController</servlet-name>
+        <url-pattern>/findAll_json</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BootstrapAddController</servlet-name>
+        <servlet-class>servlets.bootstrap.controllers.BootstrapAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BootstrapAddController</servlet-name>
+        <url-pattern>/add_bootstrap_json</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
